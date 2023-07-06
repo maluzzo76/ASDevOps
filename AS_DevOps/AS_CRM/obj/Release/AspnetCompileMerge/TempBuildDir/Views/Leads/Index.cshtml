@@ -1,0 +1,109 @@
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.Lead>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Leads</h2>
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Leads")'">
+    Agregar Leads
+    <span class="badge badge-light">@Model.TotalRegistros</span>
+</button>
+
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off" })
+        </div>
+    </div>
+}
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">  
+        <th></th>
+        <th>
+            Razon_Social
+        </th>            
+        <th>
+            Nombre Contacto
+        </th>
+        <th>
+            Cargo Contacto
+        </th>
+        <th>
+            Telefono Contacto
+        </th>
+        <th>
+            Email Contacto
+        </th>        
+        <th>
+            Provincia
+        </th>
+        <th>
+            Localidad
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color:#eff1f1; border-left: 4px solid #1ea9ef;border-bottom:2px solid #ffffff; border-bottom-width:5px;">
+            <td>
+                <a href="@Url.Action("Details", "Leads", new { id = item.Id })" >
+                    <img src="~/Content/image/lead.png" class="btn-grid" style="zoom: 5%; padding-top: -50px;" />
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Razon_Social)
+            </td>        
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo_Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email_Contacto)
+            </td>          
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidad)
+            </td>
+            <td style="width:150px">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-warning"})
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
+
+        }
+    </ul>
+</div>

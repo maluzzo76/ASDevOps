@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AS_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Leads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Razon_Social" Type="varchar" MaxLength="255" />
+          <Property Name="CUIT" Type="varchar" MaxLength="255" />
+          <Property Name="Telefono_Razon_Social" Type="varchar" MaxLength="255" />
+          <Property Name="Email_Razon_Social" Type="varchar" MaxLength="255" />
+          <Property Name="Nombre_Contacto" Type="varchar" MaxLength="255" />
+          <Property Name="Cargo_Contacto" Type="varchar" MaxLength="255" />
+          <Property Name="Telefono_Contacto" Type="varchar" MaxLength="255" />
+          <Property Name="Telefono2_Contacto" Type="varchar" MaxLength="255" />
+          <Property Name="Email_Contacto" Type="varchar" MaxLength="255" />
+          <Property Name="Email2_Contacto" Type="varchar" MaxLength="255" />
+          <Property Name="Informacion_Fiscal" Type="varchar" MaxLength="8000" />
+          <Property Name="Provincia" Type="varchar" MaxLength="255" />
+          <Property Name="Localidad" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="AS_CRMModelStoreContainer">
+          <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AS_CRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Lead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Razon_Social" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CUIT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono_Razon_Social" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Razon_Social" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_Contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo_Contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono_Contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono2_Contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email2_Contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Informacion_Fiscal" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Localidad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AS_CRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Leads" EntityType="Self.Lead" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AS_CRMModelStoreContainer" CdmEntityContainer="AS_CRMEntities">
+          <EntitySetMapping Name="Leads">
+            <EntityTypeMapping TypeName="AS_CRMModel.Lead">
+              <MappingFragment StoreEntitySet="Leads">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="Telefono_Razon_Social" ColumnName="Telefono_Razon_Social" />
+                <ScalarProperty Name="Email_Razon_Social" ColumnName="Email_Razon_Social" />
+                <ScalarProperty Name="Nombre_Contacto" ColumnName="Nombre_Contacto" />
+                <ScalarProperty Name="Cargo_Contacto" ColumnName="Cargo_Contacto" />
+                <ScalarProperty Name="Telefono_Contacto" ColumnName="Telefono_Contacto" />
+                <ScalarProperty Name="Telefono2_Contacto" ColumnName="Telefono2_Contacto" />
+                <ScalarProperty Name="Email_Contacto" ColumnName="Email_Contacto" />
+                <ScalarProperty Name="Email2_Contacto" ColumnName="Email2_Contacto" />
+                <ScalarProperty Name="Informacion_Fiscal" ColumnName="Informacion_Fiscal" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

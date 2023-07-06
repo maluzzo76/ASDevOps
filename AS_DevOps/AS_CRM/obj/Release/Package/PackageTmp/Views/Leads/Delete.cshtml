@@ -1,0 +1,128 @@
+﻿@model AS_CRM.Lead
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Lead</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Razon_Social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razon_Social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CUIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono_Razon_Social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono_Razon_Social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Razon_Social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Razon_Social)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cargo_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cargo_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono2_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono2_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email2_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email2_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Informacion_Fiscal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Informacion_Fiscal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provincia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidad)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AS_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Leads">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Razon_Social" Type="varchar" MaxLength="255" />
+    <Property Name="CUIT" Type="varchar" MaxLength="255" />
+    <Property Name="Telefono_Razon_Social" Type="varchar" MaxLength="255" />
+    <Property Name="Email_Razon_Social" Type="varchar" MaxLength="255" />
+    <Property Name="Nombre_Contacto" Type="varchar" MaxLength="255" />
+    <Property Name="Cargo_Contacto" Type="varchar" MaxLength="255" />
+    <Property Name="Telefono_Contacto" Type="varchar" MaxLength="255" />
+    <Property Name="Telefono2_Contacto" Type="varchar" MaxLength="255" />
+    <Property Name="Email_Contacto" Type="varchar" MaxLength="255" />
+    <Property Name="Email2_Contacto" Type="varchar" MaxLength="255" />
+    <Property Name="Informacion_Fiscal" Type="varchar" MaxLength="8000" />
+    <Property Name="Provincia" Type="varchar" MaxLength="255" />
+    <Property Name="Localidad" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityContainer Name="AS_CRMModelStoreContainer">
+    <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

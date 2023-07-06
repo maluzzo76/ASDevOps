@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AS_CRMModelStoreContainer" CdmEntityContainer="AS_CRMEntities">
+    <EntitySetMapping Name="Leads">
+      <EntityTypeMapping TypeName="AS_CRMModel.Lead">
+        <MappingFragment StoreEntitySet="Leads">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Razon_Social" ColumnName="Razon_Social" />
+          <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+          <ScalarProperty Name="Telefono_Razon_Social" ColumnName="Telefono_Razon_Social" />
+          <ScalarProperty Name="Email_Razon_Social" ColumnName="Email_Razon_Social" />
+          <ScalarProperty Name="Nombre_Contacto" ColumnName="Nombre_Contacto" />
+          <ScalarProperty Name="Cargo_Contacto" ColumnName="Cargo_Contacto" />
+          <ScalarProperty Name="Telefono_Contacto" ColumnName="Telefono_Contacto" />
+          <ScalarProperty Name="Telefono2_Contacto" ColumnName="Telefono2_Contacto" />
+          <ScalarProperty Name="Email_Contacto" ColumnName="Email_Contacto" />
+          <ScalarProperty Name="Email2_Contacto" ColumnName="Email2_Contacto" />
+          <ScalarProperty Name="Informacion_Fiscal" ColumnName="Informacion_Fiscal" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
