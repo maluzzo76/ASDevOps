@@ -170,12 +170,24 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Cliente.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobante.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ComprobantesController.cs" />
     <Compile Include="Controllers\CustomController.cs" />
+    <Compile Include="Controllers\GastosFijoesController.cs" />
+    <Compile Include="Controllers\GastosVariablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Pagination.cs" />
+    <Compile Include="Controllers\TipoGastoesController.cs" />
+    <Compile Include="Controllers\TiposComprobantesController.cs" />
     <Compile Include="Crm_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -191,6 +203,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Crm_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GastosFijo.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GastosVariable.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +220,12 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="TipoGasto.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiposComprobante.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -209,6 +233,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\image\banner.png" />
+    <Content Include="Content\image\favicon.png" />
+    <Content Include="Content\image\gastos.png" />
     <Content Include="Content\image\lead.png" />
     <Content Include="Content\image\logo.png" />
     <Content Include="Crm_Model.Context.tt">
@@ -284,6 +310,36 @@
     <Content Include="Views\Leads\Details.cshtml" />
     <Content Include="Views\Leads\Edit.cshtml" />
     <Content Include="Views\Leads\Index.cshtml" />
+    <Content Include="Views\TipoGastoes\Create.cshtml" />
+    <Content Include="Views\TipoGastoes\Delete.cshtml" />
+    <Content Include="Views\TipoGastoes\Details.cshtml" />
+    <Content Include="Views\TipoGastoes\Edit.cshtml" />
+    <Content Include="Views\TipoGastoes\Index.cshtml" />
+    <Content Include="Views\TiposComprobantes\Create.cshtml" />
+    <Content Include="Views\TiposComprobantes\Delete.cshtml" />
+    <Content Include="Views\TiposComprobantes\Details.cshtml" />
+    <Content Include="Views\TiposComprobantes\Edit.cshtml" />
+    <Content Include="Views\TiposComprobantes\Index.cshtml" />
+    <Content Include="Views\GastosFijoes\Create.cshtml" />
+    <Content Include="Views\GastosFijoes\Delete.cshtml" />
+    <Content Include="Views\GastosFijoes\Details.cshtml" />
+    <Content Include="Views\GastosFijoes\Edit.cshtml" />
+    <Content Include="Views\GastosFijoes\Index.cshtml" />
+    <Content Include="Views\GastosVariables\Create.cshtml" />
+    <Content Include="Views\GastosVariables\Delete.cshtml" />
+    <Content Include="Views\GastosVariables\Details.cshtml" />
+    <Content Include="Views\GastosVariables\Edit.cshtml" />
+    <Content Include="Views\GastosVariables\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Comprobantes\Create.cshtml" />
+    <Content Include="Views\Comprobantes\Delete.cshtml" />
+    <Content Include="Views\Comprobantes\Details.cshtml" />
+    <Content Include="Views\Comprobantes\Edit.cshtml" />
+    <Content Include="Views\Comprobantes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -52,7 +52,7 @@
 
     @foreach (var item in Model.Resultado)
     {
-        <tr style="background-color:#eff1f1; border-left: 4px solid #1ea9ef;border-bottom:2px solid #ffffff; border-bottom-width:5px;">
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
             <td>
                 <a href="@Url.Action("Details", "Leads", new { id = item.Id })" >
                     <img src="~/Content/image/lead.png" class="btn-grid" style="zoom: 5%; padding-top: -50px;" />

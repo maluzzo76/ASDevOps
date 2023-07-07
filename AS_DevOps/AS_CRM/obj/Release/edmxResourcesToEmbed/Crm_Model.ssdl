@@ -1,5 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AS_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RazonSocial" Type="varchar" MaxLength="100" />
+    <Property Name="NombreContacto" Type="varchar" MaxLength="255" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Comprobantes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoComprobanteId" Type="int" />
+    <Property Name="ClienteId" Type="int" />
+    <Property Name="Numero" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="FechaRegistracion" Type="datetime" />
+    <Property Name="FechaVencimiento" Type="datetime" />
+    <Property Name="TotalNeto" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Iva" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IIBB" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalBruto" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="GastosFijos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoGastoId" Type="int" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="Importe" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GastosVariables">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoGastoId" Type="int" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="Importe" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
   <EntityType Name="Leads">
     <Key>
       <PropertyRef Name="Id" />
@@ -19,7 +64,93 @@
     <Property Name="Provincia" Type="varchar" MaxLength="255" />
     <Property Name="Localidad" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="TipoGasto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Acronimo" Type="varchar" MaxLength="10" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TiposComprobante">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Acronimo" Type="varchar" MaxLength="10" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Comproban__Clien__693CA210">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Comprobantes" Type="Self.Comprobantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comprobantes">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comproban__TipoC__68487DD7">
+    <End Role="TiposComprobante" Type="Self.TiposComprobante" Multiplicity="0..1" />
+    <End Role="Comprobantes" Type="Self.Comprobantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TiposComprobante">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comprobantes">
+        <PropertyRef Name="TipoComprobanteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GastosFij__TipoG__6C190EBB">
+    <End Role="TipoGasto" Type="Self.TipoGasto" Multiplicity="0..1" />
+    <End Role="GastosFijos" Type="Self.GastosFijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGasto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GastosFijos">
+        <PropertyRef Name="TipoGastoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GastosVar__TipoG__6EF57B66">
+    <End Role="TipoGasto" Type="Self.TipoGasto" Multiplicity="0..1" />
+    <End Role="GastosVariables" Type="Self.GastosVariables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGasto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GastosVariables">
+        <PropertyRef Name="TipoGastoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AS_CRMModelStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comprobantes" EntityType="Self.Comprobantes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GastosFijos" EntityType="Self.GastosFijos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GastosVariables" EntityType="Self.GastosVariables" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TiposComprobante" EntityType="Self.TiposComprobante" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comproban__Clien__693CA210" Association="Self.FK__Comproban__Clien__693CA210">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Comprobantes" EntitySet="Comprobantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comproban__TipoC__68487DD7" Association="Self.FK__Comproban__TipoC__68487DD7">
+      <End Role="TiposComprobante" EntitySet="TiposComprobante" />
+      <End Role="Comprobantes" EntitySet="Comprobantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GastosFij__TipoG__6C190EBB" Association="Self.FK__GastosFij__TipoG__6C190EBB">
+      <End Role="TipoGasto" EntitySet="TipoGasto" />
+      <End Role="GastosFijos" EntitySet="GastosFijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GastosVar__TipoG__6EF57B66" Association="Self.FK__GastosVar__TipoG__6EF57B66">
+      <End Role="TipoGasto" EntitySet="TipoGasto" />
+      <End Role="GastosVariables" EntitySet="GastosVariables" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

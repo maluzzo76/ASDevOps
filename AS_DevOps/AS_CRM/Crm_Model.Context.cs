@@ -26,5 +26,11 @@ namespace AS_CRM
         }
     
         public virtual DbSet<Lead> Leads { get; set; }
+        public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Comprobante> Comprobantes { get; set; }
+        public virtual DbSet<GastosFijo> GastosFijos { get; set; }
+        public virtual DbSet<GastosVariable> GastosVariables { get; set; }
+        public virtual DbSet<TipoGasto> TipoGastoes { get; set; }
+        public virtual DbSet<TiposComprobante> TiposComprobantes { get; set; }
     }
 }

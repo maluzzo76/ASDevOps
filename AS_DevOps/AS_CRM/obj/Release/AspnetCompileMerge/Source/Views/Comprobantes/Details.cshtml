@@ -1,0 +1,90 @@
+﻿@model AS_CRM.Comprobante
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comprobante</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalNeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalNeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Iva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Iva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IIBB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IIBB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalBruto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalBruto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.RazonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.RazonSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiposComprobante.Acronimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiposComprobante.Acronimo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

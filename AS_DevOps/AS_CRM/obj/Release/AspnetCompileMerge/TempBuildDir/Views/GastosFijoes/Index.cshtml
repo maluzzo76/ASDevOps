@@ -1,0 +1,93 @@
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.GastosFijo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gastos Fijos</h2>
+
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "GastosFijoes")'">
+    Agregar Gasto Fijo
+    <span class="badge badge-light">@Model.TotalRegistros</span>
+     - Total Gastos
+    <span class="badge badge-light">$ @Model.Resultado.Sum(t => t.Importe)</span>
+</button>
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off" })
+        </div>
+    </div>
+}
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
+        <th></th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Importe
+        </th>
+        <th>
+            Fecha Registro
+        </th>
+        <th>
+            Tipo Gasto
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+            <td>
+                <a href="@Url.Action("Details", "GastosFijoes", new { id = item.Id })">
+                    <img src="~/Content/image/gastos.png" class="btn-grid" style="zoom: 20%; padding-top: -50px;" />
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Importe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoGasto.Nombre)
+            </td>
+            <td style="width:150px">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
+
+        }
+    </ul>
+</div>
