@@ -15,9 +15,24 @@ namespace AS_CRM.Controllers
         private AS_CRMEntities db = new AS_CRMEntities();
 
         // GET: TiposComprobantes
-        public ActionResult Index()
+        public ActionResult Index(string SearchString, int pagina = 1)
         {
-            return View(db.TiposComprobantes.ToList());
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            var _r = from _o in db.TiposComprobantes
+                     select _o;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                _r = from _o in _r
+                     where _o.Nombre.Contains(SearchString)
+                     select _o;
+            }
+
+            Pagination<TiposComprobante> _page = new Pagination<TiposComprobante>();
+
+            return View(_page.paginado(_r, pagina));
         }
 
         // GET: TiposComprobantes/Details/5

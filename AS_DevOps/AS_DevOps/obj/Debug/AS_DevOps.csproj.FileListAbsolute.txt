@@ -1,0 +1,3 @@
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_DevOps\obj\Debug\AS_DevOps.csproj.AssemblyReference.cache
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_DevOps\obj\Debug\AS_DevOps.csproj.SuggestedBindingRedirects.cache
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_DevOps\obj\Debug\AS_DevOps.csproj.CoreCompileInputs.cache

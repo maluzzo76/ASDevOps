@@ -15,9 +15,24 @@ namespace AS_CRM.Controllers
         private AS_CRMEntities db = new AS_CRMEntities();
 
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(string SearchString, int pagina = 1)
         {
-            return View(db.Clientes.ToList());
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            var _r = from _o in db.Clientes
+                     select _o;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                _r = from _o in _r
+                     where _o.RazonSocial.Contains(SearchString) || _o.NombreContacto.Contains(SearchString)
+                     select _o;
+            }
+
+            Pagination<Cliente> _page = new Pagination<Cliente>();
+
+            return View(_page.paginado(_r, pagina));
         }
 
         // GET: Clientes/Details/5

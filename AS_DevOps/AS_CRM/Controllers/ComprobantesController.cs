@@ -14,11 +14,25 @@ namespace AS_CRM.Controllers
     {
         private AS_CRMEntities db = new AS_CRMEntities();
 
-        // GET: Comprobantes
-        public ActionResult Index()
+   
+        public ActionResult Index(string SearchString, int pagina = 1)
         {
-            var comprobantes = db.Comprobantes.Include(c => c.Cliente).Include(c => c.TiposComprobante);
-            return View(comprobantes.ToList());
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            var _r = from _o in db.Comprobantes.Include(c => c.Cliente).Include(c => c.TiposComprobante)
+            select _o;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                _r = from _o in _r
+                     where _o.Cliente.RazonSocial.Contains(SearchString)
+                     select _o;
+            }
+
+            Pagination<Comprobante> _page = new Pagination<Comprobante>();
+
+            return View(_page.paginado(_r, pagina));
         }
 
         // GET: Comprobantes/Details/5

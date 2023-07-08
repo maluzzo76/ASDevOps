@@ -11,14 +11,19 @@ namespace AS_CRM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Comprobante
     {
         public int Id { get; set; }
         public Nullable<int> TipoComprobanteId { get; set; }
         public Nullable<int> ClienteId { get; set; }
         public Nullable<decimal> Numero { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public Nullable<System.DateTime> FechaRegistracion { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public Nullable<System.DateTime> FechaVencimiento { get; set; }
         public Nullable<decimal> TotalNeto { get; set; }
         public Nullable<decimal> Iva { get; set; }

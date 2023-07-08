@@ -1,51 +1,89 @@
-﻿@model IEnumerable<AS_CRM.Cliente>
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.Cliente>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Clientes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Clientes")'">
+    Agregar Cliente
+    <span class="badge badge-light">@Model.TotalRegistros</span>
+</button>
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off" })
+        </div>
+    </div>
+}
+
 <table class="table">
-    <tr>
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
         <th>
-            @Html.DisplayNameFor(model => model.RazonSocial)
+            RazonSocial
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NombreContacto)
+            Nombre Contacto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono)
+            Telefono
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RazonSocial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreContacto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+            <td>
+                @Html.DisplayFor(modelItem => item.RazonSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreContacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td style="width:150px">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
+
+        }
+    </ul>
+</div>
+
+
+

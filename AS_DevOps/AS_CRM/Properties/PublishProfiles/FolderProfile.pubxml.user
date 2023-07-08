@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Fuentes\Alusoft\Publish\Crm</_PublishTargetUrl>
-    <History>True|2023-07-07T00:08:04.6153669Z;True|2023-07-06T02:01:48.5780312-03:00;True|2023-07-06T00:39:02.3196424-03:00;</History>
+    <History>True|2023-07-08T04:19:42.0047626Z;True|2023-07-08T01:16:03.2517091-03:00;False|2023-07-08T01:15:02.8639608-03:00;False|2023-07-08T01:14:50.0900730-03:00;True|2023-07-06T21:08:04.6153669-03:00;True|2023-07-06T02:01:48.5780312-03:00;True|2023-07-06T00:39:02.3196424-03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -16,16 +16,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/06/2023 21:08:02</publishTime>
+      <publishTime>07/08/2023 01:19:40</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/06/2023 21:08:01</publishTime>
+      <publishTime>07/08/2023 01:19:40</publishTime>
     </File>
     <File Include="bin/AS_CRM.dll">
-      <publishTime>07/06/2023 21:07:46</publishTime>
+      <publishTime>07/08/2023 01:15:45</publishTime>
     </File>
     <File Include="bin/AS_CRM.pdb">
-      <publishTime>07/06/2023 21:07:46</publishTime>
+      <publishTime>07/08/2023 01:15:45</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -309,11 +309,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/image/banner.png">
       <publishTime>07/05/2023 16:20:43</publishTime>
     </File>
+    <File Include="Content/image/gastos.png">
+      <publishTime>07/06/2023 20:44:17</publishTime>
+    </File>
     <File Include="Content/image/lead.png">
       <publishTime>07/05/2023 14:29:27</publishTime>
     </File>
     <File Include="Content/image/logo.png">
-      <publishTime>07/05/2023 16:40:32</publishTime>
+      <publishTime>07/08/2023 00:24:25</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>07/05/2023 15:06:14</publishTime>
@@ -340,7 +343,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:44</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/06/2023 21:07:48</publishTime>
+      <publishTime>07/08/2023 01:19:34</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/05/2023 12:03:44</publishTime>
@@ -418,49 +421,49 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:53</publishTime>
     </File>
     <File Include="Views/Clientes/Create.cshtml">
-      <publishTime>07/06/2023 20:13:23</publishTime>
+      <publishTime>07/08/2023 00:55:37</publishTime>
     </File>
     <File Include="Views/Clientes/Delete.cshtml">
-      <publishTime>07/06/2023 20:13:24</publishTime>
+      <publishTime>07/08/2023 00:55:33</publishTime>
     </File>
     <File Include="Views/Clientes/Details.cshtml">
       <publishTime>07/06/2023 20:13:25</publishTime>
     </File>
     <File Include="Views/Clientes/Edit.cshtml">
-      <publishTime>07/06/2023 20:13:25</publishTime>
+      <publishTime>07/08/2023 00:55:37</publishTime>
     </File>
     <File Include="Views/Clientes/Index.cshtml">
-      <publishTime>07/06/2023 20:13:26</publishTime>
+      <publishTime>07/08/2023 00:52:55</publishTime>
     </File>
     <File Include="Views/Comprobantes/Create.cshtml">
-      <publishTime>07/06/2023 20:14:14</publishTime>
+      <publishTime>07/08/2023 01:07:47</publishTime>
     </File>
     <File Include="Views/Comprobantes/Delete.cshtml">
-      <publishTime>07/06/2023 20:14:14</publishTime>
+      <publishTime>07/08/2023 01:05:08</publishTime>
     </File>
     <File Include="Views/Comprobantes/Details.cshtml">
       <publishTime>07/06/2023 20:14:15</publishTime>
     </File>
     <File Include="Views/Comprobantes/Edit.cshtml">
-      <publishTime>07/06/2023 20:14:15</publishTime>
+      <publishTime>07/08/2023 01:11:45</publishTime>
     </File>
     <File Include="Views/Comprobantes/Index.cshtml">
-      <publishTime>07/06/2023 20:14:16</publishTime>
+      <publishTime>07/08/2023 01:13:55</publishTime>
     </File>
     <File Include="Views/GastosFijoes/Create.cshtml">
-      <publishTime>07/06/2023 20:12:21</publishTime>
+      <publishTime>07/07/2023 23:33:51</publishTime>
     </File>
     <File Include="Views/GastosFijoes/Delete.cshtml">
-      <publishTime>07/06/2023 20:12:22</publishTime>
+      <publishTime>07/07/2023 23:50:03</publishTime>
     </File>
     <File Include="Views/GastosFijoes/Details.cshtml">
       <publishTime>07/06/2023 20:12:23</publishTime>
     </File>
     <File Include="Views/GastosFijoes/Edit.cshtml">
-      <publishTime>07/06/2023 20:12:23</publishTime>
+      <publishTime>07/07/2023 23:38:43</publishTime>
     </File>
     <File Include="Views/GastosFijoes/Index.cshtml">
-      <publishTime>07/06/2023 20:54:22</publishTime>
+      <publishTime>07/07/2023 23:52:32</publishTime>
     </File>
     <File Include="Views/GastosVariables/Create.cshtml">
       <publishTime>07/06/2023 20:12:50</publishTime>
@@ -490,10 +493,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 17:04:02</publishTime>
     </File>
     <File Include="Views/Leads/Delete.cshtml">
-      <publishTime>07/05/2023 13:25:03</publishTime>
+      <publishTime>07/07/2023 23:44:26</publishTime>
     </File>
     <File Include="Views/Leads/Details.cshtml">
-      <publishTime>07/05/2023 18:31:11</publishTime>
+      <publishTime>07/06/2023 22:06:55</publishTime>
     </File>
     <File Include="Views/Leads/Edit.cshtml">
       <publishTime>07/06/2023 02:00:07</publishTime>
@@ -526,40 +529,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/06/2023 20:28:44</publishTime>
+      <publishTime>07/08/2023 00:50:56</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>07/05/2023 12:03:53</publishTime>
     </File>
     <File Include="Views/TipoGastoes/Create.cshtml">
-      <publishTime>07/06/2023 20:10:53</publishTime>
+      <publishTime>07/08/2023 00:32:10</publishTime>
     </File>
     <File Include="Views/TipoGastoes/Delete.cshtml">
-      <publishTime>07/06/2023 20:10:53</publishTime>
+      <publishTime>07/08/2023 00:33:49</publishTime>
     </File>
     <File Include="Views/TipoGastoes/Details.cshtml">
       <publishTime>07/06/2023 20:10:54</publishTime>
     </File>
     <File Include="Views/TipoGastoes/Edit.cshtml">
-      <publishTime>07/06/2023 20:10:55</publishTime>
+      <publishTime>07/08/2023 00:32:02</publishTime>
     </File>
     <File Include="Views/TipoGastoes/Index.cshtml">
-      <publishTime>07/06/2023 20:10:56</publishTime>
+      <publishTime>07/08/2023 00:41:44</publishTime>
     </File>
     <File Include="Views/TiposComprobantes/Create.cshtml">
-      <publishTime>07/06/2023 20:11:41</publishTime>
+      <publishTime>07/08/2023 00:42:56</publishTime>
     </File>
     <File Include="Views/TiposComprobantes/Delete.cshtml">
-      <publishTime>07/06/2023 20:11:42</publishTime>
+      <publishTime>07/08/2023 00:41:42</publishTime>
     </File>
     <File Include="Views/TiposComprobantes/Details.cshtml">
       <publishTime>07/06/2023 20:11:43</publishTime>
     </File>
     <File Include="Views/TiposComprobantes/Edit.cshtml">
-      <publishTime>07/06/2023 20:11:44</publishTime>
+      <publishTime>07/08/2023 00:41:44</publishTime>
     </File>
     <File Include="Views/TiposComprobantes/Index.cshtml">
-      <publishTime>07/06/2023 20:11:45</publishTime>
+      <publishTime>07/08/2023 00:41:44</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>07/05/2023 15:42:46</publishTime>
@@ -568,7 +571,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:41</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/06/2023 00:38:42</publishTime>
+      <publishTime>07/08/2023 01:14:49</publishTime>
     </File>
   </ItemGroup>
 </Project>

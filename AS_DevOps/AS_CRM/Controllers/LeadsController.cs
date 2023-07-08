@@ -26,7 +26,7 @@ namespace AS_CRM.Controllers
             if (!string.IsNullOrEmpty(SearchString))
             {
                 _r = from _o in _r
-                     where _o.CUIT.Contains(SearchString) || _o.Provincia.Contains(SearchString)
+                     where _o.CUIT.Contains(SearchString) || _o.Razon_Social.Contains(SearchString) || _o.Provincia.Contains(SearchString)
                      select _o;
             }
                         
@@ -63,13 +63,13 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Razon_Social,CUIT,Telefono_Razon_Social,Email_Razon_Social,Nombre_Contacto,Cargo_Contacto,Telefono_Contacto,Telefono2_Contacto,Email_Contacto,Email2_Contacto,Informacion_Fiscal,Provincia,Localidad")] Lead lead)
         {
-            if (ModelState.IsValid)
+
+            if (db.Leads.Where(w => w.Razon_Social == lead.Razon_Social).Count() == 0)
             {
                 db.Leads.Add(lead);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(lead);
         }
 

@@ -1,81 +1,120 @@
-﻿@model IEnumerable<AS_CRM.Comprobante>
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.Comprobante>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tipos de Comprobantes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Comprobantes")'">
+    Agregar Comprobante
+    <span class="badge badge-light">@Model.TotalRegistros</span>
+</button>
+
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off" })
+        </div>
+    </div>
+}
 <table class="table">
-    <tr>
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
         <th>
-            @Html.DisplayNameFor(model => model.Numero)
+            Numero
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaRegistracion)
+            Razon Social
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaVencimiento)
+            Tipo Comprobante
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalNeto)
+            Fecha Registración
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Iva)
+            Fecha VTO
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IIBB)
+            Total Neto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalBruto)
+            Iva
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.RazonSocial)
+            IIBB
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TiposComprobante.Acronimo)
+            Total Bruto
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaRegistracion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaVencimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalNeto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Iva)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IIBB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalBruto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TiposComprobante.Acronimo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TiposComprobante.Acronimo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.TotalNeto)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Iva)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.IIBB)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.TotalBruto)
+            </td>
+
+            <td style="width:150px">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
+
+        }
+    </ul>
+</div>
+
+
+
