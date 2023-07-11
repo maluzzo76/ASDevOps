@@ -1,4 +1,5 @@
-﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.Cliente>
+﻿
+@model IEnumerable<AS_CRM.Cliente>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +10,7 @@
 
 <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Clientes")'">
     Agregar Cliente
-    <span class="badge badge-light">@Model.TotalRegistros</span>
+    <span class="badge badge-light">@Model.Count()</span>
 </button>
 
 
@@ -24,66 +25,28 @@
     </div>
 }
 
-<table class="table">
-    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
-        <th>
-            RazonSocial
-        </th>
-        <th>
-            Nombre Contacto
-        </th>
-        <th>
-            Telefono
-        </th>
-        <th>
-            Email
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Resultado)
-    {
-        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
-            <td>
-                @Html.DisplayFor(modelItem => item.RazonSocial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreContacto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td style="width:150px">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-            </td>
-        </tr>
-    }
-
-</table>
-
-<div class="container-fluid">
-
-
-    <ul class="pagination  pull-right">
-        @{
-            if (Model.PaginaActual > 1)
-            {
-                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
-            }
-
-
-            if (Model.PaginaActual < Model.TotalPaginas)
-            {
-                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
-            }
-
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card" style="width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 5px 5px 20px 5px gray;">
+                    <img class="card-img-top" src="~/Content/image/lead.png" alt="Card image" style=" zoom:25%;padding-left:30%;">
+                    <div class="card-body">
+                        <div style="padding-left:20px;padding-bottom:10px;">
+                            <h3 class="card-title">@item.RazonSocial</h3>
+                            <h4 class="card-text">@item.NombreContacto</h4>
+                            <hr />
+                            <p class="card-text"><span style="font-weight: bold;">Telefono:</span> @item.Telefono</p>
+                            <p class="card-text"><span style="font-weight: bold;">Email:</span> @item.Email</p>
+                           
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>         
         }
-    </ul>
+    </div>
 </div>
-
-
-

@@ -13,12 +13,27 @@ namespace AS_CRM.Controllers
     public class GastosVariablesController : CustomController
     {
         private AS_CRMEntities db = new AS_CRMEntities();
+      
 
-        // GET: GastosVariables
-        public ActionResult Index()
+        public ActionResult Index(string SearchString, int pagina = 1)
         {
-            var gastosVariables = db.GastosVariables.Include(g => g.TipoGasto);
-            return View(gastosVariables.ToList());
+
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            var _r = from _o in db.GastosVariables.Include(g => g.TipoGasto)
+            select _o;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                _r = from _o in _r
+                     where _o.Descripcion.Contains(SearchString)
+                     select _o;
+            }
+
+            Pagination<GastosVariable> _page = new Pagination<GastosVariable>();
+
+            return View(_page.paginado(_r, pagina));
         }
 
         // GET: GastosVariables/Details/5
@@ -39,7 +54,7 @@ namespace AS_CRM.Controllers
         // GET: GastosVariables/Create
         public ActionResult Create()
         {
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo");
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre");
             return View();
         }
 
@@ -57,7 +72,7 @@ namespace AS_CRM.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo", gastosVariable.TipoGastoId);
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre", gastosVariable.TipoGastoId);
             return View(gastosVariable);
         }
 
@@ -73,7 +88,7 @@ namespace AS_CRM.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo", gastosVariable.TipoGastoId);
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre", gastosVariable.TipoGastoId);
             return View(gastosVariable);
         }
 
@@ -90,7 +105,7 @@ namespace AS_CRM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo", gastosVariable.TipoGastoId);
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre", gastosVariable.TipoGastoId);
             return View(gastosVariable);
         }
 

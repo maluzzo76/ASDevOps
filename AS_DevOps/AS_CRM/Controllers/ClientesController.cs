@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using AS_CRM;
@@ -29,11 +30,30 @@ namespace AS_CRM.Controllers
                      where _o.RazonSocial.Contains(SearchString) || _o.NombreContacto.Contains(SearchString)
                      select _o;
             }
+            
+
+            return View(_r.ToList<AS_CRM.Cliente>());
+        }
+        /*
+        public ActionResult Index(string SearchString, int pagina = 1)
+        {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            var _r = from _o in db.Clientes
+                     select _o;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                _r = from _o in _r
+                     where _o.RazonSocial.Contains(SearchString) || _o.NombreContacto.Contains(SearchString)
+                     select _o;
+            }
 
             Pagination<Cliente> _page = new Pagination<Cliente>();
 
             return View(_page.paginado(_r, pagina));
-        }
+        }*/
 
         // GET: Clientes/Details/5
         public ActionResult Details(int? id)

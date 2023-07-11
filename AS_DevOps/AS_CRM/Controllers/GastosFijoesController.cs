@@ -72,7 +72,7 @@ namespace AS_CRM.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo", gastosFijo.TipoGastoId);
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre", gastosFijo.TipoGastoId);
             return View(gastosFijo);
         }
 
@@ -88,7 +88,7 @@ namespace AS_CRM.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo", gastosFijo.TipoGastoId);
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre", gastosFijo.TipoGastoId);
             return View(gastosFijo);
         }
 
@@ -105,7 +105,7 @@ namespace AS_CRM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Acronimo", gastosFijo.TipoGastoId);
+            ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre", gastosFijo.TipoGastoId);
             return View(gastosFijo);
         }
 

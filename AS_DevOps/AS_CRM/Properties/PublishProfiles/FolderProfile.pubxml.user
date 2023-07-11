@@ -16,16 +16,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/08/2023 01:19:40</publishTime>
+      <publishTime>07/11/2023 14:10:35</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/08/2023 01:19:40</publishTime>
+      <publishTime>07/11/2023 14:10:34</publishTime>
     </File>
     <File Include="bin/AS_CRM.dll">
-      <publishTime>07/08/2023 01:15:45</publishTime>
+      <publishTime>07/11/2023 14:10:14</publishTime>
     </File>
     <File Include="bin/AS_CRM.pdb">
-      <publishTime>07/08/2023 01:15:45</publishTime>
+      <publishTime>07/11/2023 14:10:14</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -343,7 +343,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:44</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/08/2023 01:19:34</publishTime>
+      <publishTime>07/11/2023 14:10:17</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/05/2023 12:03:44</publishTime>
@@ -433,7 +433,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/08/2023 00:55:37</publishTime>
     </File>
     <File Include="Views/Clientes/Index.cshtml">
-      <publishTime>07/08/2023 00:52:55</publishTime>
+      <publishTime>07/11/2023 13:39:09</publishTime>
     </File>
     <File Include="Views/Comprobantes/Create.cshtml">
       <publishTime>07/08/2023 01:07:47</publishTime>
@@ -466,7 +466,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/07/2023 23:52:32</publishTime>
     </File>
     <File Include="Views/GastosVariables/Create.cshtml">
-      <publishTime>07/06/2023 20:12:50</publishTime>
+      <publishTime>07/11/2023 14:10:13</publishTime>
     </File>
     <File Include="Views/GastosVariables/Delete.cshtml">
       <publishTime>07/06/2023 20:12:50</publishTime>
@@ -475,10 +475,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/06/2023 20:12:51</publishTime>
     </File>
     <File Include="Views/GastosVariables/Edit.cshtml">
-      <publishTime>07/06/2023 20:12:51</publishTime>
+      <publishTime>07/11/2023 13:50:43</publishTime>
     </File>
     <File Include="Views/GastosVariables/Index.cshtml">
-      <publishTime>07/06/2023 20:12:52</publishTime>
+      <publishTime>07/11/2023 13:44:58</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>07/05/2023 12:03:41</publishTime>
@@ -529,7 +529,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/08/2023 00:50:56</publishTime>
+      <publishTime>07/11/2023 13:44:56</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>07/05/2023 12:03:53</publishTime>
