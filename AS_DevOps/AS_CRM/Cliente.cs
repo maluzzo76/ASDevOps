@@ -18,6 +18,7 @@ namespace AS_CRM
         public Cliente()
         {
             this.Comprobantes = new HashSet<Comprobante>();
+            this.AcuardosComerciales = new HashSet<AcuardosComerciale>();
         }
     
         public int Id { get; set; }
@@ -25,8 +26,12 @@ namespace AS_CRM
         public string NombreContacto { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
+        public Nullable<decimal> ValorHora { get; set; }
+        public Nullable<System.DateTime> FechaDeAcuerdo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comprobante> Comprobantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcuardosComerciale> AcuardosComerciales { get; set; }
     }
 }

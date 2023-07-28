@@ -36,7 +36,10 @@
     <None Include="App.config" />
     <None Include="Tableros\DevOps.pbix" />
     <None Include="Tableros\DevOpsVepech.pbix" />
+    <None Include="Tableros\Diffupar.pbix" />
+    <None Include="Tableros\DISAM.pbix" />
     <None Include="Tableros\QPowerBi.pbit" />
+    <None Include="Tableros\VEPECH.pbix" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

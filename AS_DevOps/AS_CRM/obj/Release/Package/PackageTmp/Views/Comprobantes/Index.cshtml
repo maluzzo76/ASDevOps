@@ -72,7 +72,7 @@
                 @Html.DisplayFor(modelItem => item.FechaRegistracion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+               @item.FechaVencimiento.Value.ToString("dd-MM-yyyy")
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.TotalNeto)

@@ -20,7 +20,7 @@ namespace AS_CRM.Controllers
         {
             if (!validarLoggin())
                 return RedirectToAction("login", "Account");
-
+            
             var _r = from _o in db.Clientes
                      select _o;
 
@@ -81,10 +81,10 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email")] Cliente cliente)
+        public ActionResult Create([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,7 +113,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email")] Cliente cliente)
+        public ActionResult Edit([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {

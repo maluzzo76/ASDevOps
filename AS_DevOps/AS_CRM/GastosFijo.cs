@@ -21,7 +21,7 @@ namespace AS_CRM
         public Nullable<decimal> Importe { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaRegistro { get; set; }
     
         public virtual TipoGasto TipoGasto { get; set; }

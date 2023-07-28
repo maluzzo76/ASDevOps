@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AS_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcuardosComerciales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="ValorHora" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="HorasVendidas" Type="int" />
+          <Property Name="ImporteTotal" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="IsActiva" Type="bit" />
+        </EntityType>
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,6 +26,8 @@
           <Property Name="NombreContacto" Type="varchar" MaxLength="255" />
           <Property Name="Telefono" Type="varchar" MaxLength="100" />
           <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="ValorHora" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="FechaDeAcuerdo" Type="datetime" />
         </EntityType>
         <EntityType Name="Comprobantes">
           <Key>
@@ -85,6 +99,18 @@
           <Property Name="Acronimo" Type="varchar" MaxLength="10" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK__AcuardosC__Clien__02FC7413">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="AcuardosComerciales" Type="Self.AcuardosComerciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcuardosComerciales">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Comproban__Clien__693CA210">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
           <End Role="Comprobantes" Type="Self.Comprobantes" Multiplicity="*" />
@@ -134,6 +160,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AS_CRMModelStoreContainer">
+          <EntitySet Name="AcuardosComerciales" EntityType="Self.AcuardosComerciales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comprobantes" EntityType="Self.Comprobantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GastosFijos" EntityType="Self.GastosFijos" Schema="dbo" store:Type="Tables" />
@@ -141,6 +168,10 @@
           <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposComprobante" EntityType="Self.TiposComprobante" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AcuardosC__Clien__02FC7413" Association="Self.FK__AcuardosC__Clien__02FC7413">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="AcuardosComerciales" EntitySet="AcuardosComerciales" />
+          </AssociationSet>
           <AssociationSet Name="FK__Comproban__Clien__693CA210" Association="Self.FK__Comproban__Clien__693CA210">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Comprobantes" EntitySet="Comprobantes" />
@@ -205,6 +236,11 @@
             <End Role="TipoGasto" EntitySet="TipoGastoes" />
             <End Role="GastosVariable" EntitySet="GastosVariables" />
           </AssociationSet>
+          <EntitySet Name="AcuardosComerciales" EntityType="AS_CRMModel.AcuardosComerciale" />
+          <AssociationSet Name="FK__AcuardosC__Clien__02FC7413" Association="AS_CRMModel.FK__AcuardosC__Clien__02FC7413">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="AcuardosComerciale" EntitySet="AcuardosComerciales" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -216,6 +252,9 @@
           <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comprobantes" Relationship="AS_CRMModel.FK__Comproban__Clien__693CA210" FromRole="Cliente" ToRole="Comprobante" />
+          <Property Name="ValorHora" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="FechaDeAcuerdo" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcuardosComerciales" Relationship="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" FromRole="Cliente" ToRole="AcuardosComerciale" />
         </EntityType>
         <EntityType Name="Comprobante">
           <Key>
@@ -323,6 +362,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AcuardosComerciale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="ValorHora" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="HorasVendidas" Type="Int32" />
+          <Property Name="ImporteTotal" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="IsActiva" Type="Boolean" />
+          <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" FromRole="AcuardosComerciale" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK__AcuardosC__Clien__02FC7413">
+          <End Type="AS_CRMModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.AcuardosComerciale" Role="AcuardosComerciale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcuardosComerciale">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -352,6 +416,8 @@
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="AS_CRMModel.Cliente">
               <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="FechaDeAcuerdo" ColumnName="FechaDeAcuerdo" />
+                <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
@@ -412,6 +478,19 @@
               <MappingFragment StoreEntitySet="TiposComprobante">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Acronimo" ColumnName="Acronimo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcuardosComerciales">
+            <EntityTypeMapping TypeName="AS_CRMModel.AcuardosComerciale">
+              <MappingFragment StoreEntitySet="AcuardosComerciales">
+                <ScalarProperty Name="IsActiva" ColumnName="IsActiva" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="HorasVendidas" ColumnName="HorasVendidas" />
+                <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

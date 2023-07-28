@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Fuentes\Alusoft\Publish\Crm</_PublishTargetUrl>
-    <History>True|2023-07-08T04:19:42.0047626Z;True|2023-07-08T01:16:03.2517091-03:00;False|2023-07-08T01:15:02.8639608-03:00;False|2023-07-08T01:14:50.0900730-03:00;True|2023-07-06T21:08:04.6153669-03:00;True|2023-07-06T02:01:48.5780312-03:00;True|2023-07-06T00:39:02.3196424-03:00;</History>
+    <History>True|2023-07-16T14:07:20.7109545Z;True|2023-07-11T16:08:03.3812532-03:00;True|2023-07-08T01:19:42.0047626-03:00;True|2023-07-08T01:16:03.2517091-03:00;False|2023-07-08T01:15:02.8639608-03:00;False|2023-07-08T01:14:50.0900730-03:00;True|2023-07-06T21:08:04.6153669-03:00;True|2023-07-06T02:01:48.5780312-03:00;True|2023-07-06T00:39:02.3196424-03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -16,16 +16,43 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/11/2023 14:10:35</publishTime>
+      <publishTime>07/27/2023 22:16:19</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/11/2023 14:10:34</publishTime>
+      <publishTime>07/27/2023 22:16:19</publishTime>
     </File>
     <File Include="bin/AS_CRM.dll">
-      <publishTime>07/11/2023 14:10:14</publishTime>
+      <publishTime>07/27/2023 22:15:58</publishTime>
     </File>
     <File Include="bin/AS_CRM.pdb">
-      <publishTime>07/11/2023 14:10:14</publishTime>
+      <publishTime>07/27/2023 22:15:58</publishTime>
+    </File>
+    <File Include="bin/cs/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:36</publishTime>
+    </File>
+    <File Include="bin/cs/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:22</publishTime>
+    </File>
+    <File Include="bin/cs/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
+    </File>
+    <File Include="bin/cs/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:40</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:48</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:38</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:38</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -41,6 +68,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/es/Microsoft.AspNet.Identity.Owin.resources.dll">
       <publishTime>11/25/2019 11:01:02</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:38</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:44</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:14</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:36</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>05/27/2022 23:36:16</publishTime>
@@ -63,6 +105,66 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/es/System.Web.WebPages.resources.dll">
       <publishTime>05/27/2022 23:36:26</publishTime>
     </File>
+    <File Include="bin/fr/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:29:10</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:44</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:16</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:29:12</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:46</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:52</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:40</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:29:16</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:29:12</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:27:06</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:18</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:44</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:42</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:40</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:46</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:29:10</publishTime>
+    </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>11/25/2019 10:57:50</publishTime>
     </File>
@@ -72,8 +174,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
       <publishTime>11/25/2019 10:57:50</publishTime>
     </File>
+    <File Include="bin/Microsoft.Azure.DevOps.Comments.WebApi.dll">
+      <publishTime>04/18/2023 06:26:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Azure.Pipelines.WebApi.dll">
+      <publishTime>04/18/2023 06:26:10</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.dll">
+      <publishTime>10/18/2019 20:39:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Logging.dll">
+      <publishTime>10/18/2019 20:40:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>10/18/2019 20:44:00</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
       <publishTime>05/10/2022 23:31:20</publishTime>
@@ -102,14 +219,92 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
       <publishTime>05/10/2022 23:31:48</publishTime>
     </File>
+    <File Include="bin/Microsoft.TeamFoundation.Build2.WebApi.dll">
+      <publishTime>04/18/2023 06:27:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Common.dll">
+      <publishTime>04/18/2023 06:30:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Core.WebApi.dll">
+      <publishTime>04/18/2023 06:26:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Dashboards.WebApi.dll">
+      <publishTime>04/18/2023 06:26:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.DistributedTask.Common.Contracts.dll">
+      <publishTime>04/18/2023 06:26:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Pipelines.WebApi.dll">
+      <publishTime>04/18/2023 06:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Policy.WebApi.dll">
+      <publishTime>04/18/2023 06:26:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.SourceControl.WebApi.dll">
+      <publishTime>04/18/2023 06:26:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Test.WebApi.dll">
+      <publishTime>04/18/2023 06:27:24</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.TestManagement.WebApi.dll">
+      <publishTime>04/18/2023 06:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Wiki.WebApi.dll">
+      <publishTime>04/18/2023 06:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.Work.WebApi.dll">
+      <publishTime>04/18/2023 06:26:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi.dll">
+      <publishTime>04/18/2023 06:26:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.TeamFoundation.WorkItemTracking.WebApi.dll">
+      <publishTime>04/18/2023 06:26:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Services.Common.dll">
+      <publishTime>04/18/2023 06:30:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi.dll">
+      <publishTime>04/18/2023 06:26:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Services.TestResults.WebApi.dll">
+      <publishTime>04/18/2023 06:26:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Services.WebApi.dll">
+      <publishTime>04/18/2023 06:30:38</publishTime>
+    </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>05/27/2022 23:39:10</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>04/22/2019 01:06:16</publishTime>
+      <publishTime>11/08/2019 21:56:44</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>11/13/2012 12:19:34</publishTime>
+    </File>
+    <File Include="bin/pl/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:40</publishTime>
+    </File>
+    <File Include="bin/pl/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:50</publishTime>
+    </File>
+    <File Include="bin/pl/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:29:12</publishTime>
+    </File>
+    <File Include="bin/pl/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:38</publishTime>
+    </File>
+    <File Include="bin/pt-BR/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:36</publishTime>
+    </File>
+    <File Include="bin/pt-BR/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/pt-BR/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:29:12</publishTime>
+    </File>
+    <File Include="bin/pt-BR/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -258,8 +453,38 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
+    <File Include="bin/ru/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:14</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:46</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:29:14</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:40</publishTime>
+    </File>
+    <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>10/18/2019 20:38:18</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>11/28/2018 10:00:36</publishTime>
+    </File>
+    <File Include="bin/System.ValueTuple.dll">
+      <publishTime>05/15/2018 10:29:52</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>05/27/2022 23:41:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>11/28/2018 10:01:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>11/28/2018 10:02:56</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>05/27/2022 23:42:20</publishTime>
@@ -279,8 +504,53 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
+    <File Include="bin/tr/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:42</publishTime>
+    </File>
+    <File Include="bin/tr/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/tr/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/tr/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:38</publishTime>
+    </File>
+    <File Include="bin/tr/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:29:14</publishTime>
+    </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:38</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:14</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:18</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:14</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:14</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.TeamFoundation.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:40</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.TeamFoundation.Core.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:50</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.TeamFoundation.Dashboards.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:26:20</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.VisualStudio.Services.Common.resources.dll">
+      <publishTime>04/18/2023 06:28:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.VisualStudio.Services.WebApi.resources.dll">
+      <publishTime>04/18/2023 06:28:42</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>07/05/2023 12:03:45</publishTime>
@@ -322,7 +592,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 15:06:14</publishTime>
     </File>
     <File Include="Crm_Model.edmx.diagram">
-      <publishTime>07/06/2023 20:08:56</publishTime>
+      <publishTime>07/14/2023 09:48:56</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>10/14/2019 19:36:51</publishTime>
@@ -343,7 +613,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:44</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/11/2023 14:10:17</publishTime>
+      <publishTime>07/27/2023 22:16:01</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/05/2023 12:03:44</publishTime>
@@ -420,8 +690,23 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>07/05/2023 12:03:53</publishTime>
     </File>
+    <File Include="Views/AcuardosComerciales/Create.cshtml">
+      <publishTime>07/27/2023 22:15:33</publishTime>
+    </File>
+    <File Include="Views/AcuardosComerciales/Delete.cshtml">
+      <publishTime>07/14/2023 10:04:06</publishTime>
+    </File>
+    <File Include="Views/AcuardosComerciales/Details.cshtml">
+      <publishTime>07/14/2023 10:04:07</publishTime>
+    </File>
+    <File Include="Views/AcuardosComerciales/Edit.cshtml">
+      <publishTime>07/27/2023 22:14:53</publishTime>
+    </File>
+    <File Include="Views/AcuardosComerciales/Index.cshtml">
+      <publishTime>07/14/2023 13:01:32</publishTime>
+    </File>
     <File Include="Views/Clientes/Create.cshtml">
-      <publishTime>07/08/2023 00:55:37</publishTime>
+      <publishTime>07/11/2023 16:04:18</publishTime>
     </File>
     <File Include="Views/Clientes/Delete.cshtml">
       <publishTime>07/08/2023 00:55:33</publishTime>
@@ -430,10 +715,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/06/2023 20:13:25</publishTime>
     </File>
     <File Include="Views/Clientes/Edit.cshtml">
-      <publishTime>07/08/2023 00:55:37</publishTime>
+      <publishTime>07/11/2023 16:04:18</publishTime>
     </File>
     <File Include="Views/Clientes/Index.cshtml">
-      <publishTime>07/11/2023 13:39:09</publishTime>
+      <publishTime>07/14/2023 15:54:38</publishTime>
     </File>
     <File Include="Views/Comprobantes/Create.cshtml">
       <publishTime>07/08/2023 01:07:47</publishTime>
@@ -445,10 +730,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/06/2023 20:14:15</publishTime>
     </File>
     <File Include="Views/Comprobantes/Edit.cshtml">
-      <publishTime>07/08/2023 01:11:45</publishTime>
+      <publishTime>07/24/2023 11:22:53</publishTime>
     </File>
     <File Include="Views/Comprobantes/Index.cshtml">
-      <publishTime>07/08/2023 01:13:55</publishTime>
+      <publishTime>07/24/2023 11:30:26</publishTime>
     </File>
     <File Include="Views/GastosFijoes/Create.cshtml">
       <publishTime>07/07/2023 23:33:51</publishTime>
@@ -466,7 +751,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/07/2023 23:52:32</publishTime>
     </File>
     <File Include="Views/GastosVariables/Create.cshtml">
-      <publishTime>07/11/2023 14:10:13</publishTime>
+      <publishTime>07/24/2023 11:24:58</publishTime>
     </File>
     <File Include="Views/GastosVariables/Delete.cshtml">
       <publishTime>07/06/2023 20:12:50</publishTime>
@@ -475,7 +760,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/06/2023 20:12:51</publishTime>
     </File>
     <File Include="Views/GastosVariables/Edit.cshtml">
-      <publishTime>07/11/2023 13:50:43</publishTime>
+      <publishTime>07/24/2023 11:24:00</publishTime>
     </File>
     <File Include="Views/GastosVariables/Index.cshtml">
       <publishTime>07/11/2023 13:44:58</publishTime>
@@ -529,7 +814,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/11/2023 13:44:56</publishTime>
+      <publishTime>07/14/2023 10:06:34</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>07/05/2023 12:03:53</publishTime>
@@ -571,7 +856,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/05/2023 12:03:41</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/08/2023 01:14:49</publishTime>
+      <publishTime>07/16/2023 11:06:41</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -1,0 +1,66 @@
+﻿@model AS_CRM.AcuardosComerciale
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AcuardosComerciale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorHora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorHora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorasVendidas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasVendidas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImporteTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImporteTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActiva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActiva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.RazonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.RazonSocial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

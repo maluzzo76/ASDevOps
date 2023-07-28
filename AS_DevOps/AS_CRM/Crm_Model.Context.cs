@@ -32,5 +32,6 @@ namespace AS_CRM
         public virtual DbSet<GastosVariable> GastosVariables { get; set; }
         public virtual DbSet<TipoGasto> TipoGastoes { get; set; }
         public virtual DbSet<TiposComprobante> TiposComprobantes { get; set; }
+        public virtual DbSet<AcuardosComerciale> AcuardosComerciales { get; set; }
     }
 }

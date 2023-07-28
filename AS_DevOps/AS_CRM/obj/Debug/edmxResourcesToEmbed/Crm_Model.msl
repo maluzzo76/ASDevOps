@@ -24,6 +24,8 @@
     <EntitySetMapping Name="Clientes">
       <EntityTypeMapping TypeName="AS_CRMModel.Cliente">
         <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="FechaDeAcuerdo" ColumnName="FechaDeAcuerdo" />
+          <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
@@ -84,6 +86,19 @@
         <MappingFragment StoreEntitySet="TiposComprobante">
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Acronimo" ColumnName="Acronimo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AcuardosComerciales">
+      <EntityTypeMapping TypeName="AS_CRMModel.AcuardosComerciale">
+        <MappingFragment StoreEntitySet="AcuardosComerciales">
+          <ScalarProperty Name="IsActiva" ColumnName="IsActiva" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+          <ScalarProperty Name="HorasVendidas" ColumnName="HorasVendidas" />
+          <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

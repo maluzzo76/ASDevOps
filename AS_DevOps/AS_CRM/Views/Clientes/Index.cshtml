@@ -39,7 +39,9 @@
                             <hr />
                             <p class="card-text"><span style="font-weight: bold;">Telefono:</span> @item.Telefono</p>
                             <p class="card-text"><span style="font-weight: bold;">Email:</span> @item.Email</p>
-                           
+                            <p class="card-text"><span style="font-weight: bold;">Valor Hora:</span>$ @item.ValorHora</p>
+                            <p class="card-text"><span style="font-weight: bold;">Fecha de Acuerdo:</span>@item.FechaDeAcuerdo</p>
+
                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
                         </div>

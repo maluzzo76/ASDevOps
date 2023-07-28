@@ -43,6 +43,11 @@
       <End Role="TipoGasto" EntitySet="TipoGastoes" />
       <End Role="GastosVariable" EntitySet="GastosVariables" />
     </AssociationSet>
+    <EntitySet Name="AcuardosComerciales" EntityType="AS_CRMModel.AcuardosComerciale" />
+    <AssociationSet Name="FK__AcuardosC__Clien__02FC7413" Association="AS_CRMModel.FK__AcuardosC__Clien__02FC7413">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="AcuardosComerciale" EntitySet="AcuardosComerciales" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Cliente">
     <Key>
@@ -54,6 +59,9 @@
     <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Comprobantes" Relationship="AS_CRMModel.FK__Comproban__Clien__693CA210" FromRole="Cliente" ToRole="Comprobante" />
+    <Property Name="ValorHora" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="FechaDeAcuerdo" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AcuardosComerciales" Relationship="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" FromRole="Cliente" ToRole="AcuardosComerciale" />
   </EntityType>
   <EntityType Name="Comprobante">
     <Key>
@@ -158,6 +166,31 @@
       </Principal>
       <Dependent Role="GastosVariable">
         <PropertyRef Name="TipoGastoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AcuardosComerciale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClienteId" Type="Int32" />
+    <Property Name="ValorHora" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="HorasVendidas" Type="Int32" />
+    <Property Name="ImporteTotal" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="IsActiva" Type="Boolean" />
+    <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" FromRole="AcuardosComerciale" ToRole="Cliente" />
+  </EntityType>
+  <Association Name="FK__AcuardosC__Clien__02FC7413">
+    <End Type="AS_CRMModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.AcuardosComerciale" Role="AcuardosComerciale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AcuardosComerciale">
+        <PropertyRef Name="ClienteId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

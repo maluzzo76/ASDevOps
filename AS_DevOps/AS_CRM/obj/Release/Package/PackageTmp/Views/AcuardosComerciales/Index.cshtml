@@ -1,0 +1,106 @@
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.AcuardosComerciale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Acuerdos Comerciales</h2>
+
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "AcuardosComerciales")'">
+    Agregar Acuerdo Comercial
+    <span class="badge badge-light">@Model.TotalRegistros</span>
+    Total Horas Vendidas
+    <span class="badge badge-light">@Model.Resultado.Where(w => w.IsActiva == true).Sum(s => s.HorasVendidas)</span>
+    Total Ingresos
+    <span class="badge badge-light">$ @Model.Resultado.Where(w=>w.IsActiva==true).Sum(s => s.ImporteTotal)</span>
+
+</button>
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off" })
+        </div>
+    </div>
+}
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
+        <th></th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Valor Hora
+        </th>
+        <th>
+            Costo Hora
+        </th>
+        <th>
+           Total Ingreso
+        </th>
+        <th>
+            Fecha Acuerdo
+        </th>
+        <th>
+            Vigente
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+            <td>
+                <img src="~/Content/image/gastos.png" class="btn-grid" style="zoom: 20%; padding-top: -50px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.ValorHora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorasVendidas)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.ImporteTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                <input type="checkbox" checked="@item.IsActiva" readonly />
+            </td>
+            <td style="width:150px">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
+
+        }
+    </ul>
+</div>
