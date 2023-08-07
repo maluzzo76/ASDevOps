@@ -19,7 +19,6 @@ namespace AS_CRM
         public Nullable<int> TipoGastoId { get; set; }
         public string Descripcion { get; set; }
         public Nullable<decimal> Importe { get; set; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaRegistro { get; set; }

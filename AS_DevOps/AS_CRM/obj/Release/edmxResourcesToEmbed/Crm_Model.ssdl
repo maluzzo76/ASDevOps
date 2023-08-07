@@ -58,6 +58,9 @@
     <Property Name="Descripcion" Type="varchar" MaxLength="200" />
     <Property Name="Importe" Type="decimal" Precision="18" Scale="4" />
     <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="Iva" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="IIBB" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="Neto" Type="decimal" Precision="18" Scale="4" />
   </EntityType>
   <EntityType Name="Leads">
     <Key>

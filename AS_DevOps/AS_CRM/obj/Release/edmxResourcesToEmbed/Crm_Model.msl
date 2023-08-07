@@ -64,6 +64,9 @@
     <EntitySetMapping Name="GastosVariables">
       <EntityTypeMapping TypeName="AS_CRMModel.GastosVariable">
         <MappingFragment StoreEntitySet="GastosVariables">
+          <ScalarProperty Name="Neto" ColumnName="Neto" />
+          <ScalarProperty Name="IIBB" ColumnName="IIBB" />
+          <ScalarProperty Name="Iva" ColumnName="Iva" />
           <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
           <ScalarProperty Name="Importe" ColumnName="Importe" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />

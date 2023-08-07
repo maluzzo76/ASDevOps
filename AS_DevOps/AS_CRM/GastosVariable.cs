@@ -12,17 +12,30 @@ namespace AS_CRM
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class GastosVariable
     {
         public int Id { get; set; }
         public Nullable<int> TipoGastoId { get; set; }
         public string Descripcion { get; set; }
+
+        
         public Nullable<decimal> Importe { get; set; }
+
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaRegistro { get; set; }
+
+        
+        public Nullable<decimal> Iva { get; set; }
+
+        
+        public Nullable<decimal> IIBB { get; set; }
+
+        
+        public Nullable<decimal> Neto { get; set; }
     
         public virtual TipoGasto TipoGasto { get; set; }
     }

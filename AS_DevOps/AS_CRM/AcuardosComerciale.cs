@@ -11,7 +11,7 @@ namespace AS_CRM
 {
     using System;
     using System.Collections.Generic;
-        using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class AcuardosComerciale
     {
@@ -20,7 +20,6 @@ namespace AS_CRM
         public Nullable<decimal> ValorHora { get; set; }
         public Nullable<int> HorasVendidas { get; set; }
         public Nullable<decimal> ImporteTotal { get; set; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }

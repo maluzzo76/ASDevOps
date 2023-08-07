@@ -32,7 +32,16 @@
             Descripción
         </th>
         <th>
-            Importe
+            Neto
+        </th>
+        <th>
+            Iva
+        </th>
+        <th>
+            IIBB
+        </th>
+        <th>
+            Total
         </th>
         <th>
             Fecha Registro
@@ -53,7 +62,16 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Importe)
+               $ @Html.DisplayFor(modelItem => item.Neto)
+            </td>
+            <td>
+               $ @Html.DisplayFor(modelItem => item.Iva)
+            </td>
+            <td>
+               $ @Html.DisplayFor(modelItem => item.IIBB)
+            </td>
+            <td>
+               $ @Html.DisplayFor(modelItem => item.Importe)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaRegistro)

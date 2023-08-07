@@ -11,7 +11,6 @@ namespace AS_CRM
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Comprobante
@@ -20,13 +19,10 @@ namespace AS_CRM
         public Nullable<int> TipoComprobanteId { get; set; }
         public Nullable<int> ClienteId { get; set; }
         public Nullable<decimal> Numero { get; set; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaRegistracion { get; set; }
-
         [DataType(DataType.Date)]
-        [DisplayName("Fecha Vto")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaVencimiento { get; set; }
         public Nullable<decimal> TotalNeto { get; set; }

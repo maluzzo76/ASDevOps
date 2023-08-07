@@ -101,6 +101,9 @@
     <Property Name="Importe" Type="Decimal" Precision="18" Scale="4" />
     <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
     <NavigationProperty Name="TipoGasto" Relationship="AS_CRMModel.FK__GastosVar__TipoG__6EF57B66" FromRole="GastosVariable" ToRole="TipoGasto" />
+    <Property Name="Iva" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="IIBB" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Neto" Type="Decimal" Precision="18" Scale="4" />
   </EntityType>
   <EntityType Name="TipoGasto">
     <Key>

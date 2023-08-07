@@ -63,6 +63,9 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Importe" Type="decimal" Precision="18" Scale="4" />
           <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="Iva" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="IIBB" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Neto" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Leads">
           <Key>
@@ -294,6 +297,9 @@
           <Property Name="Importe" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TipoGasto" Relationship="AS_CRMModel.FK__GastosVar__TipoG__6EF57B66" FromRole="GastosVariable" ToRole="TipoGasto" />
+          <Property Name="Iva" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="IIBB" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Neto" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="TipoGasto">
           <Key>
@@ -456,6 +462,9 @@
           <EntitySetMapping Name="GastosVariables">
             <EntityTypeMapping TypeName="AS_CRMModel.GastosVariable">
               <MappingFragment StoreEntitySet="GastosVariables">
+                <ScalarProperty Name="Neto" ColumnName="Neto" />
+                <ScalarProperty Name="IIBB" ColumnName="IIBB" />
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
