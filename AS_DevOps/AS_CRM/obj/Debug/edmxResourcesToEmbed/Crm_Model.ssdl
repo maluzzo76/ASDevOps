@@ -12,6 +12,43 @@
     <Property Name="Fecha" Type="datetime" />
     <Property Name="IsActiva" Type="bit" />
   </EntityType>
+  <EntityType Name="Asientos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Concepto" Type="varchar" MaxLength="500" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CertificacionHoras">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="ClienteId" Type="int" />
+    <Property Name="ComprobanteId" Type="int" />
+    <Property Name="HorasACertificar" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="HorasCertificadas" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="Saldo" Type="decimal" Precision="18" Scale="4" />
+  </EntityType>
   <EntityType Name="Clientes">
     <Key>
       <PropertyRef Name="Id" />
@@ -62,6 +99,16 @@
     <Property Name="IIBB" Type="decimal" Precision="18" Scale="4" />
     <Property Name="Neto" Type="decimal" Precision="18" Scale="4" />
   </EntityType>
+  <EntityType Name="ItemMenuSecurity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Menu_Id" Type="int" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="IsActivo" Type="bit" />
+    <Property Name="Orden" Type="int" />
+  </EntityType>
   <EntityType Name="Leads">
     <Key>
       <PropertyRef Name="Id" />
@@ -80,6 +127,102 @@
     <Property Name="Informacion_Fiscal" Type="varchar" MaxLength="8000" />
     <Property Name="Provincia" Type="varchar" MaxLength="255" />
     <Property Name="Localidad" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Lineas_Asiento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Asiento_Id" Type="int" />
+    <Property Name="Cuenta_Id" Type="int" />
+    <Property Name="Concepto" Type="varchar" MaxLength="255" />
+    <Property Name="Debe" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="Haber" Type="decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="MenuSecurity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="nvarchar" MaxLength="128" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="IsActivo" Type="bit" />
+    <Property Name="Orden" Type="int" />
+  </EntityType>
+  <EntityType Name="PEstados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Color" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Plan_Cuentas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+    <Property Name="Numero" Type="int" />
+    <Property Name="IsImputable" Type="bit" />
+    <Property Name="IsResultado" Type="bit" />
+  </EntityType>
+  <EntityType Name="PObjetivos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="FechaIncio" Type="datetime" />
+    <Property Name="FechaEntrega" Type="datetime" />
+    <Property Name="Aprovador" Type="varchar" MaxLength="100" />
+    <Property Name="Estado_Id" Type="int" />
+    <Property Name="Proyecto_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="PParteHoras">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tarea_Id" Type="int" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Horas" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="logo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PSprints">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Proyecto_Id" Type="int" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="FechaIncio" Type="datetime" />
+    <Property Name="FechaFin" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PTareas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Usuario_Id" Type="nvarchar" MaxLength="128" />
+    <Property Name="Estado_Id" Type="int" />
+    <Property Name="Objetivo_Id" Type="int" />
+    <Property Name="Sprint_Id" Type="int" />
+    <Property Name="FechaIncio" Type="datetime" />
+    <Property Name="FechaFinalizado" Type="datetime" />
+    <Property Name="FechaEntrega" Type="datetime" />
+    <Property Name="HorasEstimadas" Type="int" />
+    <Property Name="Detalle" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="TipoGasto">
     <Key>
@@ -106,6 +249,30 @@
       </Principal>
       <Dependent Role="AcuardosComerciales">
         <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Certifica__Clien__160F4887">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="CertificacionHoras" Type="Self.CertificacionHoras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CertificacionHoras">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Certifica__Compr__17036CC0">
+    <End Role="Comprobantes" Type="Self.Comprobantes" Multiplicity="0..1" />
+    <End Role="CertificacionHoras" Type="Self.CertificacionHoras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comprobantes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CertificacionHoras">
+        <PropertyRef Name="ComprobanteId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -157,18 +324,183 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__ItemMenuS__Menu___540C7B00">
+    <End Role="MenuSecurity" Type="Self.MenuSecurity" Multiplicity="0..1" />
+    <End Role="ItemMenuSecurity" Type="Self.ItemMenuSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuSecurity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemMenuSecurity">
+        <PropertyRef Name="Menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lineas_As__Asien__2DE6D218">
+    <End Role="Asientos" Type="Self.Asientos" Multiplicity="0..1" />
+    <End Role="Lineas_Asiento" Type="Self.Lineas_Asiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asientos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lineas_Asiento">
+        <PropertyRef Name="Asiento_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lineas_As__Cuent__2EDAF651">
+    <End Role="Plan_Cuentas" Type="Self.Plan_Cuentas" Multiplicity="0..1" />
+    <End Role="Lineas_Asiento" Type="Self.Lineas_Asiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan_Cuentas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lineas_Asiento">
+        <PropertyRef Name="Cuenta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MenuSecur__User___51300E55">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="MenuSecurity" Type="Self.MenuSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuSecurity">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PObjetivo__Estad__625A9A57">
+    <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
+    <End Role="PObjetivos" Type="Self.PObjetivos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEstados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PObjetivos">
+        <PropertyRef Name="Estado_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PObjetivo__Proye__6AEFE058">
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+    <End Role="PObjetivos" Type="Self.PObjetivos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PObjetivos">
+        <PropertyRef Name="Proyecto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PParteHor__Tarea__69FBBC1F">
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
+    <End Role="PParteHoras" Type="Self.PParteHoras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PTareas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PParteHoras">
+        <PropertyRef Name="Tarea_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PSprints__Proyec__65370702">
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+    <End Role="PSprints" Type="Self.PSprints" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PSprints">
+        <PropertyRef Name="Proyecto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Estado___671F4F74">
+    <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEstados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareas">
+        <PropertyRef Name="Estado_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Objetiv__681373AD">
+    <End Role="PObjetivos" Type="Self.PObjetivos" Multiplicity="0..1" />
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PObjetivos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareas">
+        <PropertyRef Name="Objetivo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Sprint___690797E6">
+    <End Role="PSprints" Type="Self.PSprints" Multiplicity="0..1" />
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSprints">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareas">
+        <PropertyRef Name="Sprint_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Usuario__662B2B3B">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareas">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AS_CRMModelStoreContainer">
     <EntitySet Name="AcuardosComerciales" EntityType="Self.AcuardosComerciales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asientos" EntityType="Self.Asientos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CertificacionHoras" EntityType="Self.CertificacionHoras" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comprobantes" EntityType="Self.Comprobantes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GastosFijos" EntityType="Self.GastosFijos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GastosVariables" EntityType="Self.GastosVariables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemMenuSecurity" EntityType="Self.ItemMenuSecurity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Leads" EntityType="Self.Leads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lineas_Asiento" EntityType="Self.Lineas_Asiento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuSecurity" EntityType="Self.MenuSecurity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEstados" EntityType="Self.PEstados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Plan_Cuentas" EntityType="Self.Plan_Cuentas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PObjetivos" EntityType="Self.PObjetivos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PParteHoras" EntityType="Self.PParteHoras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSprints" EntityType="Self.PSprints" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PTareas" EntityType="Self.PTareas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TiposComprobante" EntityType="Self.TiposComprobante" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__AcuardosC__Clien__02FC7413" Association="Self.FK__AcuardosC__Clien__02FC7413">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="AcuardosComerciales" EntitySet="AcuardosComerciales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Certifica__Clien__160F4887" Association="Self.FK__Certifica__Clien__160F4887">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="CertificacionHoras" EntitySet="CertificacionHoras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Certifica__Compr__17036CC0" Association="Self.FK__Certifica__Compr__17036CC0">
+      <End Role="Comprobantes" EntitySet="Comprobantes" />
+      <End Role="CertificacionHoras" EntitySet="CertificacionHoras" />
     </AssociationSet>
     <AssociationSet Name="FK__Comproban__Clien__693CA210" Association="Self.FK__Comproban__Clien__693CA210">
       <End Role="Clientes" EntitySet="Clientes" />
@@ -185,6 +517,54 @@
     <AssociationSet Name="FK__GastosVar__TipoG__6EF57B66" Association="Self.FK__GastosVar__TipoG__6EF57B66">
       <End Role="TipoGasto" EntitySet="TipoGasto" />
       <End Role="GastosVariables" EntitySet="GastosVariables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ItemMenuS__Menu___540C7B00" Association="Self.FK__ItemMenuS__Menu___540C7B00">
+      <End Role="MenuSecurity" EntitySet="MenuSecurity" />
+      <End Role="ItemMenuSecurity" EntitySet="ItemMenuSecurity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lineas_As__Asien__2DE6D218" Association="Self.FK__Lineas_As__Asien__2DE6D218">
+      <End Role="Asientos" EntitySet="Asientos" />
+      <End Role="Lineas_Asiento" EntitySet="Lineas_Asiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lineas_As__Cuent__2EDAF651" Association="Self.FK__Lineas_As__Cuent__2EDAF651">
+      <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+      <End Role="Lineas_Asiento" EntitySet="Lineas_Asiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MenuSecur__User___51300E55" Association="Self.FK__MenuSecur__User___51300E55">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="MenuSecurity" EntitySet="MenuSecurity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PObjetivo__Estad__625A9A57" Association="Self.FK__PObjetivo__Estad__625A9A57">
+      <End Role="PEstados" EntitySet="PEstados" />
+      <End Role="PObjetivos" EntitySet="PObjetivos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PObjetivo__Proye__6AEFE058" Association="Self.FK__PObjetivo__Proye__6AEFE058">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="PObjetivos" EntitySet="PObjetivos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PParteHor__Tarea__69FBBC1F" Association="Self.FK__PParteHor__Tarea__69FBBC1F">
+      <End Role="PTareas" EntitySet="PTareas" />
+      <End Role="PParteHoras" EntitySet="PParteHoras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PSprints__Proyec__65370702" Association="Self.FK__PSprints__Proyec__65370702">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="PSprints" EntitySet="PSprints" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Estado___671F4F74" Association="Self.FK__PTareas__Estado___671F4F74">
+      <End Role="PEstados" EntitySet="PEstados" />
+      <End Role="PTareas" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Objetiv__681373AD" Association="Self.FK__PTareas__Objetiv__681373AD">
+      <End Role="PObjetivos" EntitySet="PObjetivos" />
+      <End Role="PTareas" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Sprint___690797E6" Association="Self.FK__PTareas__Sprint___690797E6">
+      <End Role="PSprints" EntitySet="PSprints" />
+      <End Role="PTareas" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Usuario__662B2B3B" Association="Self.FK__PTareas__Usuario__662B2B3B">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PTareas" EntitySet="PTareas" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

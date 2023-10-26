@@ -1,0 +1,58 @@
+﻿@model AS_CRM.PObjetivo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PObjetivo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIncio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIncio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aprovador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aprovador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PEstado.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PEstado.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

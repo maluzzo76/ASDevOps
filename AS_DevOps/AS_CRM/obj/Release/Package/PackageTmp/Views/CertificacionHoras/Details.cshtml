@@ -1,0 +1,66 @@
+﻿@model AS_CRM.CertificacionHora
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CertificacionHora</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorasACertificar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasACertificar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorasCertificadas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasCertificadas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saldo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saldo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.RazonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.RazonSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comprobante.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comprobante.Id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

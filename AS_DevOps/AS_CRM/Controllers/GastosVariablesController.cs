@@ -39,6 +39,9 @@ namespace AS_CRM.Controllers
         // GET: GastosVariables/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -54,6 +57,9 @@ namespace AS_CRM.Controllers
         // GET: GastosVariables/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre");
             return View();
         }
@@ -65,6 +71,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro")] GastosVariable gastosVariable)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.GastosVariables.Add(gastosVariable);
@@ -79,6 +88,9 @@ namespace AS_CRM.Controllers
         // GET: GastosVariables/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,6 +111,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro")] GastosVariable gastosVariable)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(gastosVariable).State = EntityState.Modified;
@@ -112,6 +127,9 @@ namespace AS_CRM.Controllers
         // GET: GastosVariables/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -129,6 +147,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             GastosVariable gastosVariable = db.GastosVariables.Find(id);
             db.GastosVariables.Remove(gastosVariable);
             db.SaveChanges();

@@ -4,16 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Tipos de Comprobantes</h2>
-
+<h2>Comprobantes</h2>
 
 <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Comprobantes")'">
-    Agregar Comprobante
-    <span class="badge badge-light">@Model.TotalRegistros</span>
+Agregar Comprobante
+<span class="badge badge-light">@Model.TotalRegistros</span>
 </button>
 
 
-
+<hr/>
 
 @using (Html.BeginForm())
 {
@@ -24,6 +23,9 @@
         </div>
     </div>
 }
+
+
+
 <table class="table">
     <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
         <th>

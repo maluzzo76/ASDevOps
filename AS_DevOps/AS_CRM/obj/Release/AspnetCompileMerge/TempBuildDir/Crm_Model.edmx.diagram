@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="23d086be331041c3ba283169a5452d0e" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="23d086be331041c3ba283169a5452d0e" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="AS_CRMModel.Lead" Width="1.5" PointX="0.625" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AS_CRMModel.Cliente" Width="1.5" PointX="12.125" PointY="3.875" />
         <EntityTypeShape EntityType="AS_CRMModel.Comprobante" Width="1.5" PointX="14.375" PointY="3.25" />
@@ -18,6 +18,33 @@
         <AssociationConnector Association="AS_CRMModel.FK__GastosVar__TipoG__6EF57B66" />
         <EntityTypeShape EntityType="AS_CRMModel.AcuardosComerciale" Width="1.5" PointX="9.125" PointY="2.625" />
         <AssociationConnector Association="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" />
+        <EntityTypeShape EntityType="AS_CRMModel.CertificacionHora" Width="1.5" PointX="16.625" PointY="3.625" />
+        <AssociationConnector Association="AS_CRMModel.FK__Certifica__Clien__160F4887" />
+        <AssociationConnector Association="AS_CRMModel.FK__Certifica__Compr__17036CC0" />
+        <EntityTypeShape EntityType="AS_CRMModel.Plan_Cuentas" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="AS_CRMModel.Lineas_Asiento" Width="1.5" PointX="5.25" PointY="8" />
+        <AssociationConnector Association="AS_CRMModel.FK__Lineas_As__Cuent__2EDAF651" />
+        <EntityTypeShape EntityType="AS_CRMModel.AspNetUser" Width="1.5" PointX="9.625" PointY="8.375" />
+        <EntityTypeShape EntityType="AS_CRMModel.ItemMenuSecurity" Width="1.5" PointX="5.5" PointY="12.375" />
+        <EntityTypeShape EntityType="AS_CRMModel.MenuSecurity" Width="1.5" PointX="7.625" PointY="9.5" />
+        <AssociationConnector Association="AS_CRMModel.FK__MenuSecur__User___51300E55" />
+        <AssociationConnector Association="AS_CRMModel.FK__ItemMenuS__Menu___540C7B00" />
+        <EntityTypeShape EntityType="AS_CRMModel.PEstado" Width="1.5" PointX="20.625" PointY="7.75" />
+        <EntityTypeShape EntityType="AS_CRMModel.PObjetivo" Width="1.5" PointX="19.5" PointY="11" />
+        <EntityTypeShape EntityType="AS_CRMModel.Proyecto" Width="1.5" PointX="16.75" PointY="13.25" />
+        <EntityTypeShape EntityType="AS_CRMModel.PSprint" Width="1.5" PointX="14.125" PointY="16" />
+        <EntityTypeShape EntityType="AS_CRMModel.PTarea" Width="1.5" PointX="13.875" PointY="8.375" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareas__Usuario__662B2B3B" />
+        <AssociationConnector Association="AS_CRMModel.FK__PObjetivo__Estad__625A9A57" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareas__Estado___671F4F74" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareas__Objetiv__681373AD" />
+        <AssociationConnector Association="AS_CRMModel.FK__PSprints__Proyec__65370702" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareas__Sprint___690797E6" />
+        <EntityTypeShape EntityType="AS_CRMModel.Asiento" Width="1.5" PointX="2.375" PointY="9.375" />
+        <AssociationConnector Association="AS_CRMModel.FK__Lineas_As__Asien__2DE6D218" />
+        <EntityTypeShape EntityType="AS_CRMModel.PParteHora" Width="1.5" PointX="16.375" PointY="9.125" />
+        <AssociationConnector Association="AS_CRMModel.FK__PParteHor__Tarea__69FBBC1F" />
+        <AssociationConnector Association="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

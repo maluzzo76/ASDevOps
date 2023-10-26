@@ -10,6 +10,7 @@ namespace AS_CRM.Controllers
     {
         public ActionResult Index()
         {
+            validarLoggin();
              return View();            
         }
 

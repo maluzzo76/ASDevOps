@@ -15,7 +15,7 @@ namespace AS_CRM.Controllers
         private AS_CRMEntities db = new AS_CRMEntities();
 
         // GET: Leads
-        public ActionResult Index(string SearchString, int pagina = 1)
+        public ActionResult Index(string SearchString,string SearchProv, int pagina = 1)
         {
             if (!validarLoggin())
                 return RedirectToAction("login", "Account");
@@ -26,18 +26,31 @@ namespace AS_CRM.Controllers
             if (!string.IsNullOrEmpty(SearchString))
             {
                 _r = from _o in _r
-                     where _o.CUIT.Contains(SearchString) || _o.Razon_Social.Contains(SearchString) || _o.Provincia.Contains(SearchString)
+                     where _o.CUIT.Contains(SearchString) || _o.Razon_Social.Contains(SearchString) || _o.Nombre_Contacto.StartsWith(SearchString)
                      select _o;
             }
-                        
-            Pagination<Lead> _page = new Pagination<Lead>();
 
-            return View(_page.paginado(_r, pagina));
+            if (!string.IsNullOrEmpty(SearchProv))
+            {
+                _r = from _o in _r
+                     where  _o.Provincia.Contains(SearchProv)
+                     select _o;
+            }
+
+            ViewData["Leads"] = _r.ToList<Lead>();
+            ViewBag.buscar = SearchString;
+            ViewBag.buscarProv = SearchProv;
+
+            Pagination<Lead> _page = new Pagination<Lead>();            
+            return View(_page.paginado(_r.OrderBy(o=>o.Razon_Social), pagina));
         }
 
         // GET: Leads/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,6 +66,9 @@ namespace AS_CRM.Controllers
         // GET: Leads/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             return View();
         }
 
@@ -63,6 +79,8 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Razon_Social,CUIT,Telefono_Razon_Social,Email_Razon_Social,Nombre_Contacto,Cargo_Contacto,Telefono_Contacto,Telefono2_Contacto,Email_Contacto,Email2_Contacto,Informacion_Fiscal,Provincia,Localidad")] Lead lead)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
 
             if (db.Leads.Where(w => w.Razon_Social == lead.Razon_Social).Count() == 0)
             {
@@ -74,8 +92,14 @@ namespace AS_CRM.Controllers
         }
 
         // GET: Leads/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string SearchString, string SearchProv)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            ViewBag.buscar = SearchString;
+            ViewBag.buscarProv = SearchProv;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -95,6 +119,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Razon_Social,CUIT,Telefono_Razon_Social,Email_Razon_Social,Nombre_Contacto,Cargo_Contacto,Telefono_Contacto,Telefono2_Contacto,Email_Contacto,Email2_Contacto,Informacion_Fiscal,Provincia,Localidad")] Lead lead)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(lead).State = EntityState.Modified;
@@ -107,6 +134,9 @@ namespace AS_CRM.Controllers
         // GET: Leads/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -124,6 +154,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             Lead lead = db.Leads.Find(id);
             db.Leads.Remove(lead);
             db.SaveChanges();

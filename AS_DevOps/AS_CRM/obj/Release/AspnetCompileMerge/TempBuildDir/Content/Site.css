@@ -29,3 +29,25 @@ textarea {
     border-color: #fff
 }
 
+.btn-grid {
+}
+
+
+    .btn-grid img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+
+.progress {
+ 
+}
+
+    .progress::-webkit-progress-bar {
+        background-color:#efefef;
+    }
+
+   .progress::-webkit-progress-value {
+        background-color: blue;
+    }

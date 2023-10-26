@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AS_CRM.Proyecto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Proyectos</h2>
+
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Proyectoes")'">
+    Crear Proyecto
+</button>
+
+
+<div class="container-fluid" style="margin-top:10px;">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 ">                
+                <div class="card" style="border: 1px solid #dcdbdb; background-color: #f2f2f2; border-radius: 10px; box-shadow: 2px 5px #c7c4c4; height:200px;padding-top:20px; ">
+                    <img src="~/Content/image/@item.logo" class="card-img-top img-circle" style="width: 50px; height: 50px; margin-left: 30px;" />
+                    <div class="card-body" style="margin-left:30px;">
+                        <h4 class="card-title">@item.Nombre</h4>
+                        <p><span>Objetivos: @item.PObjetivos.Count - Tareas: @((ViewData["Task"] as IList<PTarea>).Where(w=> w.PObjetivo.Proyecto_Id==item.Id ).Count()) </span></p>
+                        <br />
+                        <a class="btn-grid" href="@Url.Action("index", "PObjetivoes", new {idp=item.Id}) "><span><img src="~/Content/image/iconos_ojo.png" /></span></a>                        
+                        <a class="btn-grid" href="@Url.Action("Edit","Proyectoes", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" /></span></a>
+                        <a class="btn-grid" href="@Url.Action("Delete","Proyectoes", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
+                    </div>                    
+                </div>                
+                <br />
+            </div>
+        }
+    </div>
+</div>
+

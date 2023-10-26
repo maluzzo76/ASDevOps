@@ -6,11 +6,21 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Net.Security;
 using System.Security.Principal;
+using AS_CRM;
+using Microsoft.Azure.Pipelines.WebApi;
+using System.Data.Entity;
+
+/*
+[DataType(DataType.Date)]
+[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+[Display(Name = "Descripcion Reparacion")]
+*/
 
 namespace AS_CRM.Controllers
 {
     public class CustomController:Controller
     {
+        private AS_CRMEntities db = new AS_CRMEntities();
         /*
          * ejemplo de validacion loggin
          public ActionResult Index()
@@ -27,11 +37,16 @@ namespace AS_CRM.Controllers
         }*/
 
         public bool validarLoggin()
-        {            
+        {
+
+            ViewData["Menu"] = db.MenuSecurities.Include(u => u.AspNetUser).Include(i => i.ItemMenuSecurities).Where(w => w.AspNetUser.UserName == User.Identity.Name && w.IsActivo==true).OrderBy(o=>o.Orden).ToList<MenuSecurity>();
+
+
             if (User.Identity.Name == "")
                 return false;
-
+                        
             return true;
         }
+
     }
 }

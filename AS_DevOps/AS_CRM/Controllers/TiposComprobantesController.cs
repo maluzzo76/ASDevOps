@@ -38,6 +38,9 @@ namespace AS_CRM.Controllers
         // GET: TiposComprobantes/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,6 +56,9 @@ namespace AS_CRM.Controllers
         // GET: TiposComprobantes/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             return View();
         }
 
@@ -63,6 +69,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Acronimo,Nombre")] TiposComprobante tiposComprobante)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.TiposComprobantes.Add(tiposComprobante);
@@ -76,6 +85,9 @@ namespace AS_CRM.Controllers
         // GET: TiposComprobantes/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -95,6 +107,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Acronimo,Nombre")] TiposComprobante tiposComprobante)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(tiposComprobante).State = EntityState.Modified;
@@ -107,6 +122,9 @@ namespace AS_CRM.Controllers
         // GET: TiposComprobantes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -124,6 +142,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             TiposComprobante tiposComprobante = db.TiposComprobantes.Find(id);
             db.TiposComprobantes.Remove(tiposComprobante);
             db.SaveChanges();

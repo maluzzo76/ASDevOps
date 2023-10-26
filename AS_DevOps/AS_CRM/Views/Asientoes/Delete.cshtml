@@ -1,0 +1,20 @@
+﻿@model AS_CRM.Asiento
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Asiento @Model.Id.ToString().PadLeft(8,char.Parse("0"))  </h2>
+
+<h3>Confirma que desea eliminar el asiento?</h3>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

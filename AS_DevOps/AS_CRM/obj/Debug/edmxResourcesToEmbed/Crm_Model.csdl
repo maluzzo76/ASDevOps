@@ -48,6 +48,75 @@
       <End Role="Cliente" EntitySet="Clientes" />
       <End Role="AcuardosComerciale" EntitySet="AcuardosComerciales" />
     </AssociationSet>
+    <EntitySet Name="CertificacionHoras" EntityType="AS_CRMModel.CertificacionHora" />
+    <AssociationSet Name="FK__Certifica__Clien__160F4887" Association="AS_CRMModel.FK__Certifica__Clien__160F4887">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="CertificacionHora" EntitySet="CertificacionHoras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Certifica__Compr__17036CC0" Association="AS_CRMModel.FK__Certifica__Compr__17036CC0">
+      <End Role="Comprobante" EntitySet="Comprobantes" />
+      <End Role="CertificacionHora" EntitySet="CertificacionHoras" />
+    </AssociationSet>
+    <EntitySet Name="Plan_Cuentas" EntityType="AS_CRMModel.Plan_Cuentas" />
+    <EntitySet Name="Lineas_Asiento" EntityType="AS_CRMModel.Lineas_Asiento" />
+    <AssociationSet Name="FK__Lineas_As__Cuent__2EDAF651" Association="AS_CRMModel.FK__Lineas_As__Cuent__2EDAF651">
+      <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+      <End Role="Lineas_Asiento" EntitySet="Lineas_Asiento" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUsers" EntityType="AS_CRMModel.AspNetUser" />
+    <EntitySet Name="ItemMenuSecurities" EntityType="AS_CRMModel.ItemMenuSecurity" />
+    <EntitySet Name="MenuSecurities" EntityType="AS_CRMModel.MenuSecurity" />
+    <AssociationSet Name="FK__MenuSecur__User___51300E55" Association="AS_CRMModel.FK__MenuSecur__User___51300E55">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="MenuSecurity" EntitySet="MenuSecurities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ItemMenuS__Menu___540C7B00" Association="AS_CRMModel.FK__ItemMenuS__Menu___540C7B00">
+      <End Role="MenuSecurity" EntitySet="MenuSecurities" />
+      <End Role="ItemMenuSecurity" EntitySet="ItemMenuSecurities" />
+    </AssociationSet>
+    <EntitySet Name="PEstados" EntityType="AS_CRMModel.PEstado" />
+    <EntitySet Name="PObjetivos" EntityType="AS_CRMModel.PObjetivo" />
+    <EntitySet Name="Proyectos" EntityType="AS_CRMModel.Proyecto" />
+    <EntitySet Name="PSprints" EntityType="AS_CRMModel.PSprint" />
+    <EntitySet Name="PTareas" EntityType="AS_CRMModel.PTarea" />
+    <AssociationSet Name="FK__PTareas__Usuario__662B2B3B" Association="AS_CRMModel.FK__PTareas__Usuario__662B2B3B">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="PTarea" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PObjetivo__Estad__625A9A57" Association="AS_CRMModel.FK__PObjetivo__Estad__625A9A57">
+      <End Role="PEstado" EntitySet="PEstados" />
+      <End Role="PObjetivo" EntitySet="PObjetivos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Estado___671F4F74" Association="AS_CRMModel.FK__PTareas__Estado___671F4F74">
+      <End Role="PEstado" EntitySet="PEstados" />
+      <End Role="PTarea" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Objetiv__681373AD" Association="AS_CRMModel.FK__PTareas__Objetiv__681373AD">
+      <End Role="PObjetivo" EntitySet="PObjetivos" />
+      <End Role="PTarea" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PSprints__Proyec__65370702" Association="AS_CRMModel.FK__PSprints__Proyec__65370702">
+      <End Role="Proyecto" EntitySet="Proyectos" />
+      <End Role="PSprint" EntitySet="PSprints" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Sprint___690797E6" Association="AS_CRMModel.FK__PTareas__Sprint___690797E6">
+      <End Role="PSprint" EntitySet="PSprints" />
+      <End Role="PTarea" EntitySet="PTareas" />
+    </AssociationSet>
+    <EntitySet Name="Asientos" EntityType="AS_CRMModel.Asiento" />
+    <AssociationSet Name="FK__Lineas_As__Asien__2DE6D218" Association="AS_CRMModel.FK__Lineas_As__Asien__2DE6D218">
+      <End Role="Asiento" EntitySet="Asientos" />
+      <End Role="Lineas_Asiento" EntitySet="Lineas_Asiento" />
+    </AssociationSet>
+    <EntitySet Name="PParteHoras" EntityType="AS_CRMModel.PParteHora" />
+    <AssociationSet Name="FK__PParteHor__Tarea__69FBBC1F" Association="AS_CRMModel.FK__PParteHor__Tarea__69FBBC1F">
+      <End Role="PTarea" EntitySet="PTareas" />
+      <End Role="PParteHora" EntitySet="PParteHoras" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PObjetivo__Proye__6AEFE058" Association="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058">
+      <End Role="Proyecto" EntitySet="Proyectos" />
+      <End Role="PObjetivo" EntitySet="PObjetivos" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Cliente">
     <Key>
@@ -62,6 +131,7 @@
     <Property Name="ValorHora" Type="Decimal" Precision="18" Scale="4" />
     <Property Name="FechaDeAcuerdo" Type="DateTime" Precision="3" />
     <NavigationProperty Name="AcuardosComerciales" Relationship="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" FromRole="Cliente" ToRole="AcuardosComerciale" />
+    <NavigationProperty Name="CertificacionHoras" Relationship="AS_CRMModel.FK__Certifica__Clien__160F4887" FromRole="Cliente" ToRole="CertificacionHora" />
   </EntityType>
   <EntityType Name="Comprobante">
     <Key>
@@ -79,6 +149,7 @@
     <Property Name="TotalBruto" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__Comproban__Clien__693CA210" FromRole="Comprobante" ToRole="Cliente" />
     <NavigationProperty Name="TiposComprobante" Relationship="AS_CRMModel.FK__Comproban__TipoC__68487DD7" FromRole="Comprobante" ToRole="TiposComprobante" />
+    <NavigationProperty Name="CertificacionHoras" Relationship="AS_CRMModel.FK__Certifica__Compr__17036CC0" FromRole="Comprobante" ToRole="CertificacionHora" />
   </EntityType>
   <EntityType Name="GastosFijo">
     <Key>
@@ -194,6 +265,343 @@
       </Principal>
       <Dependent Role="AcuardosComerciale">
         <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CertificacionHora">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="ClienteId" Type="Int32" />
+    <Property Name="ComprobanteId" Type="Int32" />
+    <Property Name="HorasACertificar" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="HorasCertificadas" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Saldo" Type="Decimal" Precision="18" Scale="4" />
+    <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__Certifica__Clien__160F4887" FromRole="CertificacionHora" ToRole="Cliente" />
+    <NavigationProperty Name="Comprobante" Relationship="AS_CRMModel.FK__Certifica__Compr__17036CC0" FromRole="CertificacionHora" ToRole="Comprobante" />
+  </EntityType>
+  <Association Name="FK__Certifica__Clien__160F4887">
+    <End Type="AS_CRMModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.CertificacionHora" Role="CertificacionHora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CertificacionHora">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Certifica__Compr__17036CC0">
+    <End Type="AS_CRMModel.Comprobante" Role="Comprobante" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.CertificacionHora" Role="CertificacionHora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comprobante">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CertificacionHora">
+        <PropertyRef Name="ComprobanteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Plan_Cuentas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Numero" Type="Int32" />
+    <NavigationProperty Name="Lineas_Asiento" Relationship="AS_CRMModel.FK__Lineas_As__Cuent__2EDAF651" FromRole="Plan_Cuentas" ToRole="Lineas_Asiento" />
+    <Property Name="IsImputable" Type="Boolean" />
+    <Property Name="IsResultado" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Lineas_Asiento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Asiento_Id" Type="Int32" />
+    <Property Name="Cuenta_Id" Type="Int32" />
+    <Property Name="Concepto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Debe" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Haber" Type="Decimal" Precision="18" Scale="4" />
+    <NavigationProperty Name="Plan_Cuentas" Relationship="AS_CRMModel.FK__Lineas_As__Cuent__2EDAF651" FromRole="Lineas_Asiento" ToRole="Plan_Cuentas" />
+    <NavigationProperty Name="Asiento" Relationship="AS_CRMModel.FK__Lineas_As__Asien__2DE6D218" FromRole="Lineas_Asiento" ToRole="Asiento" />
+  </EntityType>
+  <Association Name="FK__Lineas_As__Cuent__2EDAF651">
+    <End Type="AS_CRMModel.Plan_Cuentas" Role="Plan_Cuentas" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.Lineas_Asiento" Role="Lineas_Asiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan_Cuentas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lineas_Asiento">
+        <PropertyRef Name="Cuenta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MenuSecurities" Relationship="AS_CRMModel.FK__MenuSecur__User___51300E55" FromRole="AspNetUser" ToRole="MenuSecurity" />
+    <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Usuario__662B2B3B" FromRole="AspNetUser" ToRole="PTarea" />
+  </EntityType>
+  <EntityType Name="ItemMenuSecurity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Menu_Id" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MenuSecurity" Relationship="AS_CRMModel.FK__ItemMenuS__Menu___540C7B00" FromRole="ItemMenuSecurity" ToRole="MenuSecurity" />
+    <Property Name="IsActivo" Type="Boolean" />
+    <Property Name="Orden" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MenuSecurity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="AS_CRMModel.FK__MenuSecur__User___51300E55" FromRole="MenuSecurity" ToRole="AspNetUser" />
+    <NavigationProperty Name="ItemMenuSecurities" Relationship="AS_CRMModel.FK__ItemMenuS__Menu___540C7B00" FromRole="MenuSecurity" ToRole="ItemMenuSecurity" />
+    <Property Name="IsActivo" Type="Boolean" />
+    <Property Name="Orden" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__MenuSecur__User___51300E55">
+    <End Type="AS_CRMModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.MenuSecurity" Role="MenuSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuSecurity">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ItemMenuS__Menu___540C7B00">
+    <End Type="AS_CRMModel.MenuSecurity" Role="MenuSecurity" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.ItemMenuSecurity" Role="ItemMenuSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuSecurity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemMenuSecurity">
+        <PropertyRef Name="Menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PEstado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PObjetivos" Relationship="AS_CRMModel.FK__PObjetivo__Estad__625A9A57" FromRole="PEstado" ToRole="PObjetivo" />
+    <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Estado___671F4F74" FromRole="PEstado" ToRole="PTarea" />
+  </EntityType>
+  <EntityType Name="PObjetivo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaIncio" Type="DateTime" Precision="3" />
+    <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+    <Property Name="Aprovador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Estado_Id" Type="Int32" />
+    <NavigationProperty Name="PEstado" Relationship="AS_CRMModel.FK__PObjetivo__Estad__625A9A57" FromRole="PObjetivo" ToRole="PEstado" />
+    <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Objetiv__681373AD" FromRole="PObjetivo" ToRole="PTarea" />
+    <Property Name="Proyecto_Id" Type="Int32" />
+    <NavigationProperty Name="Proyecto" Relationship="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058" FromRole="PObjetivo" ToRole="Proyecto" />
+  </EntityType>
+  <EntityType Name="Proyecto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="logo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PSprints" Relationship="AS_CRMModel.FK__PSprints__Proyec__65370702" FromRole="Proyecto" ToRole="PSprint" />
+    <NavigationProperty Name="PObjetivos" Relationship="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058" FromRole="Proyecto" ToRole="PObjetivo" />
+  </EntityType>
+  <EntityType Name="PSprint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Proyecto_Id" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaIncio" Type="DateTime" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Proyecto" Relationship="AS_CRMModel.FK__PSprints__Proyec__65370702" FromRole="PSprint" ToRole="Proyecto" />
+    <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Sprint___690797E6" FromRole="PSprint" ToRole="PTarea" />
+  </EntityType>
+  <EntityType Name="PTarea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Estado_Id" Type="Int32" />
+    <Property Name="Objetivo_Id" Type="Int32" />
+    <Property Name="Sprint_Id" Type="Int32" />
+    <Property Name="FechaIncio" Type="DateTime" Precision="3" />
+    <Property Name="FechaFinalizado" Type="DateTime" Precision="3" />
+    <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="AS_CRMModel.FK__PTareas__Usuario__662B2B3B" FromRole="PTarea" ToRole="AspNetUser" />
+    <NavigationProperty Name="PEstado" Relationship="AS_CRMModel.FK__PTareas__Estado___671F4F74" FromRole="PTarea" ToRole="PEstado" />
+    <NavigationProperty Name="PObjetivo" Relationship="AS_CRMModel.FK__PTareas__Objetiv__681373AD" FromRole="PTarea" ToRole="PObjetivo" />
+    <NavigationProperty Name="PSprint" Relationship="AS_CRMModel.FK__PTareas__Sprint___690797E6" FromRole="PTarea" ToRole="PSprint" />
+    <NavigationProperty Name="PParteHoras" Relationship="AS_CRMModel.FK__PParteHor__Tarea__69FBBC1F" FromRole="PTarea" ToRole="PParteHora" />
+    <Property Name="HorasEstimadas" Type="Int32" />
+    <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__PTareas__Usuario__662B2B3B">
+    <End Type="AS_CRMModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTarea">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PObjetivo__Estad__625A9A57">
+    <End Type="AS_CRMModel.PEstado" Role="PEstado" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PObjetivo" Role="PObjetivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEstado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PObjetivo">
+        <PropertyRef Name="Estado_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Estado___671F4F74">
+    <End Type="AS_CRMModel.PEstado" Role="PEstado" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEstado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTarea">
+        <PropertyRef Name="Estado_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Objetiv__681373AD">
+    <End Type="AS_CRMModel.PObjetivo" Role="PObjetivo" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PObjetivo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTarea">
+        <PropertyRef Name="Objetivo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PSprints__Proyec__65370702">
+    <End Type="AS_CRMModel.Proyecto" Role="Proyecto" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PSprint" Role="PSprint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PSprint">
+        <PropertyRef Name="Proyecto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareas__Sprint___690797E6">
+    <End Type="AS_CRMModel.PSprint" Role="PSprint" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PSprint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTarea">
+        <PropertyRef Name="Sprint_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Asiento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Concepto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Lineas_Asiento" Relationship="AS_CRMModel.FK__Lineas_As__Asien__2DE6D218" FromRole="Asiento" ToRole="Lineas_Asiento" />
+  </EntityType>
+  <Association Name="FK__Lineas_As__Asien__2DE6D218">
+    <End Type="AS_CRMModel.Asiento" Role="Asiento" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.Lineas_Asiento" Role="Lineas_Asiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asiento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lineas_Asiento">
+        <PropertyRef Name="Asiento_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PParteHora">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tarea_Id" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Horas" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PTarea" Relationship="AS_CRMModel.FK__PParteHor__Tarea__69FBBC1F" FromRole="PParteHora" ToRole="PTarea" />
+  </EntityType>
+  <Association Name="FK__PParteHor__Tarea__69FBBC1F">
+    <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PParteHora" Role="PParteHora" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PTarea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PParteHora">
+        <PropertyRef Name="Tarea_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PObjetivo__Proye__6AEFE058">
+    <End Type="AS_CRMModel.Proyecto" Role="Proyecto" Multiplicity="0..1" />
+    <End Type="AS_CRMModel.PObjetivo" Role="PObjetivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PObjetivo">
+        <PropertyRef Name="Proyecto_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

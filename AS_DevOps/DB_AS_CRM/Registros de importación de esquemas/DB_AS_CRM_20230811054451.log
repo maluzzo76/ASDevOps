@@ -1,0 +1,85 @@
+11/8/2023 14:44:51	Este registro contiene información acerca de la operación de importación de esquema en el proyecto 'DB_AS_CRM' del equipo 'NOTEBOOK-DELL' por el usuario 'maria'.
+11/8/2023 14:44:51	Se inició la importación del esquema de la base de datos.
+11/8/2023 14:45:04	Recopilando credenciales de la base de datos
+11/8/2023 14:45:04	Recopilando opciones de base de datos
+11/8/2023 14:45:04	Recopilando la opción de configuración de ámbito de la base de datos genérica
+11/8/2023 14:45:04	Recopilando usuarios
+11/8/2023 14:45:04	Recopilando roles
+11/8/2023 14:45:04	Recopilando roles de aplicación
+11/8/2023 14:45:04	Recopilando pertenencias a roles
+11/8/2023 14:45:04	Recopilando grupos de archivos
+11/8/2023 14:45:04	Recopilando catálogos de texto completo
+11/8/2023 14:45:04	Recopilando ensamblados
+11/8/2023 14:45:04	Recopilando certificados
+11/8/2023 14:45:04	Recopilando claves asimétricas
+11/8/2023 14:45:04	Recopilando claves simétricas
+11/8/2023 14:45:04	Recopilando claves simétricas cifradas
+11/8/2023 14:45:04	Recopilando esquemas
+11/8/2023 14:45:04	Recopilando colecciones de esquemas XML
+11/8/2023 14:45:04	Recopilando tipos de datos definidos por el usuario
+11/8/2023 14:45:04	Recopilando tipos definidos por el usuario
+11/8/2023 14:45:04	Recopilando tipos de tabla
+11/8/2023 14:45:04	Recopilando claves únicas para tipos de tabla
+11/8/2023 14:45:04	Recopilando claves principales para tipos de tabla
+11/8/2023 14:45:04	Recopilando índices para tipos de tablas
+11/8/2023 14:45:04	Recopilando restricciones CHECK para tipos de tabla
+11/8/2023 14:45:04	Recopilando restricciones DEFAULT para tipos de tabla
+11/8/2023 14:45:04	Recopilando funciones de partición
+11/8/2023 14:45:04	Recopilando esquemas de partición
+11/8/2023 14:45:04	Recopilando funciones
+11/8/2023 14:45:04	Recopilando funciones cifradas
+11/8/2023 14:45:04	Recopilando agregados
+11/8/2023 14:45:04	Recopilando procedimientos
+11/8/2023 14:45:04	Recopilando procedimientos cifrados
+11/8/2023 14:45:04	Recopilando tablas
+11/8/2023 14:45:04	Recopilando claves principales
+11/8/2023 14:45:04	Recopilando restricciones UNIQUE
+11/8/2023 14:45:04	Recopilando claves externas
+11/8/2023 14:45:04	Recopilando restricciones DEFAULT
+11/8/2023 14:45:04	Recopilando restricciones CHECK
+11/8/2023 14:45:04	Recopilando vistas
+11/8/2023 14:45:04	Recopilando vistas cifradas
+11/8/2023 14:45:04	Recopilando índices
+11/8/2023 14:45:04	Recopilando estadísticas
+11/8/2023 14:45:04	Recopilando listas de palabras irrelevantes de índices de texto completo
+11/8/2023 14:45:04	Recopilando listas de propiedades de búsqueda
+11/8/2023 14:45:04	Recopilando propiedades de búsqueda
+11/8/2023 14:45:04	Recopilando índices de texto completo
+11/8/2023 14:45:04	Recopilando índices de almacenamiento de columnas
+11/8/2023 14:45:04	Recopilando índices espaciales
+11/8/2023 14:45:04	Recopilando índices XML
+11/8/2023 14:45:04	Recopilando índices XML selectivos
+11/8/2023 14:45:04	Recopilando desencadenadores cifrados
+11/8/2023 14:45:04	Recopilando desencadenadores
+11/8/2023 14:45:04	Recopilando DDL triggers cifrados y de CLR
+11/8/2023 14:45:04	Recopilando DDL triggers
+11/8/2023 14:45:04	Creación de la restricción perimetral en curso
+11/8/2023 14:45:04	Recopilando sinónimos
+11/8/2023 14:45:04	Recopilando valores predeterminados
+11/8/2023 14:45:04	Recopilando enlaces UDDT de restricción de datos
+11/8/2023 14:45:04	Recopilando reglas
+11/8/2023 14:45:04	Recopilando enlaces UDDT de restricción de datos
+11/8/2023 14:45:04	Recopilando tipos de mensaje
+11/8/2023 14:45:04	Recopilando colas
+11/8/2023 14:45:04	Recopilando contratos
+11/8/2023 14:45:04	Recopilando servicios
+11/8/2023 14:45:04	Recopilando notificaciones de eventos
+11/8/2023 14:45:04	Recopilando enlaces de servicio remoto
+11/8/2023 14:45:04	Recopilando prioridades de Broker
+11/8/2023 14:45:04	Recopilando firmas
+11/8/2023 14:45:04	Recopilando opciones de compresión
+11/8/2023 14:45:04	Recopilando tipos de secuencia
+11/8/2023 14:45:04	Recopilando directivas de seguridad
+11/8/2023 14:45:04	Recopilar claves de cifrado de columna
+11/8/2023 14:45:04	Recopilando claves maestras de columna
+11/8/2023 14:45:04	Recopilando orígenes de datos externos
+11/8/2023 14:45:04	Recopilando formatos de archivo externos
+11/8/2023 14:45:04	Recopilando tablas externas
+11/8/2023 14:45:04	Recopilando opciones de compresión de índice XML
+11/8/2023 14:45:04	Recopilando propiedades extendidas
+11/8/2023 14:45:04	Recopilando ensamblados
+11/8/2023 14:45:05	Buscando elementos duplicados en el proyecto
+11/8/2023 14:45:06	Ha finalizado el procesamiento de los elementos duplicados
+11/8/2023 14:45:07	Finalizó la importación de la base de datos.
+11/8/2023 14:45:07	Se guardó un resumen de la importación en la siguiente ubicación: D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\Registros de importación de esquemas\DB_AS_CRM_20230811054451.log
+11/8/2023 14:45:07	Haga clic en Finalizar para continuar...

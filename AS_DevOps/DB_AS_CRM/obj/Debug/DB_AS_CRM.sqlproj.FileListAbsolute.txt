@@ -1,0 +1,10 @@
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\bin\Debug\DB_AS_CRM.dacpac
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\bin\Debug\DB_AS_CRM.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\bin\Debug\DB_AS_CRM.pdb
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\DB_AS_CRM.sqlproj.AssemblyReference.cache
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\DB_AS_CRM.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\DB_AS_CRM.pdb
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\Model.xml
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\refactor.xml
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\postdeploy.sql
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\DB_AS_CRM\obj\Debug\predeploy.sql

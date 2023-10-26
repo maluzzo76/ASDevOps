@@ -1,0 +1,158 @@
+﻿@model IEnumerable<AS_CRM.Plan_Cuentas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Plan de Cuentas</h2>
+
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Plan_Cuentas")'">
+    Crear Cuentas
+    <span class="badge bg-warning" style="background-color:#eaeaea"> Activo: $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith("01") && w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+    <span class="badge bg-warning" style="background-color: #eaeaea"> Pasivo: $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith("02") && w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+    <span class="badge bg-warning" style="background-color: #71e455; color:black;"> Total: $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=> w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+</button>
+<input type="button" class="btn btn-warning" name="imprimir" value="Imprimir" onclick="impr();">
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off", PlaceHolder = "Codigo Cuenta" })
+            @Html.TextBox("SearchStringAccount", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off", PlaceHolder = "Nombre Cuenta" })
+        </div>
+    </div>
+}
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #1ea9ef, #436dd0); color: white; border-bottom-width: 5px;">
+        <th>
+            Nombre
+        </th>
+        <th></th>
+        <th style="text-align: right;">
+            Saldo
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background-color: white; border-left: 1px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+
+            @{if (item.IsImputable != true)
+                {
+                    <td style="font-weight: bold;">
+                        <span style="color:white;">@item.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length, char.Parse("."))</span> @item.Codigo - @item.Nombre - (@item.Numero)
+                    </td>
+
+                    <td style="width:200px; text-align:center;">
+                        <a class="btn-grid" href="@Url.Action("Edit","Plan_Cuentas", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" /></span></a>
+                        <a class="btn-grid" href="@Url.Action("Details","Plan_Cuentas", new { id = item.Id }) "><img src="~/Content/image/iconos_Buscar.png" /></a>
+                        <a class="btn-grid" href="@Url.Action("Delete","Plan_Cuentas", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
+                    </td>
+
+                    if ((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s => s.Debe - s.Haber) > 0)
+                    {
+                        <td style="text-align: right; font-weight: bold;">
+                            <span class="badge bg-warning" style="background-color:#9a82cf"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="text-align: right; font-weight: bold;">
+                            <span class="badge bg-warning" style="background-color:#c73d3d"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+                        </td>
+                    }
+
+
+
+                }
+                else
+                {
+                    <td style="padding-left:10px; background-color:#eaeaea;">
+                        <span style="color: #eaeaea;">@item.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length, char.Parse("."))</span> @item.Codigo - @item.Nombre - (@item.Numero)
+                    </td>
+
+                    <td style="width: 200px; text-align: center; background-color: #eaeaea;">
+                        <a class="btn-grid" href="@Url.Action("Edit","Plan_Cuentas", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" /></span></a>
+                        <a class="btn-grid" href="@Url.Action("Details","Plan_Cuentas", new { id = item.Id }) "><img src="~/Content/image/iconos_Buscar.png" /></a>
+                        <a class="btn-grid" href="@Url.Action("Delete","Plan_Cuentas", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
+                    </td>
+
+                    if (item.Lineas_Asiento.Sum(d => d.Debe.Value - d.Haber.Value) < 0)
+                    {
+                        <td style="color: red; text-align: right; font-weight: bold; background-color: #eaeaea; ">
+                            $ @item.Lineas_Asiento.Sum(d => d.Debe.Value - d.Haber.Value)
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="text-align: right; font-weight: bold; background-color: #eaeaea; ">
+                            $ @item.Lineas_Asiento.Sum(d => d.Debe.Value - d.Haber.Value)
+                        </td>
+                    }
+                }
+            }
+
+        </tr>
+    }
+
+</table>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div id="comp" class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">                                
+                <h2 class="modal-title">Plan de Cuentas</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
+                        <th>
+                            Nombre
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+
+                            @{if (item.IsImputable != true)
+                                {
+                                    <td style="font-weight: bold;">
+                                        <span style="color:white;">@item.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length,  char.Parse("."))</span> @item.Codigo - @item.Nombre - (@item.Numero)
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="padding-left:1px; background-color:#eaeaea;">
+                                        <span style="color: #eaeaea;">@item.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length, char.Parse("."))</span> @item.Codigo - @item.Nombre - (@item.Numero)
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function impr() {
+        var ficha = document.getElementById("comp");
+        var ventimp = window.open(' ', 'popimpr');
+        ventimp.document.title = "Imprimir Plan de Cuenta";
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close();
+    }
+</script>

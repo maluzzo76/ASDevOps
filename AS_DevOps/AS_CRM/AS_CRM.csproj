@@ -257,6 +257,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Asiento.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CertificacionHora.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cliente.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
@@ -265,6 +274,8 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AcuardosComercialesController.cs" />
+    <Compile Include="Controllers\AsientoesController.cs" />
+    <Compile Include="Controllers\CertificacionHorasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ComprobantesController.cs" />
     <Compile Include="Controllers\CustomController.cs" />
@@ -272,8 +283,14 @@
     <Compile Include="Controllers\GastosVariablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadsController.cs" />
+    <Compile Include="Controllers\Lineas_AsientoController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Pagination.cs" />
+    <Compile Include="Controllers\Plan_CuentasController.cs" />
+    <Compile Include="Controllers\PObjetivoesController.cs" />
+    <Compile Include="Controllers\PParteHorasController.cs" />
+    <Compile Include="Controllers\ProyectoesController.cs" />
+    <Compile Include="Controllers\PTareasController.cs" />
     <Compile Include="Controllers\TipoGastoesController.cs" />
     <Compile Include="Controllers\TiposComprobantesController.cs" />
     <Compile Include="Crm_Model.Context.cs">
@@ -300,13 +317,43 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ItemMenuSecurity.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Lead.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Lineas_Asiento.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuSecurity.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="PEstado.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Plan_Cuentas.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PObjetivo.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PParteHora.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proyecto.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PSprint.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PTarea.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="TipoGasto.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
@@ -320,10 +367,25 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\alusoft.png" />
     <Content Include="Content\image\banner.png" />
+    <Content Include="Content\image\diffupar.png" />
+    <Content Include="Content\image\disam.png" />
+    <Content Include="Content\image\dpmg.png" />
     <Content Include="Content\image\gastos.png" />
+    <Content Include="Content\image\iconos_Basura.png" />
+    <Content Include="Content\image\iconos_Buscar.png" />
+    <Content Include="Content\image\iconos_Lapiz.png" />
+    <Content Include="Content\image\iconos_Lapiz2.png" />
+    <Content Include="Content\image\iconos_Link 2.png" />
+    <Content Include="Content\image\iconos_Ojo.png" />
     <Content Include="Content\image\lead.png" />
     <Content Include="Content\image\logo.png" />
+    <Content Include="Content\image\objetivo.jpg" />
+    <Content Include="Content\image\objetivo.png" />
+    <Content Include="Content\image\proyecto.jpg" />
+    <Content Include="Content\image\tarea.png" />
+    <Content Include="Content\image\vepech.png" />
     <Content Include="Crm_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Crm_Model.edmx</DependentUpon>
@@ -367,7 +429,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -390,8 +451,6 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Leads\Create.cshtml" />
     <Content Include="Views\Leads\Delete.cshtml" />
     <Content Include="Views\Leads\Details.cshtml" />
@@ -402,11 +461,11 @@
     <Content Include="Views\TipoGastoes\Details.cshtml" />
     <Content Include="Views\TipoGastoes\Edit.cshtml" />
     <Content Include="Views\TipoGastoes\Index.cshtml" />
-    <Content Include="Views\TiposComprobantes\Create.cshtml" />
-    <Content Include="Views\TiposComprobantes\Delete.cshtml" />
-    <Content Include="Views\TiposComprobantes\Details.cshtml" />
-    <Content Include="Views\TiposComprobantes\Edit.cshtml" />
-    <Content Include="Views\TiposComprobantes\Index.cshtml" />
+    <Content Include="TiposComprobantes\Create.cshtml" />
+    <Content Include="TiposComprobantes\Delete.cshtml" />
+    <Content Include="TiposComprobantes\Details.cshtml" />
+    <Content Include="TiposComprobantes\Edit.cshtml" />
+    <Content Include="TiposComprobantes\Index.cshtml" />
     <Content Include="Views\GastosFijoes\Create.cshtml" />
     <Content Include="Views\GastosFijoes\Delete.cshtml" />
     <Content Include="Views\GastosFijoes\Details.cshtml" />
@@ -417,11 +476,6 @@
     <Content Include="Views\GastosVariables\Details.cshtml" />
     <Content Include="Views\GastosVariables\Edit.cshtml" />
     <Content Include="Views\GastosVariables\Index.cshtml" />
-    <Content Include="Views\Clientes\Create.cshtml" />
-    <Content Include="Views\Clientes\Delete.cshtml" />
-    <Content Include="Views\Clientes\Details.cshtml" />
-    <Content Include="Views\Clientes\Edit.cshtml" />
-    <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Comprobantes\Create.cshtml" />
     <Content Include="Views\Comprobantes\Delete.cshtml" />
     <Content Include="Views\Comprobantes\Details.cshtml" />
@@ -432,6 +486,55 @@
     <Content Include="Views\AcuardosComerciales\Details.cshtml" />
     <Content Include="Views\AcuardosComerciales\Edit.cshtml" />
     <Content Include="Views\AcuardosComerciales\Index.cshtml" />
+    <Content Include="Views\AcuardosComerciales\Create.cshtml" />
+    <Content Include="Views\CertificacionHoras\Create.cshtml" />
+    <Content Include="Views\CertificacionHoras\Delete.cshtml" />
+    <Content Include="Views\CertificacionHoras\Details.cshtml" />
+    <Content Include="Views\CertificacionHoras\Edit.cshtml" />
+    <Content Include="Views\CertificacionHoras\Index.cshtml" />
+    <Content Include="Views\Plan_Cuentas\Create.cshtml" />
+    <Content Include="Views\Plan_Cuentas\Delete.cshtml" />
+    <Content Include="Views\Plan_Cuentas\Details.cshtml" />
+    <Content Include="Views\Plan_Cuentas\Edit.cshtml" />
+    <Content Include="Views\Plan_Cuentas\Index.cshtml" />
+    <Content Include="Views\Asientoes\Create.cshtml" />
+    <Content Include="Views\Asientoes\Delete.cshtml" />
+    <Content Include="Views\Asientoes\Details.cshtml" />
+    <Content Include="Views\Asientoes\Edit.cshtml" />
+    <Content Include="Views\Asientoes\Index.cshtml" />
+    <Content Include="Views\Lineas_Asiento\Create.cshtml" />
+    <Content Include="Views\Lineas_Asiento\Delete.cshtml" />
+    <Content Include="Views\Lineas_Asiento\Details.cshtml" />
+    <Content Include="Views\Lineas_Asiento\Edit.cshtml" />
+    <Content Include="Views\Lineas_Asiento\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Proyectoes\Create.cshtml" />
+    <Content Include="Views\Proyectoes\Delete.cshtml" />
+    <Content Include="Views\Proyectoes\Details.cshtml" />
+    <Content Include="Views\Proyectoes\Edit.cshtml" />
+    <Content Include="Views\Proyectoes\Index.cshtml" />
+    <Content Include="Views\PObjetivoes\Create.cshtml" />
+    <Content Include="Views\PObjetivoes\Delete.cshtml" />
+    <Content Include="Views\PObjetivoes\Details.cshtml" />
+    <Content Include="Views\PObjetivoes\Edit.cshtml" />
+    <Content Include="Views\PObjetivoes\Index.cshtml" />
+    <Content Include="Views\PTareas\Create.cshtml" />
+    <Content Include="Views\PTareas\Delete.cshtml" />
+    <Content Include="Views\PTareas\Details.cshtml" />
+    <Content Include="Views\PTareas\Edit.cshtml" />
+    <Content Include="Views\PTareas\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\PParteHoras\Create.cshtml" />
+    <Content Include="Views\PParteHoras\Delete.cshtml" />
+    <Content Include="Views\PParteHoras\Details.cshtml" />
+    <Content Include="Views\PParteHoras\Edit.cshtml" />
+    <Content Include="Views\PParteHoras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

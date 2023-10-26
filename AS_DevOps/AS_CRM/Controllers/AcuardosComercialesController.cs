@@ -36,6 +36,9 @@ namespace AS_CRM.Controllers
         // GET: AcuardosComerciales/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -51,6 +54,9 @@ namespace AS_CRM.Controllers
         // GET: AcuardosComerciales/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial");
             return View();
         }
@@ -62,6 +68,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ClienteId,ValorHora,HorasVendidas,ImporteTotal,Fecha,IsActiva")] AcuardosComerciale acuardosComerciale)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.AcuardosComerciales.Add(acuardosComerciale);
@@ -76,6 +85,9 @@ namespace AS_CRM.Controllers
         // GET: AcuardosComerciales/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -96,6 +108,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ClienteId,ValorHora,HorasVendidas,ImporteTotal,Fecha,IsActiva")] AcuardosComerciale acuardosComerciale)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(acuardosComerciale).State = EntityState.Modified;
@@ -109,6 +124,9 @@ namespace AS_CRM.Controllers
         // GET: AcuardosComerciales/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -126,6 +144,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             AcuardosComerciale acuardosComerciale = db.AcuardosComerciales.Find(id);
             db.AcuardosComerciales.Remove(acuardosComerciale);
             db.SaveChanges();

@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using AS_CRM;
@@ -20,25 +19,6 @@ namespace AS_CRM.Controllers
         {
             if (!validarLoggin())
                 return RedirectToAction("login", "Account");
-            
-            var _r = from _o in db.Clientes
-                     select _o;
-
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                _r = from _o in _r
-                     where _o.RazonSocial.Contains(SearchString) || _o.NombreContacto.Contains(SearchString)
-                     select _o;
-            }
-            
-
-            return View(_r.ToList<AS_CRM.Cliente>());
-        }
-        /*
-        public ActionResult Index(string SearchString, int pagina = 1)
-        {
-            if (!validarLoggin())
-                return RedirectToAction("login", "Account");
 
             var _r = from _o in db.Clientes
                      select _o;
@@ -49,15 +29,19 @@ namespace AS_CRM.Controllers
                      where _o.RazonSocial.Contains(SearchString) || _o.NombreContacto.Contains(SearchString)
                      select _o;
             }
+
 
             Pagination<Cliente> _page = new Pagination<Cliente>();
 
             return View(_page.paginado(_r, pagina));
-        }*/
+        }
 
         // GET: Clientes/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -73,6 +57,9 @@ namespace AS_CRM.Controllers
         // GET: Clientes/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             return View();
         }
 
@@ -83,8 +70,11 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
-            {                
+            {
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,6 +86,9 @@ namespace AS_CRM.Controllers
         // GET: Clientes/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -115,6 +108,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(cliente).State = EntityState.Modified;
@@ -127,6 +123,9 @@ namespace AS_CRM.Controllers
         // GET: Clientes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -144,6 +143,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             Cliente cliente = db.Clientes.Find(id);
             db.Clientes.Remove(cliente);
             db.SaveChanges();

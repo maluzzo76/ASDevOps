@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<AS_CRM.Cliente>
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.Cliente>
 
 @{
     ViewBag.Title = "Index";
@@ -10,7 +9,7 @@
 
 <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Clientes")'">
     Agregar Cliente
-    <span class="badge badge-light">@Model.Count()</span>
+    <span class="badge badge-light">@Model.TotalRegistros</span>
 </button>
 
 
@@ -24,31 +23,79 @@
         </div>
     </div>
 }
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #1ea9ef, #436dd0); color: white; border-bottom-width: 5px;">
+        <th></th>
+        <th>
+            Razon Social
+        </th>
+        <th>
+            Contacto
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Valor Hora
+        </th>
+        <th>
+            Fecha Acuerdo
+        </th>
+        <th></th>
+    </tr>
 
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-4">
-                <div class="card" style="width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 5px 5px 20px 5px gray;">
-                    <img class="card-img-top" src="~/Content/image/lead.png" alt="Card image" style=" zoom:25%;padding-left:30%;">
-                    <div class="card-body">
-                        <div style="padding-left:20px;padding-bottom:10px;">
-                            <h3 class="card-title">@item.RazonSocial</h3>
-                            <h4 class="card-text">@item.NombreContacto</h4>
-                            <hr />
-                            <p class="card-text"><span style="font-weight: bold;">Telefono:</span> @item.Telefono</p>
-                            <p class="card-text"><span style="font-weight: bold;">Email:</span> @item.Email</p>
-                            <p class="card-text"><span style="font-weight: bold;">Valor Hora:</span>$ @item.ValorHora</p>
-                            <p class="card-text"><span style="font-weight: bold;">Fecha de Acuerdo:</span>@item.FechaDeAcuerdo</p>
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color: white; border-left: 1px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+            <td>
+                <img src="~/Content/image/lead.png" class="btn-grid" style="zoom: 5%; padding-top: -50px;" />
+            </td>
+            <td style="font-weight: bold;">
+                @Html.DisplayFor(modelItem => item.RazonSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreContacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td style="font-weight: bold;">
+                $ @Html.DisplayFor(modelItem => item.ValorHora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeAcuerdo)
+            </td>
+            <td style="width:150px">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-                        </div>
-                    </div>
-                </div>
-                <br/>
-            </div>         
+</table>    
+
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
         }
-    </div>
+    </ul>
 </div>

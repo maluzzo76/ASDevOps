@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AS_CRM.PTarea>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaIncio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaFinalizado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEntrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PEstado.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PObjetivo.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PSprint.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIncio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaFinalizado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PEstado.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PObjetivo.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PSprint.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

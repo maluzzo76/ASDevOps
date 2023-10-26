@@ -1,0 +1,64 @@
+﻿@model AS_CRM.Lineas_Asiento
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Lineas_Asiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Concepto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Concepto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Debe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Debe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Haber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Haber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan_Cuentas.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan_Cuentas.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asiento.Concepto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asiento.Concepto)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

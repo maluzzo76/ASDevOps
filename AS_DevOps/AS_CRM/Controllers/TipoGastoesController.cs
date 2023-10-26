@@ -38,6 +38,9 @@ namespace AS_CRM.Controllers
         // GET: TipoGastoes/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,6 +56,9 @@ namespace AS_CRM.Controllers
         // GET: TipoGastoes/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             return View();
         }
 
@@ -63,6 +69,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Acronimo,Nombre")] TipoGasto tipoGasto)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.TipoGastoes.Add(tipoGasto);
@@ -76,6 +85,9 @@ namespace AS_CRM.Controllers
         // GET: TipoGastoes/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -95,6 +107,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Acronimo,Nombre")] TipoGasto tipoGasto)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(tipoGasto).State = EntityState.Modified;
@@ -107,6 +122,9 @@ namespace AS_CRM.Controllers
         // GET: TipoGastoes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -124,6 +142,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             TipoGasto tipoGasto = db.TipoGastoes.Find(id);
             db.TipoGastoes.Remove(tipoGasto);
             db.SaveChanges();

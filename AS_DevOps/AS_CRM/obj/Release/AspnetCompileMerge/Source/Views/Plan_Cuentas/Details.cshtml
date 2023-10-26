@@ -1,0 +1,101 @@
+﻿@model AS_CRM.Plan_Cuentas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="cont">
+    <h2>Detalle Moviemientos de Cuenta: @Model.Id.ToString().PadLeft(8, char.Parse("0")) - @Model.Nombre - SALDO <span class="badge badge-warning" style=" background-color:#ffd800; font-size:16pt">$ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.IsResultado==true).Sum(d=> d.Debe - d.Haber))</span> </h2>
+    <br />
+
+    <div>
+        <table class="table" style="width:100%;">
+            <tr style="background-image: linear-gradient(to bottom right, #1ea9ef, #436dd0); color: white; border-bottom-width: 5px;">
+                <th>
+                    Nombre
+                </th>
+                <th style="text-align: right;">
+                    Saldo
+                </th>
+            </tr>
+
+            @foreach (var item in (ViewData["PCA"] as IList<Plan_Cuentas>))
+            {
+                <tr style="background-color: white; border-left: 1px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+
+                    @{if (item.IsImputable != true)
+                        {
+                            <td style="font-weight: bold;">
+                                <span style="color:white;">@item.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length, char.Parse("."))</span> @item.Codigo - @item.Nombre - (@item.Numero)
+                            </td>
+
+                            if ((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s => s.Debe - s.Haber) > 0)
+                            {
+                                <td style="text-align: right; font-weight: bold;">
+                                    <span class="badge bg-warning" style="background-color:#9a82cf"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s => s.Debe - s.Haber))</span>
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td style="text-align: right; font-weight: bold;">
+                                    <span class="badge bg-warning" style="background-color:#c73d3d"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s => s.Debe - s.Haber))</span>
+                                </td>
+                            }
+                        }
+                        else
+                        {
+                            <td style="padding-left:40px; background-color:#eaeaea;">
+                                <span style="color: #eaeaea;">@item.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length, char.Parse("."))</span> @item.Codigo - @item.Nombre - (@item.Numero)
+                            </td>
+                            if (item.Lineas_Asiento.Sum(d => d.Debe.Value - d.Haber.Value) < 0)
+                            {
+                                <td style="color: red; text-align: right; font-weight: bold; background-color: #eaeaea; ">
+                                    $ @item.Lineas_Asiento.Sum(d => d.Debe.Value - d.Haber.Value)
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="text-align: right; font-weight: bold; background-color: #eaeaea; ">
+                                    $ @item.Lineas_Asiento.Sum(d => d.Debe.Value - d.Haber.Value)
+                                </td>
+                            }
+
+                        }
+                    }
+                </tr>
+                {
+                    if (item.IsImputable == true)
+                    {
+                        foreach (var _la in ((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo == item.Codigo).OrderByDescending(o => o.Asiento.Fecha)))
+                        {
+                            <tr>
+                                <td>
+                                    <span style="color:white;">@_la.Plan_Cuentas.Codigo.Replace(item.Codigo, "").PadLeft(item.Codigo.Length*3, char.Parse("."))</span> FECHA:<span style="color:#808080;"> @_la.Asiento.Fecha.Value.Date.ToShortDateString() </span> - ASIENTO N°: <span style="color:#808080;"> @_la.Asiento.Id.ToString().PadLeft(8, char.Parse("0")) </span> -  CONCEPTO: <span style="color:#808080;"> @_la.Concepto </span>
+</td>
+                                <td style="text-align: right;">                                    
+                                        $ @_la.Saldo                                    
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </table>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-info" })
+    <input type="button" class="btn btn-warning" name="imprimir" value="Imprimir" onclick="impr();">
+</p>
+
+<script>
+    function impr() {
+        var ficha = document.getElementById("cont");
+        var ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close();
+    }
+</script>

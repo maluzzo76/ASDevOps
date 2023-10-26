@@ -106,5 +106,161 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CertificacionHoras">
+      <EntityTypeMapping TypeName="AS_CRMModel.CertificacionHora">
+        <MappingFragment StoreEntitySet="CertificacionHoras">
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="HorasCertificadas" ColumnName="HorasCertificadas" />
+          <ScalarProperty Name="HorasACertificar" ColumnName="HorasACertificar" />
+          <ScalarProperty Name="ComprobanteId" ColumnName="ComprobanteId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plan_Cuentas">
+      <EntityTypeMapping TypeName="AS_CRMModel.Plan_Cuentas">
+        <MappingFragment StoreEntitySet="Plan_Cuentas">
+          <ScalarProperty Name="IsResultado" ColumnName="IsResultado" />
+          <ScalarProperty Name="IsImputable" ColumnName="IsImputable" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lineas_Asiento">
+      <EntityTypeMapping TypeName="AS_CRMModel.Lineas_Asiento">
+        <MappingFragment StoreEntitySet="Lineas_Asiento">
+          <ScalarProperty Name="Haber" ColumnName="Haber" />
+          <ScalarProperty Name="Debe" ColumnName="Debe" />
+          <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+          <ScalarProperty Name="Cuenta_Id" ColumnName="Cuenta_Id" />
+          <ScalarProperty Name="Asiento_Id" ColumnName="Asiento_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="AS_CRMModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemMenuSecurities">
+      <EntityTypeMapping TypeName="AS_CRMModel.ItemMenuSecurity">
+        <MappingFragment StoreEntitySet="ItemMenuSecurity">
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="IsActivo" ColumnName="IsActivo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuSecurities">
+      <EntityTypeMapping TypeName="AS_CRMModel.MenuSecurity">
+        <MappingFragment StoreEntitySet="MenuSecurity">
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="IsActivo" ColumnName="IsActivo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PEstados">
+      <EntityTypeMapping TypeName="AS_CRMModel.PEstado">
+        <MappingFragment StoreEntitySet="PEstados">
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PObjetivos">
+      <EntityTypeMapping TypeName="AS_CRMModel.PObjetivo">
+        <MappingFragment StoreEntitySet="PObjetivos">
+          <ScalarProperty Name="Proyecto_Id" ColumnName="Proyecto_Id" />
+          <ScalarProperty Name="Estado_Id" ColumnName="Estado_Id" />
+          <ScalarProperty Name="Aprovador" ColumnName="Aprovador" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+          <ScalarProperty Name="FechaIncio" ColumnName="FechaIncio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyectos">
+      <EntityTypeMapping TypeName="AS_CRMModel.Proyecto">
+        <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSprints">
+      <EntityTypeMapping TypeName="AS_CRMModel.PSprint">
+        <MappingFragment StoreEntitySet="PSprints">
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="FechaIncio" ColumnName="FechaIncio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Proyecto_Id" ColumnName="Proyecto_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PTareas">
+      <EntityTypeMapping TypeName="AS_CRMModel.PTarea">
+        <MappingFragment StoreEntitySet="PTareas">
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="HorasEstimadas" ColumnName="HorasEstimadas" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+          <ScalarProperty Name="FechaFinalizado" ColumnName="FechaFinalizado" />
+          <ScalarProperty Name="FechaIncio" ColumnName="FechaIncio" />
+          <ScalarProperty Name="Sprint_Id" ColumnName="Sprint_Id" />
+          <ScalarProperty Name="Objetivo_Id" ColumnName="Objetivo_Id" />
+          <ScalarProperty Name="Estado_Id" ColumnName="Estado_Id" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Asientos">
+      <EntityTypeMapping TypeName="AS_CRMModel.Asiento">
+        <MappingFragment StoreEntitySet="Asientos">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PParteHoras">
+      <EntityTypeMapping TypeName="AS_CRMModel.PParteHora">
+        <MappingFragment StoreEntitySet="PParteHoras">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Horas" ColumnName="Horas" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

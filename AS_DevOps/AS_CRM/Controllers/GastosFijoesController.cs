@@ -39,6 +39,9 @@ namespace AS_CRM.Controllers
         // GET: GastosFijoes/Details/5
         public ActionResult Details(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -54,6 +57,9 @@ namespace AS_CRM.Controllers
         // GET: GastosFijoes/Create
         public ActionResult Create()
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre");
             return View();
         }
@@ -65,6 +71,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,FechaRegistro")] GastosFijo gastosFijo)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.GastosFijos.Add(gastosFijo);
@@ -79,6 +88,9 @@ namespace AS_CRM.Controllers
         // GET: GastosFijoes/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,6 +111,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,FechaRegistro")] GastosFijo gastosFijo)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Entry(gastosFijo).State = EntityState.Modified;
@@ -112,6 +127,9 @@ namespace AS_CRM.Controllers
         // GET: GastosFijoes/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -129,6 +147,9 @@ namespace AS_CRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
             GastosFijo gastosFijo = db.GastosFijos.Find(id);
             db.GastosFijos.Remove(gastosFijo);
             db.SaveChanges();

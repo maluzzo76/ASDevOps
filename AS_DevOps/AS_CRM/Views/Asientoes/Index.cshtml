@@ -1,0 +1,86 @@
+﻿@model AS_CRM.Controllers.PaginadorGenerico<AS_CRM.Asiento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Asientos</h2>
+
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Asientoes")'">
+    Agregar Asiento
+    <span class="badge badge-light">@Model.TotalRegistros</span>    
+</button>
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal ">
+        <div class="form-group ">
+            <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off" })
+        </div>
+    </div>
+}
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
+
+        <th>
+            Asiento
+        </th>
+        <th style="width:50%">
+            Fecha
+        </th>
+        <th style="text-align: right;">
+            Debe
+        </th>
+        <th style="text-align: right;">
+            Haber
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">            
+            <td>
+                @item.Id.ToString().PadLeft(8, char.Parse("0"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td style="text-align: right; font-weight: bold;">
+               $ @item.Lineas_Asiento.Sum(o=>o.Debe)
+            </td>
+            <td style="text-align: right; font-weight: bold;">
+                $ @item.Lineas_Asiento.Sum(t => t.Haber)
+            </td>
+            <td style="width:350px; text-align:right">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>    
+
+
+<div class="container-fluid">
+
+
+    <ul class="pagination  pull-right">
+        @{
+            if (Model.PaginaActual > 1)
+            {
+                <li class="page-item">@Html.ActionLink("Anterior", "Index", new { pagina = Model.PaginaActual - 1 })</li>
+            }
+
+
+            if (Model.PaginaActual < Model.TotalPaginas)
+            {
+                <li class="page-item">@Html.ActionLink("Siguiente", "Index", new { pagina = Model.PaginaActual + 1 })</li>
+            }
+        }
+    </ul>
+</div>
