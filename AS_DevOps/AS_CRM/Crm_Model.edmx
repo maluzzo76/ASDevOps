@@ -212,6 +212,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="FechaIncio" Type="datetime" />
           <Property Name="FechaFin" Type="datetime" />
+          <Property Name="Estado_id" Type="int" />
         </EntityType>
         <EntityType Name="PTareas">
           <Key>
@@ -413,6 +414,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PSprints__Estado__6BE40491">
+          <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
+          <End Role="PSprints" Type="Self.PSprints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEstados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PSprints">
+              <PropertyRef Name="Estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PSprints__Proyec__65370702">
           <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
           <End Role="PSprints" Type="Self.PSprints" Multiplicity="*" />
@@ -550,6 +563,10 @@
           <AssociationSet Name="FK__PParteHor__Tarea__69FBBC1F" Association="Self.FK__PParteHor__Tarea__69FBBC1F">
             <End Role="PTareas" EntitySet="PTareas" />
             <End Role="PParteHoras" EntitySet="PParteHoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PSprints__Estado__6BE40491" Association="Self.FK__PSprints__Estado__6BE40491">
+            <End Role="PEstados" EntitySet="PEstados" />
+            <End Role="PSprints" EntitySet="PSprints" />
           </AssociationSet>
           <AssociationSet Name="FK__PSprints__Proyec__65370702" Association="Self.FK__PSprints__Proyec__65370702">
             <End Role="Proyectos" EntitySet="Proyectos" />
@@ -692,6 +709,10 @@
           <AssociationSet Name="FK__PObjetivo__Proye__6AEFE058" Association="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058">
             <End Role="Proyecto" EntitySet="Proyectos" />
             <End Role="PObjetivo" EntitySet="PObjetivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PSprints__Estado__6BE40491" Association="AS_CRMModel.FK__PSprints__Estado__6BE40491">
+            <End Role="PEstado" EntitySet="PEstados" />
+            <End Role="PSprint" EntitySet="PSprints" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
@@ -994,6 +1015,7 @@
           <Property Name="Color" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PObjetivos" Relationship="AS_CRMModel.FK__PObjetivo__Estad__625A9A57" FromRole="PEstado" ToRole="PObjetivo" />
           <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Estado___671F4F74" FromRole="PEstado" ToRole="PTarea" />
+          <NavigationProperty Name="PSprints" Relationship="AS_CRMModel.FK__PSprints__Estado__6BE40491" FromRole="PEstado" ToRole="PSprint" />
         </EntityType>
         <EntityType Name="PObjetivo">
           <Key>
@@ -1031,6 +1053,8 @@
           <Property Name="FechaFin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Proyecto" Relationship="AS_CRMModel.FK__PSprints__Proyec__65370702" FromRole="PSprint" ToRole="Proyecto" />
           <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Sprint___690797E6" FromRole="PSprint" ToRole="PTarea" />
+          <Property Name="Estado_id" Type="Int32" />
+          <NavigationProperty Name="PEstado" Relationship="AS_CRMModel.FK__PSprints__Estado__6BE40491" FromRole="PSprint" ToRole="PEstado" />
         </EntityType>
         <EntityType Name="PTarea">
           <Key>
@@ -1178,6 +1202,18 @@
             </Principal>
             <Dependent Role="PObjetivo">
               <PropertyRef Name="Proyecto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PSprints__Estado__6BE40491">
+          <End Type="AS_CRMModel.PEstado" Role="PEstado" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.PSprint" Role="PSprint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEstado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PSprint">
+              <PropertyRef Name="Estado_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1403,6 +1439,7 @@
           <EntitySetMapping Name="PSprints">
             <EntityTypeMapping TypeName="AS_CRMModel.PSprint">
               <MappingFragment StoreEntitySet="PSprints">
+                <ScalarProperty Name="Estado_id" ColumnName="Estado_id" />
                 <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
                 <ScalarProperty Name="FechaIncio" ColumnName="FechaIncio" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

@@ -36,7 +36,7 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">@im.Nombre<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    @foreach (var imenu in im.ItemMenuSecurities.Where(w => w.IsActivo == true).OrderBy(o=>o.Orden))
+                                    @foreach (var imenu in im.ItemMenuSecurities.Where(w => w.IsActivo == true).OrderBy(o => o.Orden))
                                     {
                                         switch (imenu.Nombre)
                                         {
@@ -93,6 +93,11 @@
 
                                             case "Proyectos":
                                                 <li>@Html.ActionLink("Proyectos", "Index", "Proyectoes", null, new { @style = "font-size:10pt;" })</li>
+                                                <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
+                                                break;
+
+                                            case "Sprint":
+                                                <li>@Html.ActionLink("Sprints", "Index", "PSprints", null, new { @style = "font-size:10pt;" })</li>
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;
                                         }

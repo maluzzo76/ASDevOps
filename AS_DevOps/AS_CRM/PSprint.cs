@@ -30,9 +30,11 @@ namespace AS_CRM
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaFin { get; set; }
+        public Nullable<int> Estado_id { get; set; }
     
         public virtual Proyecto Proyecto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PTarea> PTareas { get; set; }
+        public virtual PEstado PEstado { get; set; }
     }
 }

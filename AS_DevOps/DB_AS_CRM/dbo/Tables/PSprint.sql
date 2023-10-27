@@ -5,5 +5,7 @@
 	Nombre varchar(100),
 	FechaIncio datetime,
 	FechaFin datetime,
-	foreign key (Proyecto_Id) references Proyectos(Id)
+	Estado_id int,
+	foreign key (Proyecto_Id) references Proyectos(Id),
+	foreign key (Estado_id) references PEstados(Id)
 )

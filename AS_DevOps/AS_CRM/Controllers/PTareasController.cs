@@ -48,12 +48,13 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("login", "Account");
 
-            ViewBag.ido = db.PObjetivos.Find(ido).Proyecto_Id;
+            int _Proyecto_id = db.PObjetivos.Find(ido).Proyecto_Id.Value;
+            ViewBag.ido = _Proyecto_id;
 
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName");
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre");
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos.Where(w=>w.Id == ido), "Id", "Nombre");
-            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre");
+            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == _Proyecto_id), "Id", "Nombre");
             return View();
         }
 
@@ -67,6 +68,8 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("login", "Account");
 
+            int _proyecto_id = db.PObjetivos.Find(pTarea.Objetivo_Id).Proyecto_Id.Value;
+
             if (ModelState.IsValid)
             {
                 db.PTareas.Add(pTarea);
@@ -78,7 +81,7 @@ namespace AS_CRM.Controllers
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName", pTarea.Usuario_Id);
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos.Where(w=> w.Id == pTarea.Objetivo_Id), "Id", "Nombre", pTarea.Objetivo_Id);
-            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == _proyecto_id), "Id", "Nombre", pTarea.Sprint_Id);
             return View(pTarea);
         }
 
@@ -100,7 +103,7 @@ namespace AS_CRM.Controllers
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName", pTarea.Usuario_Id);
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
-            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
             return View(pTarea);
         }
 
@@ -121,9 +124,52 @@ namespace AS_CRM.Controllers
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "Email", pTarea.Usuario_Id);
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
-            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w=>w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
             return View(pTarea);
         }
+
+        public ActionResult EditModal(int? id)
+        {
+            if (!validarLoggin())
+                return RedirectToAction("login", "Account");
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PTarea pTarea = db.PTareas.Find(id);
+            if (pTarea == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName", pTarea.Usuario_Id);
+            ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
+            ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
+            return View(pTarea);
+        }
+
+        // POST: PTareas/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditModal([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle")] PTarea pTarea)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(pTarea).State = EntityState.Modified;
+                db.SaveChanges();
+                var _ids = pTarea.Sprint_Id;
+                return RedirectToAction("Details", "PSPrints", new { id = _ids });
+            }
+            ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "Email", pTarea.Usuario_Id);
+            ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
+            ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
+            return View(pTarea);
+        }
+
 
         // GET: PTareas/Delete/5
         public ActionResult Delete(int? id)

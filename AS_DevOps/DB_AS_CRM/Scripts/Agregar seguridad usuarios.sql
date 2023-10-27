@@ -1,4 +1,4 @@
-﻿DECLARE @UI NVARCHAR(128), @USERNAME VARCHAR(100) = 'mariano.aluzzo@alusoft.com.ar'
+﻿DECLARE @UI NVARCHAR(128), @USERNAME VARCHAR(100) = 'lschwab@alusoft.com.ar'
 
 SET @UI = (SELECT Id FROM AspNetUsers WHERE [USERNAME] = @USERNAME)
 
@@ -33,6 +33,7 @@ declare @idDev int
 insert into MenuSecurity ([User_Id],Nombre,IsActivo,Orden) values(@UI,'DevOps',0,3)
 set @idDev = @@IDENTITY
 insert into ItemMenuSecurity (Menu_Id,Nombre,IsActivo, Orden) values (@idDev,'Proyectos',0,0)
+insert into ItemMenuSecurity (Menu_Id,Nombre,IsActivo, Orden) values (@idDev,'Sprint',0,1)
 
 
 --select * from MenuSecurity

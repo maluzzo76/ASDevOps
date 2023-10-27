@@ -48,5 +48,14 @@ namespace AS_CRM.Controllers
             return true;
         }
 
+        public AspNetUser GetUsert()
+        {
+            var _users = db.AspNetUsers.Where(w => w.Email == User.Identity.Name);
+            if(_users.Count()>0)
+                return (AspNetUser) _users.ToList<AspNetUser>().ElementAt(0) ;
+
+            return new AspNetUser();
+        }
+
     }
 }

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AS_CRM.PSprint>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sprints</h2>
+
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "PSprints")'">
+    Agregar Sprint
+</button>
+
+<table class="table">
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            Fecha Inicio
+        </th>
+        <th>
+            Fecha Fin
+        </th>
+        <th>
+            Proyecto
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
+            </td>
+            <td>
+                <span class="badge" style="background-color: @item.PEstado.Color;  margin-top: -1px;">@Html.DisplayFor(modelItem => item.PEstado.Nombre)</span>                
+            </td>
+            <td>
+                <a class="btn-grid" href="@Url.Action("Edit","PSprints", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" style="width:14px; height:14px;" /></span></a>                
+                <a class="btn-grid" href="@Url.Action("Details","PSprints", new { id = item.Id }) "><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
+                <a class="btn-grid" href="@Url.Action("Delete","PSprints", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" style="width:14px; height:14px;" /></a>
+            </td>
+        </tr>
+    }
+
+</table>

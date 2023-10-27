@@ -51,3 +51,35 @@ textarea {
    .progress::-webkit-progress-value {
         background-color: blue;
     }
+
+.bold {
+    font-weight: bold;
+}
+
+.tarjeta {
+    width: 80%;
+    background-color: #efefef;
+    height: 200px;
+    border: 1px solid black;
+    border-radius:5px;
+}
+
+    .tarjeta h6 {
+        font-weight: bold;
+        background-color: #efefef;
+        margin-top: 1px;
+        margin-left: 1px;
+        border-bottom:1px solid #777;
+        height: 30px;
+        width: 95%;
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+
+
+.card {
+    background-color:white;
+    margin-top:-10px;
+    height:10px;
+    
+}

@@ -23,26 +23,21 @@ namespace AS_CRM
     
         public int Id { get; set; }
         public string Nombre { get; set; }
-        [Display(Name = "Usuario")]
         public string Usuario_Id { get; set; }
-        [Display(Name = "Estado")]
         public Nullable<int> Estado_Id { get; set; }
-        [Display(Name = "Objetivo")]
         public Nullable<int> Objetivo_Id { get; set; }
-        [Display(Name = "Sprint")]
         public Nullable<int> Sprint_Id { get; set; }
-        [Display(Name = "Fecha Incio")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaIncio { get; set; }
-        [Display(Name = "Ficha Finalizada")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaFinalizado { get; set; }
-        [Display(Name = "Fecha de Entrega")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaEntrega { get; set; }
+        public Nullable<int> HorasEstimadas { get; set; }
+        public string Detalle { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual PEstado PEstado { get; set; }

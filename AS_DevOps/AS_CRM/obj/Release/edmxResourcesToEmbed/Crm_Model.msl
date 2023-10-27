@@ -217,6 +217,7 @@
     <EntitySetMapping Name="PSprints">
       <EntityTypeMapping TypeName="AS_CRMModel.PSprint">
         <MappingFragment StoreEntitySet="PSprints">
+          <ScalarProperty Name="Estado_id" ColumnName="Estado_id" />
           <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
           <ScalarProperty Name="FechaIncio" ColumnName="FechaIncio" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
