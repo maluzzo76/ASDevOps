@@ -19,7 +19,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index(string SearchString, int pagina = 1)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _r = from _o in db.Asientos.Include(a => a.Lineas_Asiento).OrderByDescending(o => o.Id)
                      select _o;
@@ -41,7 +41,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             Asiento _asEntity = new Asiento();
             _asEntity.Fecha = DateTime.Now;
@@ -82,7 +82,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Concepto,Fecha")] Asiento asiento)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace AS_CRM.Controllers
         public ActionResult Createla(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             return RedirectToAction("Create", "Lineas_Asiento", new { id = id});
         }
@@ -106,7 +106,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -128,7 +128,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Cuenta_Id,Concepto,Fecha")] Asiento asiento)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -143,7 +143,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -163,7 +163,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             Asiento asiento = db.Asientos.Find(id);
             db.Asientos.Remove(asiento);

@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index(int? idp)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var pObjetivos = db.PObjetivos.Include(p => p.PEstado).Where(w=>w.Proyecto_Id == idp).OrderBy(o=>o.FechaEntrega);
             ViewBag.proyecto = db.Proyectos.Find(idp).Nombre;
@@ -31,7 +31,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -49,7 +49,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create(int? idp)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre");
             ViewBag.Proyecto_Id = new SelectList(db.Proyectos.Where(w=> w.Id == idp), "Id", "Nombre");
@@ -65,7 +65,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Nombre,FechaIncio,FechaEntrega,Aprovador,Estado_Id,Proyecto_Id")] PObjetivo pObjetivo)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _ipd = pObjetivo.Proyecto_Id;
 
@@ -85,7 +85,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -109,7 +109,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Nombre,FechaIncio,FechaEntrega,Aprovador,Estado_Id,Proyecto_Id")] PObjetivo pObjetivo)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _ipd = pObjetivo.Proyecto_Id;
 
@@ -129,7 +129,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -149,7 +149,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             PObjetivo pObjetivo = db.PObjetivos.Find(id);
             db.PObjetivos.Remove(pObjetivo);

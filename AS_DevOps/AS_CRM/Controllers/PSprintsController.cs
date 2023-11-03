@@ -19,10 +19,10 @@ namespace AS_CRM.Controllers
         public ActionResult Index()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var pSprints = db.PSprints.Include(p => p.Proyecto).Include(p => p.PEstado);
-            return View(pSprints.ToList());
+            return View(pSprints.OrderBy(o=> o.PEstado.Nombre).ToList());
         }
 
         public ActionResult EditTarea(string nombre,int estado_id, int? sprint_id, int? tarea_id)
@@ -42,7 +42,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
 
             AspNetUser _user = GetUsert();
@@ -71,7 +71,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewBag.Proyecto_Id = new SelectList(db.Proyectos, "Id", "Nombre");
             ViewBag.Estado_id = new SelectList(db.PEstados, "Id", "Nombre");
@@ -86,7 +86,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Proyecto_Id,Nombre,FechaIncio,FechaFin,Estado_id")] PSprint pSprint)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -128,7 +128,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Proyecto_Id,Nombre,FechaIncio,FechaFin,Estado_id")] PSprint pSprint)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -165,7 +165,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             PSprint pSprint = db.PSprints.Find(id);
             db.PSprints.Remove(pSprint);

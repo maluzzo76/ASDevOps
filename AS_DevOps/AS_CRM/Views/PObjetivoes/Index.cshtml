@@ -96,8 +96,8 @@
                 </div>
             </div>
 
-            <div id="@item.Id" class="collapse" style="margin-top:-4px;">
-                <div class="row" style="background-color: #fff9e1; border-bottom: 1px solid #f2f0f0; font-weight: bold;">
+            <div id="@item.Id" class="collapse" style="margin-top:-4px;" >
+                <div class="row" style="background-color: #fff9e1; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 1px solid black;">
                     <div class="col-md-2">
                         <h6 style="margin-left: 25px; font-weight: bold;">Tareas</h6>
                     </div>
@@ -119,85 +119,85 @@
                         <h6 style="font-weight: bold; text-align: center;">Fecha Entrega</h6>
                     </div>
                     <div class="col-md-3">
+                        Sprint
                     </div>
-                </div>
-                @foreach (var _t in item.PTareas.OrderBy(o => o.FechaEntrega))
-                {
-                    <div class="row" style="background-color:white;">
-                        <div class="col-md-2">
-                            <h6 style="margin-left:20px;"><span><img src="~/Content/image/tarea.png" class=" img-circle" style="width: 16px; height: 16px; margin-top: -4px; " /></span> @_t.Id - @_t.Nombre   </h6>
-                        </div>
-                        <div class="col-md-1">
-                            <spam class="badge" style="text-align: center; background-color: @_t.PEstado.Color; font-size: 8pt; margin-top: 8px;"> @_t.PEstado.Nombre </spam>
-                        </div>
-                        <div class="col-md-2">
-                            <h6 style="text-align: center;">@_t.AspNetUser.Email</h6>
-                        </div>
-                        <div class="col-md-1">
-                            <h6 style="text-align: center;"> @_t.HorasEstimadas hs</h6>
-                        </div>
-                        <div class="col-md-1">
-                            <h6 style="text-align: center;">
-                                @_t.PParteHoras.Sum(s => s.Horas)
-                                <a data-toggle="modal" data-target="#rp@_t.Id"><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
-                                <a class="btn-grid" href="@Url.Action("Create","PParteHoras", new { idt = _t.Id }) "><span><img src="~/Content/image/iconos_Link 2.png" style="width:14px; height:14px;" /></span></a>
-                                <div class="modal fade" id="rp@_t.Id">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Reporte Horas Tarea @_t.Nombre </h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div>
-                                                    @foreach (var _h in _t.PParteHoras.OrderBy(o => o.Fecha))
-                                                    {
-                                                        <div class="row" style="border-bottom: 1px solid #f1f1f1; border-top: 1px solid #f1f1f1;margin-bottom: 4px; ">
+                </div>                
+                    @foreach (var _t in item.PTareas.OrderBy(o => o.FechaEntrega))
+                    {
+                        <div class="row" style="background-color:white;">
+                            <div class="col-md-2">                                
+                                <h6 style="margin-left:20px;"><span><img src="~/Content/image/tarea.png" class=" img-circle" style="width: 16px; height: 16px; margin-top: -4px; " /></span>  <a class="btn-grid" href="@Url.Action("Edit","PTareas", new { id = _t.Id }) "><span>@_t.Id - @_t.Nombre </span></a>   </h6>
+                            </div>
+                            <div class="col-md-1" style="text-align:center;">
+                                <spam class="badge" style="text-align: center; background-color: @_t.PEstado.Color; font-size: 8pt; margin-top: 8px; color:black;"> @_t.PEstado.Nombre </spam>
+                            </div>
+                            <div class="col-md-2">
+                                <h6 style="text-align: center;">@_t.AspNetUser.Email</h6>
+                            </div>
+                            <div class="col-md-1">
+                                <h6 style="text-align: center;"> @_t.HorasEstimadas hs</h6>
+                            </div>
+                            <div class="col-md-1">
+                                <h6 style="text-align: center;">
+                                    @_t.PParteHoras.Sum(s => s.Horas)
+                                    <a class="btn-grid" href="@Url.Action("Create","PParteHoras", new { idt = _t.Id }) "><img src="~/Content/image/iconos_Link 2.png" style="width:14px; height:14px;margin-left:3px;" /></a>
+                                    <a data-toggle="modal" data-target="#rp@_t.Id"><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>                                    
+                                    <div class="modal fade" id="rp@_t.Id">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Reporte Horas Tarea @_t.Nombre </h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        @foreach (var _h in _t.PParteHoras.OrderBy(o => o.Fecha))
+                                                        {
+                                                            <div class="row" style="border-bottom: 1px solid #f1f1f1; border-top: 1px solid #f1f1f1;margin-bottom: 4px; ">
+                                                                <div class="col-md-6">
+                                                                    @_h.UserName
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    @_h.Fecha
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    @_h.Horas
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        <br />
+                                                        <div class="row" style="border-bottom: 1px solid #f1f1f1; border-top: 1px solid #f1f1f1; ">
                                                             <div class="col-md-6">
-                                                                @_h.UserName
+                                                                <h4>Total Horas</h4>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                @_h.Fecha
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @_h.Horas
-                                                            </div>
-                                                        </div>
-                                                    }
-                                                    <br />
-                                                    <div class="row" style="border-bottom: 1px solid #f1f1f1; border-top: 1px solid #f1f1f1; ">
-                                                        <div class="col-md-6">
-                                                            <h4>Total Horas</h4>
-                                                        </div>
-                                                        <div class="col-md-3">
 
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <h4>@_t.PParteHoras.Sum(s => s.Horas)</h4>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h4>@_t.PParteHoras.Sum(s => s.Horas)</h4>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </h6>
+                                </h6>
+                            </div>
+                            <div class="col-md-2" style="text-align:center;">
+                                <p style="margin-top: 4px;text-align: center; "><p><span class="badge" style="background-color: #def592; color: black; margin-top: -1px;">@_t.FechaEntrega</span></p>
+                            </div>
+                            <div class="col-md-3" style="margin-top: 5px;">
+                                @if (_t.PSprint != null)
+                                { @_t.PSprint.Nombre }
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <p style="margin-top: 4px;text-align: center;"><p><span class="badge" style="background-color: #def592;  margin-top: -1px;">@_t.FechaEntrega</span></p>
-                        </div>
-                        <div class="col-md-3" style="margin-top: 5px;">
-                            <a class="btn-grid" href="@Url.Action("Edit","PTareas", new { id = _t.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" style="width:14px; height:14px;" /></span></a>
-                            <a class="btn-grid" href="@Url.Action("Details","PTareas", new { id = _t.Id}) "><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
-                            <a class="btn-grid" href="@Url.Action("Delete","PTareas", new { id = _t.Id }) "><img src="~/Content/image/iconos_Basura.png" style="width:14px; height:14px;" /></a>
-                        </div>
-                    </div>
-                }
-
+                    }
+                <br />
             </div>
         }
     </div>

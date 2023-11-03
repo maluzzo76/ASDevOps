@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index(string SearchString,string SearchProv, int pagina = 1)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _r = from _o in db.Leads                   
                      select _o;
@@ -49,7 +49,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -67,7 +67,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -80,7 +80,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Razon_Social,CUIT,Telefono_Razon_Social,Email_Razon_Social,Nombre_Contacto,Cargo_Contacto,Telefono_Contacto,Telefono2_Contacto,Email_Contacto,Email2_Contacto,Informacion_Fiscal,Provincia,Localidad")] Lead lead)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (db.Leads.Where(w => w.Razon_Social == lead.Razon_Social).Count() == 0)
             {
@@ -95,7 +95,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id, string SearchString, string SearchProv)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewBag.buscar = SearchString;
             ViewBag.buscarProv = SearchProv;
@@ -120,7 +120,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Razon_Social,CUIT,Telefono_Razon_Social,Email_Razon_Social,Nombre_Contacto,Cargo_Contacto,Telefono_Contacto,Telefono2_Contacto,Email_Contacto,Email2_Contacto,Informacion_Fiscal,Provincia,Localidad")] Lead lead)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -135,7 +135,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -155,7 +155,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             Lead lead = db.Leads.Find(id);
             db.Leads.Remove(lead);

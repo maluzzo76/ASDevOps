@@ -18,18 +18,18 @@ namespace AS_CRM.Controllers
         public ActionResult Index()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewData["Task"] = db.PTareas.Include(i=> i.PObjetivo).ToList<PTarea>();
 
-            return View(db.Proyectos.ToList());
+            return View(db.Proyectos.OrderBy(o=>o.Nombre).ToList());
         }
 
         // GET: Proyectoes/Details/5
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -47,7 +47,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -60,7 +60,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Nombre,logo")] Proyecto proyecto)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -98,7 +98,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Nombre,logo")] Proyecto proyecto)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -133,7 +133,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             Proyecto proyecto = db.Proyectos.Find(id);
             db.Proyectos.Remove(proyecto);

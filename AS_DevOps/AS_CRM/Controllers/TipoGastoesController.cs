@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index(string SearchString, int pagina = 1)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _r = from _o in db.TipoGastoes
                      select _o;
@@ -39,7 +39,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -57,7 +57,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -70,7 +70,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Acronimo,Nombre")] TipoGasto tipoGasto)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -108,7 +108,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Acronimo,Nombre")] TipoGasto tipoGasto)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -143,7 +143,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             TipoGasto tipoGasto = db.TipoGastoes.Find(id);
             db.TipoGastoes.Remove(tipoGasto);

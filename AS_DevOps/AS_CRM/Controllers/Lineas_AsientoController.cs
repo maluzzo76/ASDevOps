@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var lineas_Asiento = db.Lineas_Asiento.Include(l => l.Plan_Cuentas).Include(l => l.Asiento);
             return View(lineas_Asiento.ToList());
@@ -28,7 +28,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _planCuenta = db.Plan_Cuentas.Where(w=>w.IsImputable==true).ToDictionary(s => s.Id, s => (s.Numero + " - " + s.Nombre)).OrderBy(o=>o.Value);
 
@@ -65,7 +65,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Asiento_Id,Cuenta_Id,Concepto,Debe,Haber")] Lineas_Asiento lineas_Asiento)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -108,7 +108,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Asiento_Id,Cuenta_Id,Concepto,Debe,Haber")] Lineas_Asiento lineas_Asiento)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -149,7 +149,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             Lineas_Asiento lineas_Asiento = db.Lineas_Asiento.Find(id);
             db.Lineas_Asiento.Remove(lineas_Asiento);

@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index(string SearchString, int pagina = 1)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _r = from _o in db.Clientes
                      select _o;
@@ -40,7 +40,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -58,7 +58,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -71,7 +71,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -109,7 +109,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -124,7 +124,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -144,7 +144,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             Cliente cliente = db.Clientes.Find(id);
             db.Clientes.Remove(cliente);

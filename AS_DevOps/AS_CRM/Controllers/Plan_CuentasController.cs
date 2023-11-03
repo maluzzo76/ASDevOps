@@ -19,7 +19,7 @@ namespace AS_CRM.Controllers
         {
 
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _r = from _o in db.Plan_Cuentas.OrderBy(o => o.Codigo).ToList()
                      select _o;

@@ -31,7 +31,7 @@ namespace AS_CRM.Controllers
             }
             else
             {
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
             }
             
         }*/

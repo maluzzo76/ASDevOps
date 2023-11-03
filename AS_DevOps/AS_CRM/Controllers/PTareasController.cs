@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var pTareas = db.PTareas.Include(p => p.AspNetUser).Include(p => p.PEstado).Include(p => p.PObjetivo).Include(p => p.PSprint);
             return View(pTareas.ToList());
@@ -28,7 +28,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create(int? ido)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             int _Proyecto_id = db.PObjetivos.Find(ido).Proyecto_Id.Value;
             ViewBag.ido = _Proyecto_id;
@@ -54,7 +54,7 @@ namespace AS_CRM.Controllers
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName");
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre");
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos.Where(w=>w.Id == ido), "Id", "Nombre");
-            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == _Proyecto_id), "Id", "Nombre");
+            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle")] PTarea pTarea)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             int _proyecto_id = db.PObjetivos.Find(pTarea.Objetivo_Id).Proyecto_Id.Value;
 
@@ -89,7 +89,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -103,7 +103,7 @@ namespace AS_CRM.Controllers
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName", pTarea.Usuario_Id);
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
-            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre", pTarea.Sprint_Id);
             return View(pTarea);
         }
 
@@ -131,7 +131,7 @@ namespace AS_CRM.Controllers
         public ActionResult EditModal(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -175,7 +175,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -195,7 +195,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
                          
 
             PTarea pTarea = db.PTareas.Find(id);

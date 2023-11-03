@@ -370,6 +370,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\image\alusoft.png" />
     <Content Include="Content\image\banner.png" />
+    <Content Include="Content\image\banneras.png" />
     <Content Include="Content\image\diffupar.png" />
     <Content Include="Content\image\disam.png" />
     <Content Include="Content\image\dpmg.png" />

@@ -19,7 +19,7 @@ namespace AS_CRM.Controllers
         {
 
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var _r = from _o in db.GastosVariables.Include(g => g.TipoGasto)
             select _o;
@@ -40,7 +40,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -58,7 +58,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre");
             return View();
@@ -72,7 +72,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro")] GastosVariable gastosVariable)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -112,7 +112,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro")] GastosVariable gastosVariable)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -128,7 +128,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -148,7 +148,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             GastosVariable gastosVariable = db.GastosVariables.Find(id);
             db.GastosVariables.Remove(gastosVariable);

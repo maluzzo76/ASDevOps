@@ -22,7 +22,16 @@
             Fecha Fin
         </th>
         <th>
-            Proyecto
+            Tareas
+        </th>
+        <th>
+            Hs Estimadas
+        </th>
+        <th>
+            Hs Invertidas
+        </th>
+        <th>
+            Inversión
         </th>
         <th>
             Estado
@@ -34,7 +43,8 @@
     {
         <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                <a class="btn-grid" href="@Url.Action("Details","PSprints", new { id = item.Id }) ">@Html.DisplayFor(modelItem => item.Nombre)</a>
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaIncio)
@@ -43,13 +53,20 @@
                 @Html.DisplayFor(modelItem => item.FechaFin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
+                @item.PTareas.Count
+
             </td>
             <td>
-                <span class="badge" style="background-color: @item.PEstado.Color;  margin-top: -1px;">@Html.DisplayFor(modelItem => item.PEstado.Nombre)</span>                
+                @item.PTareas.Sum(s => s.HorasEstimadas) hs
             </td>
             <td>
-                <a class="btn-grid" href="@Url.Action("Edit","PSprints", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" style="width:14px; height:14px;" /></span></a>                
+                @item.PTareas.Sum(s => s.PParteHoras.Sum(h => h.Horas)) hs
+            </td>
+            <td>
+                <span class="badge" style="background-color: @item.PEstado.Color; color:black;  margin-top: -1px;">@Html.DisplayFor(modelItem => item.PEstado.Nombre)</span>
+            </td>
+            <td>
+                <a class="btn-grid" href="@Url.Action("Edit","PSprints", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" style="width:14px; height:14px;" /></span></a>
                 <a class="btn-grid" href="@Url.Action("Details","PSprints", new { id = item.Id }) "><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
                 <a class="btn-grid" href="@Url.Action("Delete","PSprints", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" style="width:14px; height:14px;" /></a>
             </td>

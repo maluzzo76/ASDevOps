@@ -18,7 +18,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index()
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             var pParteHoras = db.PParteHoras.Include(p => p.PTarea);
             return View(pParteHoras.ToList());
@@ -28,7 +28,7 @@ namespace AS_CRM.Controllers
         public ActionResult Details(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create(int idt)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewBag.ido = db.PTareas.Find(idt).PObjetivo.Proyecto_Id;
             ViewBag.user = User.Identity.Name;
@@ -63,7 +63,7 @@ namespace AS_CRM.Controllers
         public ActionResult Create([Bind(Include = "Id,Tarea_Id,Fecha,Horas,UserName")] PParteHora pParteHora)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace AS_CRM.Controllers
         public ActionResult CreateParteHoras(int idt)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             ViewBag.task = db.PTareas.Find(idt).Nombre;
             ViewBag.ido = db.PTareas.Find(idt).Sprint_Id;
@@ -100,7 +100,7 @@ namespace AS_CRM.Controllers
         public ActionResult CreateParteHoras([Bind(Include = "Id,Tarea_Id,Fecha,Horas,UserName")] PParteHora pParteHora)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -120,7 +120,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -143,7 +143,7 @@ namespace AS_CRM.Controllers
         public ActionResult Edit([Bind(Include = "Id,Tarea_Id,Fecha,Horas,UserName")] PParteHora pParteHora)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
@@ -159,7 +159,7 @@ namespace AS_CRM.Controllers
         public ActionResult Delete(int? id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             if (id == null)
             {
@@ -179,7 +179,7 @@ namespace AS_CRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             if (!validarLoggin())
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
 
             PParteHora pParteHora = db.PParteHoras.Find(id);
             db.PParteHoras.Remove(pParteHora);
