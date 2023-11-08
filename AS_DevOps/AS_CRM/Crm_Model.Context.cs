@@ -41,10 +41,13 @@ namespace AS_CRM
         public virtual DbSet<MenuSecurity> MenuSecurities { get; set; }
         public virtual DbSet<PEstado> PEstados { get; set; }
         public virtual DbSet<PObjetivo> PObjetivos { get; set; }
-        public virtual DbSet<PParteHora> PParteHoras { get; set; }
         public virtual DbSet<Proyecto> Proyectos { get; set; }
         public virtual DbSet<PSprint> PSprints { get; set; }
         public virtual DbSet<PTarea> PTareas { get; set; }
         public virtual DbSet<Asiento> Asientos { get; set; }
+        public virtual DbSet<PParteHora> PParteHoras { get; set; }
+        public virtual DbSet<PFilesTarea> PFilesTareas { get; set; }
+        public virtual DbSet<PPrioridade> PPrioridades { get; set; }
+        public virtual DbSet<PTareasComentario> PTareasComentarios { get; set; }
     }
 }

@@ -19,7 +19,7 @@
     <div style="width:100%">
         @foreach (var item in Model)
         {
-            <div class="row" style="background-color: #efefef; border-bottom: 1px solid #808080; border-top: 1px solid #808080; margin-bottom: 4px;">
+            <div class="row" style="background-color: #f6f5f5; border-bottom: 1px solid #808080; border-top: 1px solid #808080; margin-bottom: 4px;">
                 <div class="col-md-2">
                     <button type="button" style=" text-align: left; background-color: transparent; border: none; margin-top: 4px;" data-toggle="collapse" data-target="#@item.Id">
                         <span><img src="~/Content/image/objetivo.jpg" class=" img-circle" style="width: 16px; height: 16px; margin-top: -3px; " /></span>
@@ -96,52 +96,61 @@
                 </div>
             </div>
 
-            <div id="@item.Id" class="collapse" style="margin-top:-4px;" >
-                <div class="row" style="background-color: #fff9e1; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 1px solid black;">
-                    <div class="col-md-2">
-                        <h6 style="margin-left: 25px; font-weight: bold;">Tareas</h6>
-                    </div>
-                    <div class="col-md-1">
-                        <h6 style="font-weight: bold; text-align:center;">Estado</h6>
-                    </div>
-                    <div class="col-md-2">
-                        <h6 style="font-weight: bold; text-align: center;">Asignada A</h6>
-                    </div>
-                    <div class="col-md-1">
-                        <h6 style="font-weight: bold; text-align: center;">Hs Estimadas</h6>
-                    </div>
-                    <div class="col-md-1">
-                        <h6 style="font-weight: bold; text-align: center;">
-                            Hs Reportadas
-                        </h6>
-                    </div>
-                    <div class="col-md-2">
-                        <h6 style="font-weight: bold; text-align: center;">Fecha Entrega</h6>
-                    </div>
-                    <div class="col-md-3">
-                        Sprint
-                    </div>
-                </div>                
-                    @foreach (var _t in item.PTareas.OrderBy(o => o.FechaEntrega))
+            <div id="@item.Id" class="collapse" style="margin-top:-4px;" >                         
+                <table class="table">
+                    <tr style="background-color: #ffffff; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 2px solid black;">
+                        <th>
+                            <h6 style="text-align: left;">Tarea</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: left;">Estado</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: left;">Prioridad</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: center;">Asignado A</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: center;">horas Estimadas</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: center;">horas Reportadas</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: center;">Fecha Incio</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: center;">Fecha Entrega</h6>
+                        </th>
+                        <th>
+                            <h6 style="text-align: center;">Sprint</h6>
+                        </th>
+                    </tr>
+
+                    @foreach (var _t in item.PTareas.OrderBy(o => o.FechaEntrega).ToList().OrderBy(w => w.PPrioridade.Orden.Value))
                     {
-                        <div class="row" style="background-color:white;">
-                            <div class="col-md-2">                                
+                        <tr style="background-color:white;">
+                            <td style="width:350px;">
                                 <h6 style="margin-left:20px;"><span><img src="~/Content/image/tarea.png" class=" img-circle" style="width: 16px; height: 16px; margin-top: -4px; " /></span>  <a class="btn-grid" href="@Url.Action("Edit","PTareas", new { id = _t.Id }) "><span>@_t.Id - @_t.Nombre </span></a>   </h6>
-                            </div>
-                            <div class="col-md-1" style="text-align:center;">
+                            </td>
+                            <td>
                                 <spam class="badge" style="text-align: center; background-color: @_t.PEstado.Color; font-size: 8pt; margin-top: 8px; color:black;"> @_t.PEstado.Nombre </spam>
-                            </div>
-                            <div class="col-md-2">
+                            </td>
+                            <td >
+                                <spam class="badge" style="text-align: center; background-color: @_t.PPrioridade.Color; font-size: 8pt; margin-top: 8px; color:black;"> @_t.PPrioridade.Nombre </spam>
+                            </td>
+                            <td>
                                 <h6 style="text-align: center;">@_t.AspNetUser.Email</h6>
-                            </div>
-                            <div class="col-md-1">
+                            </td>
+                            <td>
                                 <h6 style="text-align: center;"> @_t.HorasEstimadas hs</h6>
-                            </div>
-                            <div class="col-md-1">
+                            </td>
+                            <td>
                                 <h6 style="text-align: center;">
                                     @_t.PParteHoras.Sum(s => s.Horas)
                                     <a class="btn-grid" href="@Url.Action("Create","PParteHoras", new { idt = _t.Id }) "><img src="~/Content/image/iconos_Link 2.png" style="width:14px; height:14px;margin-left:3px;" /></a>
-                                    <a data-toggle="modal" data-target="#rp@_t.Id"><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>                                    
+                                    <a data-toggle="modal" data-target="#rp@_t.Id"><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
                                     <div class="modal fade" id="rp@_t.Id">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -187,17 +196,21 @@
                                         </div>
                                     </div>
                                 </h6>
-                            </div>
-                            <div class="col-md-2" style="text-align:center;">
-                                <p style="margin-top: 4px;text-align: center; "><p><span class="badge" style="background-color: #def592; color: black; margin-top: -1px;">@_t.FechaEntrega</span></p>
-                            </div>
-                            <div class="col-md-3" style="margin-top: 5px;">
+                            </td>
+                            <td>
+                                <h6 style="text-align: center;"> @_t.FechaIncio.Value.Date.ToShortDateString()</h6>
+                            </td>
+                            <td>
+                                <h6 style="text-align: center;"> @_t.FechaEntrega.Value.Date.ToShortDateString()</h6>
+                            </td>
+                            <td>
                                 @if (_t.PSprint != null)
-                                { @_t.PSprint.Nombre }
-                            </div>
-                        </div>
+                                {@_t.PSprint.Nombre}
+                            </td>
+                        </tr>
+                        
                     }
-                <br />
+                </table>
             </div>
         }
     </div>

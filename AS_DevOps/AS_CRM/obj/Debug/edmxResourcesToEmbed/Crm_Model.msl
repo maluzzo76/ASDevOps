@@ -229,6 +229,7 @@
     <EntitySetMapping Name="PTareas">
       <EntityTypeMapping TypeName="AS_CRMModel.PTarea">
         <MappingFragment StoreEntitySet="PTareas">
+          <ScalarProperty Name="Prioridad_Id" ColumnName="Prioridad_Id" />
           <ScalarProperty Name="Detalle" ColumnName="Detalle" />
           <ScalarProperty Name="HorasEstimadas" ColumnName="HorasEstimadas" />
           <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
@@ -258,6 +259,38 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Horas" ColumnName="Horas" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PFilesTareas">
+      <EntityTypeMapping TypeName="AS_CRMModel.PFilesTarea">
+        <MappingFragment StoreEntitySet="PFilesTareas">
+          <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
+          <ScalarProperty Name="LinkName" ColumnName="LinkName" />
+          <ScalarProperty Name="Extencion" ColumnName="Extencion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PPrioridades">
+      <EntityTypeMapping TypeName="AS_CRMModel.PPrioridade">
+        <MappingFragment StoreEntitySet="PPrioridades">
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PTareasComentarios">
+      <EntityTypeMapping TypeName="AS_CRMModel.PTareasComentario">
+        <MappingFragment StoreEntitySet="PTareasComentarios">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
           <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

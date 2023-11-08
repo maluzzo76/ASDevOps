@@ -28,7 +28,7 @@
                 <div class="col-md-2" style="border:5px solid white; height:70vh; align-items:center; background-color:#f2eeee; overflow-y:auto; padding-top:20px;">
                     @if (ViewBag.userfilter == true)
                     {
-                        foreach (var _t in Model.PTareas.Where(w => w.Estado_Id == _e.Id).OrderBy(o => o.FechaEntrega))
+                        foreach (var _t in Model.PTareas.Where(w => w.Estado_Id == _e.Id).OrderBy(o => o.FechaEntrega).ToList().OrderBy(p => p.PPrioridade.Orden))
                         {
                             <div style="border: 1px solid #dcdbdb; background-color: @_e.Color; border-radius: 5px;  height:120px;font-size:9pt;  ">
                                 <div class="bold overflow-ellipsis" style="padding-left: 5px; border-bottom: 1px solid #c7c4c4; background-color: #e8e5e5; margin-top: 0px; height:24px;">
@@ -40,6 +40,7 @@
                                     </span>
                                 </div>
                                 <div style="border-bottom: 1px solid #686363; padding-left: 5px;padding-top:5px; height:80px;">
+                                    <div class="card-text bold">Prioridad: @_t.PPrioridade.Nombre</div>
                                     <div class="card-text bold">Asignado A: @_t.AspNetUser.Email.Split(char.Parse("@"))[0]</div>
                                     <div class="card-header"><sapm class="bold">Inicio:</sapm> @_t.FechaIncio.Value.Date.ToShortDateString()</div>
                                     <div class="card-header"><sapm class="bold">Entrega:</sapm> @_t.FechaEntrega.Value.Date.ToShortDateString()</div>
@@ -54,7 +55,7 @@
                     }
                     else
                     {
-                        foreach (var _t in Model.PTareas.Where(w => w.Estado_Id == _e.Id && w.AspNetUser.Email == User.Identity.Name).OrderBy(o => o.FechaEntrega))
+                        foreach (var _t in Model.PTareas.Where(w => w.Estado_Id == _e.Id && w.AspNetUser.Email == User.Identity.Name).OrderBy(o => o.FechaEntrega).ToList().OrderBy(p => p.PPrioridade.Orden))
                         {
                             <div style="border: 1px solid #dcdbdb; background-color: @_e.Color; border-radius: 5px;  height:120px;font-size:9pt;  ">
                                 <div class="bold overflow-ellipsis" style="padding-left: 5px; border-bottom: 1px solid #c7c4c4; background-color: #e8e5e5; margin-top: 0px; height:24px;">
@@ -66,6 +67,7 @@
                                     </span>
                                 </div>
                                 <div style="border-bottom: 1px solid #686363; padding-left: 5px;padding-top:5px; height:80px;">
+                                    <div class="card-text bold">Prioridad: @_t.PPrioridade.Nombre</div>
                                     <div class="card-text bold">Asignado A: @_t.AspNetUser.Email.Split(char.Parse("@"))[0]</div>
                                     <div class="card-header"><sapm class="bold">Inicio:</sapm> @_t.FechaIncio.Value.Date.ToShortDateString()</div>
                                     <div class="card-header"><sapm class="bold">Entrega:</sapm> @_t.FechaEntrega.Value.Date.ToShortDateString()</div>

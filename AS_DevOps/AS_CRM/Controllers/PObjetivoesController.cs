@@ -53,6 +53,7 @@ namespace AS_CRM.Controllers
 
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre");
             ViewBag.Proyecto_Id = new SelectList(db.Proyectos.Where(w=> w.Id == idp), "Id", "Nombre");
+            ViewBag.idp = idp;
             
             return View();
         }
@@ -98,6 +99,7 @@ namespace AS_CRM.Controllers
             }
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pObjetivo.Estado_Id);
             ViewBag.Proyecto_Id = new SelectList(db.Proyectos, "Id", "Nombre", pObjetivo.Proyecto_Id);
+            ViewBag.idp = pObjetivo.Proyecto_Id;
             return View(pObjetivo);
         }
 

@@ -19,15 +19,18 @@ namespace AS_CRM
         {
             this.PObjetivos = new HashSet<PObjetivo>();
             this.PTareas = new HashSet<PTarea>();
+            this.PSprints = new HashSet<PSprint>();
         }
     
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Color { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PObjetivo> PObjetivos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PTarea> PTareas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PSprint> PSprints { get; set; }
     }
 }

@@ -14,7 +14,7 @@
     @Styles.Render("~/Content/Site.css")
 
 </head>
-<body style=" background-color: #f7f7f7;">
+<body style=" background-color: white;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -93,6 +93,7 @@
 
                                             case "Proyectos":
                                                 <li>@Html.ActionLink("Proyectos", "Index", "Proyectoes", null, new { @style = "font-size:10pt;" })</li>
+                                                <li><a onclick="window.open('https://app.powerbi.com/Redirect?action=OpenApp&appId=9871a053-4f8d-4fdc-8a4b-c50b9d69790b&ctid=f1d336d9-7a37-432e-95a6-3d356b17c537', '_blank'),focus()">Reportes</a></li>
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;
 
@@ -126,3 +127,5 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+

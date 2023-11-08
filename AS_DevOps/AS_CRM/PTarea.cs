@@ -19,6 +19,8 @@ namespace AS_CRM
         public PTarea()
         {
             this.PParteHoras = new HashSet<PParteHora>();
+            this.PFilesTareas = new HashSet<PFilesTarea>();
+            this.PTareasComentarios = new HashSet<PTareasComentario>();
         }
     
         public int Id { get; set; }
@@ -27,6 +29,7 @@ namespace AS_CRM
         public Nullable<int> Estado_Id { get; set; }
         public Nullable<int> Objetivo_Id { get; set; }
         public Nullable<int> Sprint_Id { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaIncio { get; set; }
@@ -36,8 +39,10 @@ namespace AS_CRM
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaEntrega { get; set; }
+
         public Nullable<int> HorasEstimadas { get; set; }
         public string Detalle { get; set; }
+        public Nullable<int> Prioridad_Id { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual PEstado PEstado { get; set; }
@@ -45,5 +50,10 @@ namespace AS_CRM
         public virtual PSprint PSprint { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PParteHora> PParteHoras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PFilesTarea> PFilesTareas { get; set; }
+        public virtual PPrioridade PPrioridade { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PTareasComentario> PTareasComentarios { get; set; }
     }
 }

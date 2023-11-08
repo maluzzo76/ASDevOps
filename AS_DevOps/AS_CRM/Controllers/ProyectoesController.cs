@@ -25,6 +25,14 @@ namespace AS_CRM.Controllers
             return View(db.Proyectos.OrderBy(o=>o.Nombre).ToList());
         }
 
+        public ActionResult gannt()
+        {
+            if (!validarLoggin())
+                return RedirectToAction("Index", "Home");
+
+            return View();
+        }
+
         // GET: Proyectoes/Details/5
         public ActionResult Details(int? id)
         {

@@ -157,6 +157,16 @@
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="Color" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="PFilesTareas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="250" />
+    <Property Name="Extencion" Type="varchar" MaxLength="20" />
+    <Property Name="LinkName" Type="varchar" MaxLength="128" />
+    <Property Name="Tarea_Id" Type="int" />
+  </EntityType>
   <EntityType Name="Plan_Cuentas">
     <Key>
       <PropertyRef Name="Id" />
@@ -185,10 +195,19 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="128" />
     <Property Name="Tarea_Id" Type="int" />
     <Property Name="Fecha" Type="datetime" />
     <Property Name="Horas" Type="int" />
-    <Property Name="UserName" Type="varchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="PPrioridades">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Orden" Type="int" />
+    <Property Name="Color" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Proyectos">
     <Key>
@@ -224,6 +243,17 @@
     <Property Name="FechaEntrega" Type="datetime" />
     <Property Name="HorasEstimadas" Type="int" />
     <Property Name="Detalle" Type="varchar(max)" />
+    <Property Name="Prioridad_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="PTareasComentarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tarea_Id" Type="int" />
+    <Property Name="Usuario_Id" Type="nvarchar" MaxLength="128" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+    <Property Name="Fecha" Type="datetime" />
   </EntityType>
   <EntityType Name="TipoGasto">
     <Key>
@@ -373,6 +403,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PFilesTar__Tarea__7C1A6C5A">
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
+    <End Role="PFilesTareas" Type="Self.PFilesTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PTareas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PFilesTareas">
+        <PropertyRef Name="Tarea_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PObjetivo__Estad__625A9A57">
     <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
     <End Role="PObjetivos" Type="Self.PObjetivos" Multiplicity="*" />
@@ -397,7 +439,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PParteHor__Tarea__69FBBC1F">
+  <Association Name="FK__PParteHor__Tarea__7B264821">
     <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
     <End Role="PParteHoras" Type="Self.PParteHoras" Multiplicity="*" />
     <ReferentialConstraint>
@@ -457,6 +499,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PTareas__Priorid__7EF6D905">
+    <End Role="PPrioridades" Type="Self.PPrioridades" Multiplicity="0..1" />
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PPrioridades">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareas">
+        <PropertyRef Name="Prioridad_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PTareas__Sprint___690797E6">
     <End Role="PSprints" Type="Self.PSprints" Multiplicity="0..1" />
     <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
@@ -481,6 +535,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PTareasCo__Tarea__09746778">
+    <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
+    <End Role="PTareasComentarios" Type="Self.PTareasComentarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PTareas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareasComentarios">
+        <PropertyRef Name="Tarea_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PTareasCo__Usuar__0A688BB1">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="PTareasComentarios" Type="Self.PTareasComentarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PTareasComentarios">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AS_CRMModelStoreContainer">
     <EntitySet Name="AcuardosComerciales" EntityType="Self.AcuardosComerciales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Asientos" EntityType="Self.Asientos" Schema="dbo" store:Type="Tables" />
@@ -495,12 +573,15 @@
     <EntitySet Name="Lineas_Asiento" EntityType="Self.Lineas_Asiento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MenuSecurity" EntityType="Self.MenuSecurity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PEstados" EntityType="Self.PEstados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PFilesTareas" EntityType="Self.PFilesTareas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plan_Cuentas" EntityType="Self.Plan_Cuentas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PObjetivos" EntityType="Self.PObjetivos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PParteHoras" EntityType="Self.PParteHoras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PPrioridades" EntityType="Self.PPrioridades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PSprints" EntityType="Self.PSprints" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PTareas" EntityType="Self.PTareas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PTareasComentarios" EntityType="Self.PTareasComentarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TiposComprobante" EntityType="Self.TiposComprobante" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__AcuardosC__Clien__02FC7413" Association="Self.FK__AcuardosC__Clien__02FC7413">
@@ -547,6 +628,10 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="MenuSecurity" EntitySet="MenuSecurity" />
     </AssociationSet>
+    <AssociationSet Name="FK__PFilesTar__Tarea__7C1A6C5A" Association="Self.FK__PFilesTar__Tarea__7C1A6C5A">
+      <End Role="PTareas" EntitySet="PTareas" />
+      <End Role="PFilesTareas" EntitySet="PFilesTareas" />
+    </AssociationSet>
     <AssociationSet Name="FK__PObjetivo__Estad__625A9A57" Association="Self.FK__PObjetivo__Estad__625A9A57">
       <End Role="PEstados" EntitySet="PEstados" />
       <End Role="PObjetivos" EntitySet="PObjetivos" />
@@ -555,7 +640,7 @@
       <End Role="Proyectos" EntitySet="Proyectos" />
       <End Role="PObjetivos" EntitySet="PObjetivos" />
     </AssociationSet>
-    <AssociationSet Name="FK__PParteHor__Tarea__69FBBC1F" Association="Self.FK__PParteHor__Tarea__69FBBC1F">
+    <AssociationSet Name="FK__PParteHor__Tarea__7B264821" Association="Self.FK__PParteHor__Tarea__7B264821">
       <End Role="PTareas" EntitySet="PTareas" />
       <End Role="PParteHoras" EntitySet="PParteHoras" />
     </AssociationSet>
@@ -575,6 +660,10 @@
       <End Role="PObjetivos" EntitySet="PObjetivos" />
       <End Role="PTareas" EntitySet="PTareas" />
     </AssociationSet>
+    <AssociationSet Name="FK__PTareas__Priorid__7EF6D905" Association="Self.FK__PTareas__Priorid__7EF6D905">
+      <End Role="PPrioridades" EntitySet="PPrioridades" />
+      <End Role="PTareas" EntitySet="PTareas" />
+    </AssociationSet>
     <AssociationSet Name="FK__PTareas__Sprint___690797E6" Association="Self.FK__PTareas__Sprint___690797E6">
       <End Role="PSprints" EntitySet="PSprints" />
       <End Role="PTareas" EntitySet="PTareas" />
@@ -582,6 +671,14 @@
     <AssociationSet Name="FK__PTareas__Usuario__662B2B3B" Association="Self.FK__PTareas__Usuario__662B2B3B">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="PTareas" EntitySet="PTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareasCo__Tarea__09746778" Association="Self.FK__PTareasCo__Tarea__09746778">
+      <End Role="PTareas" EntitySet="PTareas" />
+      <End Role="PTareasComentarios" EntitySet="PTareasComentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PTareasCo__Usuar__0A688BB1" Association="Self.FK__PTareasCo__Usuar__0A688BB1">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PTareasComentarios" EntitySet="PTareasComentarios" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

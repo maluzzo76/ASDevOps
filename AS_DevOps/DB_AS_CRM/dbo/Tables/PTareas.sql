@@ -11,8 +11,10 @@
 	FechaEntrega datetime,
 	HorasEstimadas int,
 	Detalle varchar(max),
+	Prioridad_Id Int,
 	foreign key (Usuario_Id) references AspNetUsers(Id),
 	foreign key (Estado_Id) references PEstados(Id),
 	foreign key (Objetivo_Id) references Pobjetivos(Id),
 	foreign key (Sprint_Id) references PSprints(Id),
+	foreign key (Prioridad_Id) references PPrioridades(Id)
 )

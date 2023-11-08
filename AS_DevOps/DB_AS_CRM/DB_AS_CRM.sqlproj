@@ -88,6 +88,9 @@
     <Build Include="dbo\Tables\PSprint.sql" />
     <Build Include="dbo\Tables\PTareas.sql" />
     <Build Include="dbo\Tables\PParteHoras.sql" />
+    <Build Include="dbo\Tables\PPrioridades.sql" />
+    <Build Include="dbo\Tables\PTareasComentarios.sql" />
+    <Build Include="dbo\Tables\PFilesTareas.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Agregar seguridad usuarios.sql" />

@@ -18,8 +18,8 @@ namespace AS_CRM
         public AspNetUser()
         {
             this.MenuSecurities = new HashSet<MenuSecurity>();
-            this.PParteHoras = new HashSet<PParteHora>();
             this.PTareas = new HashSet<PTarea>();
+            this.PTareasComentarios = new HashSet<PTareasComentario>();
         }
     
         public string Id { get; set; }
@@ -38,8 +38,8 @@ namespace AS_CRM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MenuSecurity> MenuSecurities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PParteHora> PParteHoras { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PTarea> PTareas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PTareasComentario> PTareasComentarios { get; set; }
     }
 }

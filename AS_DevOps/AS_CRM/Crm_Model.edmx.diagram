@@ -46,6 +46,13 @@
         <AssociationConnector Association="AS_CRMModel.FK__PParteHor__Tarea__69FBBC1F" />
         <AssociationConnector Association="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058" />
         <AssociationConnector Association="AS_CRMModel.FK__PSprints__Estado__6BE40491" />
+        <EntityTypeShape EntityType="AS_CRMModel.PFilesTarea" Width="1.5" PointX="9.5" PointY="13.125" />
+        <EntityTypeShape EntityType="AS_CRMModel.PPrioridade" Width="1.5" PointX="11.625" PointY="13.875" />
+        <EntityTypeShape EntityType="AS_CRMModel.PTareasComentario" Width="1.5" PointX="21.875" PointY="4" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareasCo__Usuar__7E02B4CC" />
+        <AssociationConnector Association="AS_CRMModel.FK__PFilesTar__Tarea__7C1A6C5A" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareas__Priorid__7EF6D905" />
+        <AssociationConnector Association="AS_CRMModel.FK__PTareasCo__Tarea__7D0E9093" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

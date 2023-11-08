@@ -162,6 +162,16 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="Color" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="PFilesTareas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" />
+          <Property Name="Extencion" Type="varchar" MaxLength="20" />
+          <Property Name="LinkName" Type="varchar" MaxLength="128" />
+          <Property Name="Tarea_Id" Type="int" />
+        </EntityType>
         <EntityType Name="Plan_Cuentas">
           <Key>
             <PropertyRef Name="Id" />
@@ -190,10 +200,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="128" />
           <Property Name="Tarea_Id" Type="int" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Horas" Type="int" />
-          <Property Name="UserName" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="PPrioridades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Orden" Type="int" />
+          <Property Name="Color" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Proyectos">
           <Key>
@@ -229,6 +248,17 @@
           <Property Name="FechaEntrega" Type="datetime" />
           <Property Name="HorasEstimadas" Type="int" />
           <Property Name="Detalle" Type="varchar(max)" />
+          <Property Name="Prioridad_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="PTareasComentarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarea_Id" Type="int" />
+          <Property Name="Usuario_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Fecha" Type="datetime" />
         </EntityType>
         <EntityType Name="TipoGasto">
           <Key>
@@ -378,6 +408,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PFilesTar__Tarea__7C1A6C5A">
+          <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
+          <End Role="PFilesTareas" Type="Self.PFilesTareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PTareas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PFilesTareas">
+              <PropertyRef Name="Tarea_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PObjetivo__Estad__625A9A57">
           <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
           <End Role="PObjetivos" Type="Self.PObjetivos" Multiplicity="*" />
@@ -402,7 +444,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PParteHor__Tarea__69FBBC1F">
+        <Association Name="FK__PParteHor__Tarea__7B264821">
           <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
           <End Role="PParteHoras" Type="Self.PParteHoras" Multiplicity="*" />
           <ReferentialConstraint>
@@ -462,6 +504,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PTareas__Priorid__7EF6D905">
+          <End Role="PPrioridades" Type="Self.PPrioridades" Multiplicity="0..1" />
+          <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PPrioridades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PTareas">
+              <PropertyRef Name="Prioridad_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PTareas__Sprint___690797E6">
           <End Role="PSprints" Type="Self.PSprints" Multiplicity="0..1" />
           <End Role="PTareas" Type="Self.PTareas" Multiplicity="*" />
@@ -486,6 +540,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PTareasCo__Tarea__09746778">
+          <End Role="PTareas" Type="Self.PTareas" Multiplicity="0..1" />
+          <End Role="PTareasComentarios" Type="Self.PTareasComentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PTareas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PTareasComentarios">
+              <PropertyRef Name="Tarea_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PTareasCo__Usuar__0A688BB1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="PTareasComentarios" Type="Self.PTareasComentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PTareasComentarios">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AS_CRMModelStoreContainer">
           <EntitySet Name="AcuardosComerciales" EntityType="Self.AcuardosComerciales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asientos" EntityType="Self.Asientos" Schema="dbo" store:Type="Tables" />
@@ -500,12 +578,15 @@
           <EntitySet Name="Lineas_Asiento" EntityType="Self.Lineas_Asiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuSecurity" EntityType="Self.MenuSecurity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEstados" EntityType="Self.PEstados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PFilesTareas" EntityType="Self.PFilesTareas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plan_Cuentas" EntityType="Self.Plan_Cuentas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PObjetivos" EntityType="Self.PObjetivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PParteHoras" EntityType="Self.PParteHoras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PPrioridades" EntityType="Self.PPrioridades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PSprints" EntityType="Self.PSprints" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PTareas" EntityType="Self.PTareas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PTareasComentarios" EntityType="Self.PTareasComentarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoGasto" EntityType="Self.TipoGasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposComprobante" EntityType="Self.TiposComprobante" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__AcuardosC__Clien__02FC7413" Association="Self.FK__AcuardosC__Clien__02FC7413">
@@ -552,6 +633,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="MenuSecurity" EntitySet="MenuSecurity" />
           </AssociationSet>
+          <AssociationSet Name="FK__PFilesTar__Tarea__7C1A6C5A" Association="Self.FK__PFilesTar__Tarea__7C1A6C5A">
+            <End Role="PTareas" EntitySet="PTareas" />
+            <End Role="PFilesTareas" EntitySet="PFilesTareas" />
+          </AssociationSet>
           <AssociationSet Name="FK__PObjetivo__Estad__625A9A57" Association="Self.FK__PObjetivo__Estad__625A9A57">
             <End Role="PEstados" EntitySet="PEstados" />
             <End Role="PObjetivos" EntitySet="PObjetivos" />
@@ -560,7 +645,7 @@
             <End Role="Proyectos" EntitySet="Proyectos" />
             <End Role="PObjetivos" EntitySet="PObjetivos" />
           </AssociationSet>
-          <AssociationSet Name="FK__PParteHor__Tarea__69FBBC1F" Association="Self.FK__PParteHor__Tarea__69FBBC1F">
+          <AssociationSet Name="FK__PParteHor__Tarea__7B264821" Association="Self.FK__PParteHor__Tarea__7B264821">
             <End Role="PTareas" EntitySet="PTareas" />
             <End Role="PParteHoras" EntitySet="PParteHoras" />
           </AssociationSet>
@@ -580,6 +665,10 @@
             <End Role="PObjetivos" EntitySet="PObjetivos" />
             <End Role="PTareas" EntitySet="PTareas" />
           </AssociationSet>
+          <AssociationSet Name="FK__PTareas__Priorid__7EF6D905" Association="Self.FK__PTareas__Priorid__7EF6D905">
+            <End Role="PPrioridades" EntitySet="PPrioridades" />
+            <End Role="PTareas" EntitySet="PTareas" />
+          </AssociationSet>
           <AssociationSet Name="FK__PTareas__Sprint___690797E6" Association="Self.FK__PTareas__Sprint___690797E6">
             <End Role="PSprints" EntitySet="PSprints" />
             <End Role="PTareas" EntitySet="PTareas" />
@@ -587,6 +676,14 @@
           <AssociationSet Name="FK__PTareas__Usuario__662B2B3B" Association="Self.FK__PTareas__Usuario__662B2B3B">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="PTareas" EntitySet="PTareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PTareasCo__Tarea__09746778" Association="Self.FK__PTareasCo__Tarea__09746778">
+            <End Role="PTareas" EntitySet="PTareas" />
+            <End Role="PTareasComentarios" EntitySet="PTareasComentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PTareasCo__Usuar__0A688BB1" Association="Self.FK__PTareasCo__Usuar__0A688BB1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PTareasComentarios" EntitySet="PTareasComentarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -713,6 +810,25 @@
           <AssociationSet Name="FK__PSprints__Estado__6BE40491" Association="AS_CRMModel.FK__PSprints__Estado__6BE40491">
             <End Role="PEstado" EntitySet="PEstados" />
             <End Role="PSprint" EntitySet="PSprints" />
+          </AssociationSet>
+          <EntitySet Name="PFilesTareas" EntityType="AS_CRMModel.PFilesTarea" />
+          <EntitySet Name="PPrioridades" EntityType="AS_CRMModel.PPrioridade" />
+          <EntitySet Name="PTareasComentarios" EntityType="AS_CRMModel.PTareasComentario" />
+          <AssociationSet Name="FK__PTareasCo__Usuar__7E02B4CC" Association="AS_CRMModel.FK__PTareasCo__Usuar__7E02B4CC">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="PTareasComentario" EntitySet="PTareasComentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PFilesTar__Tarea__7C1A6C5A" Association="AS_CRMModel.FK__PFilesTar__Tarea__7C1A6C5A">
+            <End Role="PTarea" EntitySet="PTareas" />
+            <End Role="PFilesTarea" EntitySet="PFilesTareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PTareas__Priorid__7EF6D905" Association="AS_CRMModel.FK__PTareas__Priorid__7EF6D905">
+            <End Role="PPrioridade" EntitySet="PPrioridades" />
+            <End Role="PTarea" EntitySet="PTareas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PTareasCo__Tarea__7D0E9093" Association="AS_CRMModel.FK__PTareasCo__Tarea__7D0E9093">
+            <End Role="PTarea" EntitySet="PTareas" />
+            <End Role="PTareasComentario" EntitySet="PTareasComentarios" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
@@ -958,6 +1074,7 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MenuSecurities" Relationship="AS_CRMModel.FK__MenuSecur__User___51300E55" FromRole="AspNetUser" ToRole="MenuSecurity" />
           <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Usuario__662B2B3B" FromRole="AspNetUser" ToRole="PTarea" />
+          <NavigationProperty Name="PTareasComentarios" Relationship="AS_CRMModel.FK__PTareasCo__Usuar__7E02B4CC" FromRole="AspNetUser" ToRole="PTareasComentario" />
         </EntityType>
         <EntityType Name="ItemMenuSecurity">
           <Key>
@@ -1076,6 +1193,10 @@
           <NavigationProperty Name="PParteHoras" Relationship="AS_CRMModel.FK__PParteHor__Tarea__69FBBC1F" FromRole="PTarea" ToRole="PParteHora" />
           <Property Name="HorasEstimadas" Type="Int32" />
           <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Prioridad_Id" Type="Int32" />
+          <NavigationProperty Name="PFilesTareas" Relationship="AS_CRMModel.FK__PFilesTar__Tarea__7C1A6C5A" FromRole="PTarea" ToRole="PFilesTarea" />
+          <NavigationProperty Name="PPrioridade" Relationship="AS_CRMModel.FK__PTareas__Priorid__7EF6D905" FromRole="PTarea" ToRole="PPrioridade" />
+          <NavigationProperty Name="PTareasComentarios" Relationship="AS_CRMModel.FK__PTareasCo__Tarea__7D0E9093" FromRole="PTarea" ToRole="PTareasComentario" />
         </EntityType>
         <Association Name="FK__PTareas__Usuario__662B2B3B">
           <End Type="AS_CRMModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1214,6 +1335,87 @@
             </Principal>
             <Dependent Role="PSprint">
               <PropertyRef Name="Estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PFilesTarea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Extencion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LinkName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Tarea_Id" Type="Int32" />
+          <NavigationProperty Name="PTarea" Relationship="AS_CRMModel.FK__PFilesTar__Tarea__7C1A6C5A" FromRole="PFilesTarea" ToRole="PTarea" />
+        </EntityType>
+        <EntityType Name="PPrioridade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PTareas" Relationship="AS_CRMModel.FK__PTareas__Priorid__7EF6D905" FromRole="PPrioridade" ToRole="PTarea" />
+        </EntityType>
+        <EntityType Name="PTareasComentario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tarea_Id" Type="Int32" />
+          <Property Name="Usuario_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="AS_CRMModel.FK__PTareasCo__Usuar__7E02B4CC" FromRole="PTareasComentario" ToRole="AspNetUser" />
+          <NavigationProperty Name="PTarea" Relationship="AS_CRMModel.FK__PTareasCo__Tarea__7D0E9093" FromRole="PTareasComentario" ToRole="PTarea" />
+        </EntityType>
+        <Association Name="FK__PTareasCo__Usuar__7E02B4CC">
+          <End Type="AS_CRMModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.PTareasComentario" Role="PTareasComentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PTareasComentario">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PFilesTar__Tarea__7C1A6C5A">
+          <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.PFilesTarea" Role="PFilesTarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PTarea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PFilesTarea">
+              <PropertyRef Name="Tarea_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PTareas__Priorid__7EF6D905">
+          <End Type="AS_CRMModel.PPrioridade" Role="PPrioridade" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PPrioridade">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PTarea">
+              <PropertyRef Name="Prioridad_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PTareasCo__Tarea__7D0E9093">
+          <End Type="AS_CRMModel.PTarea" Role="PTarea" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.PTareasComentario" Role="PTareasComentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PTarea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PTareasComentario">
+              <PropertyRef Name="Tarea_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1451,6 +1653,7 @@
           <EntitySetMapping Name="PTareas">
             <EntityTypeMapping TypeName="AS_CRMModel.PTarea">
               <MappingFragment StoreEntitySet="PTareas">
+                <ScalarProperty Name="Prioridad_Id" ColumnName="Prioridad_Id" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
                 <ScalarProperty Name="HorasEstimadas" ColumnName="HorasEstimadas" />
                 <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
@@ -1480,6 +1683,38 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Horas" ColumnName="Horas" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PFilesTareas">
+            <EntityTypeMapping TypeName="AS_CRMModel.PFilesTarea">
+              <MappingFragment StoreEntitySet="PFilesTareas">
+                <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
+                <ScalarProperty Name="LinkName" ColumnName="LinkName" />
+                <ScalarProperty Name="Extencion" ColumnName="Extencion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PPrioridades">
+            <EntityTypeMapping TypeName="AS_CRMModel.PPrioridade">
+              <MappingFragment StoreEntitySet="PPrioridades">
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PTareasComentarios">
+            <EntityTypeMapping TypeName="AS_CRMModel.PTareasComentario">
+              <MappingFragment StoreEntitySet="PTareasComentarios">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
                 <ScalarProperty Name="Tarea_Id" ColumnName="Tarea_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

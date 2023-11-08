@@ -55,6 +55,7 @@ namespace AS_CRM.Controllers
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre");
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos.Where(w=>w.Id == ido), "Id", "Nombre");
             ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre");
+            ViewBag.Prioridad_Id = new SelectList(db.PPrioridades, "Id", "Nombre");
             return View();
         }
 
@@ -63,7 +64,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle")] PTarea pTarea)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle,Prioridad_Id")] PTarea pTarea)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
@@ -82,6 +83,7 @@ namespace AS_CRM.Controllers
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos.Where(w=> w.Id == pTarea.Objetivo_Id), "Id", "Nombre", pTarea.Objetivo_Id);
             ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == _proyecto_id), "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Prioridad_Id = new SelectList(db.PPrioridades, "Id", "Nombre", pTarea.Prioridad_Id);
             return View(pTarea);
         }
 
@@ -104,6 +106,7 @@ namespace AS_CRM.Controllers
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
             ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Prioridad_Id = new SelectList(db.PPrioridades, "Id", "Nombre", pTarea.Prioridad_Id);
             return View(pTarea);
         }
 
@@ -112,7 +115,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle")] PTarea pTarea)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle, Prioridad_Id")] PTarea pTarea)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +128,7 @@ namespace AS_CRM.Controllers
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
             ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w=>w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Prioridad_Id = new SelectList(db.PPrioridades, "Id", "Nombre", pTarea.Prioridad_Id);
             return View(pTarea);
         }
 
@@ -145,7 +149,8 @@ namespace AS_CRM.Controllers
             ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "UserName", pTarea.Usuario_Id);
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
-            ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Sprint_Id = new SelectList(db.PSprints, "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Prioridad_Id = new SelectList(db.PPrioridades, "Id", "Nombre", pTarea.Prioridad_Id);
             return View(pTarea);
         }
 
@@ -154,7 +159,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditModal([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle")] PTarea pTarea)
+        public ActionResult EditModal([Bind(Include = "Id,Nombre,Usuario_Id,Estado_Id,Objetivo_Id,Sprint_Id,FechaIncio,FechaFinalizado,FechaEntrega,HorasEstimadas,Detalle, Prioridad_Id")] PTarea pTarea)
         {
             if (ModelState.IsValid)
             {
@@ -167,6 +172,7 @@ namespace AS_CRM.Controllers
             ViewBag.Estado_Id = new SelectList(db.PEstados, "Id", "Nombre", pTarea.Estado_Id);
             ViewBag.Objetivo_Id = new SelectList(db.PObjetivos, "Id", "Nombre", pTarea.Objetivo_Id);
             ViewBag.Sprint_Id = new SelectList(db.PSprints.Where(w => w.Proyecto_Id == pTarea.PObjetivo.Proyecto_Id), "Id", "Nombre", pTarea.Sprint_Id);
+            ViewBag.Prioridad_Id = new SelectList(db.PPrioridades, "Id", "Nombre", pTarea.Prioridad_Id);
             return View(pTarea);
         }
 

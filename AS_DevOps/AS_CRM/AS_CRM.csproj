@@ -286,11 +286,13 @@
     <Compile Include="Controllers\Lineas_AsientoController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Pagination.cs" />
+    <Compile Include="Controllers\PFilesTareasController.cs" />
     <Compile Include="Controllers\Plan_CuentasController.cs" />
     <Compile Include="Controllers\PObjetivoesController.cs" />
     <Compile Include="Controllers\PParteHorasController.cs" />
     <Compile Include="Controllers\ProyectoesController.cs" />
     <Compile Include="Controllers\PSprintsController.cs" />
+    <Compile Include="Controllers\PTareasComentariosController.cs" />
     <Compile Include="Controllers\PTareasController.cs" />
     <Compile Include="Controllers\TipoGastoesController.cs" />
     <Compile Include="Controllers\TiposComprobantesController.cs" />
@@ -336,6 +338,9 @@
     <Compile Include="PEstado.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PFilesTarea.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Plan_Cuentas.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
@@ -343,6 +348,9 @@
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PParteHora.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PPrioridade.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -353,6 +361,9 @@
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PTarea.cs">
+      <DependentUpon>Crm_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PTareasComentario.cs">
       <DependentUpon>Crm_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -387,6 +398,7 @@
     <Content Include="Content\image\objetivo.png" />
     <Content Include="Content\image\proyecto.jpg" />
     <Content Include="Content\image\tarea.png" />
+    <Content Include="Content\image\user.png" />
     <Content Include="Content\image\vepech.png" />
     <Content Include="Crm_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -548,9 +560,17 @@
     <Content Include="Views\PSprints\Index.cshtml" />
     <Content Include="Views\PTareas\EditModal.cshtml" />
     <Content Include="Views\PParteHoras\CreateParteHoras.cshtml" />
+    <Content Include="Views\Proyectoes\gannt.cshtml" />
+    <Content Include="Views\PTareasComentarios\Create.cshtml" />
+    <Content Include="Views\PTareasComentarios\Delete.cshtml" />
+    <Content Include="Views\PTareasComentarios\Details.cshtml" />
+    <Content Include="Views\PTareasComentarios\Edit.cshtml" />
+    <Content Include="Views\PTareasComentarios\Index.cshtml" />
+    <Content Include="Views\PFilesTareas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\files\task\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
