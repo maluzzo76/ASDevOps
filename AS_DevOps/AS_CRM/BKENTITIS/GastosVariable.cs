@@ -25,7 +25,9 @@ namespace AS_CRM
         public Nullable<decimal> Iva { get; set; }
         public Nullable<decimal> IIBB { get; set; }
         public Nullable<decimal> Neto { get; set; }
+        public Nullable<int> Cuenta_Id { get; set; }
     
         public virtual TipoGasto TipoGasto { get; set; }
+        public virtual Plan_Cuentas Plan_Cuentas { get; set; }
     }
 }

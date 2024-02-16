@@ -8,6 +8,8 @@
     [IIBB]          DECIMAL (18, 4) NULL,
     [Neto]          DECIMAL (18, 4) NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    FOREIGN KEY ([TipoGastoId]) REFERENCES [dbo].[TipoGasto] ([Id])
+    FOREIGN KEY ([TipoGastoId]) REFERENCES [dbo].[TipoGasto] ([Id]),
+    Cuenta_Id int,
+    foreign key (Cuenta_Id) references Plan_Cuentas(Id)
 );
 

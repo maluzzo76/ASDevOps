@@ -6,11 +6,13 @@
 <h2>Certificaciones de Horas</h2>
 
 
-<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "CertificacionHoras")'">
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Index", "CertificacionHoras")'">
     Agregar Certificación de horas
     <span class="badge badge-light">@Model.TotalRegistros</span>
-    - Total Saldo
-    <span class="badge badge-light">$ @Model.Resultado.Sum(t => t.Saldo)</span>
+    - Horas a Certificadas
+    <span class="badge badge-light">$ @Model.Resultado.Sum(t => t.HorasACertificar)</span>
+    - Total Importe
+    <span class="badge badge-light">$ @Model.Resultado.Sum(t => t.HorasACertificar * t.ValorHora)</span>
 </button>
 
 
@@ -28,22 +30,31 @@
     <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
         <th></th>
         <th>
+            Factura
+        </th>
+        <th>
             Fecha
         </th>
         <th>
             Cliente
         </th>
         <th>
-            Horas Certificables
+            Horas Certificadas
         </th>
         <th>
-            horas Facturadas
+            Horas Facturadas
         </th>
         <th>
             Factura
         </th>
         <th>
             Saldo
+        </th>
+        <th>
+            Valor Hora
+        </th>
+        <th>
+            Importe a Facturar
         </th>
         <th></th>
     </tr>
@@ -52,8 +63,23 @@
     {
         <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
             <td>
-                <img src="~/Content/image/gastos.png" class="btn-grid" style="zoom: 20%; padding-top: -50px;" />
+                @{
+                    var _file = string.Format("http://{0}:{1}/files/pdf/{2}", Request.Url.Host, Request.Url.Port, item.DocumentoNombre);
+                    <img src="~/Content/image/pdf.png" onclick="window.open('@_file', '_blank')" class="btn-grid" style="zoom: 10%; padding-top: -50px;" />
+                }
+
             </td>
+            <td>
+                @if (item.Comprobante != null)
+                {
+                    if (item.Comprobante.FileName != null)
+                    {
+                        var _file1 = string.Format("http://{0}:{1}/files/pdf/{2}", Request.Url.Host, Request.Url.Port, item.Comprobante.FileName);
+                        <img src="~/Content/image/pdf.png" onclick="window.open('@_file1', '_blank')" class="btn-grid" style="zoom: 10%; padding-top: -50px;" />
+                    }
+                }
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
@@ -72,9 +98,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Saldo)
             </td>
+            <td>
+                @item.ValorHora
+            </td>
+            <td>
+                @{
+                    decimal _monto = decimal.Round(Convert.ToDecimal(item.ValorHora * item.HorasACertificar), 2);
+
+                    <p>$ @_monto</p>
+                }
+            </td>
             <td style="width:150px">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                <a class="btn-grid" href="@Url.Action("Edit","CertificacionHoras", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" /></span></a>
+                <a class="btn-grid" href="@Url.Action("Delete","CertificacionHoras", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
             </td>
         </tr>
     }

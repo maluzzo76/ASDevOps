@@ -4,11 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Gastos Fijos</h2>
+<h2>Gastos Varios</h2>
 
 
 <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "GastosVariables")'">
-    Agregar Gasto Fijo
+    Agregar Gasto
     <span class="badge badge-light">@Model.TotalRegistros</span>
     - Total Gastos
     <span class="badge badge-light">$ @Model.Resultado.Sum(t => t.Importe)</span>
@@ -29,6 +29,9 @@
     <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
         <th></th>
         <th>
+            Fecha
+        </th>
+        <th>
             Descripción
         </th>
         <th>
@@ -44,12 +47,9 @@
             Total
         </th>
         <th>
-            Fecha Registro
-        </th>
-        <th>
             Tipo Gasto
         </th>
-        <th></th>
+       
     </tr>
 
     @foreach (var item in Model.Resultado)
@@ -57,6 +57,9 @@
         <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
             <td>
                 <img src="~/Content/image/gastos.png" class="btn-grid" style="zoom: 20%; padding-top: -50px;" />
+            </td>
+            <td>
+                @item.FechaRegistro.Value.Date.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
@@ -74,19 +77,13 @@
                $ @Html.DisplayFor(modelItem => item.Importe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.TipoGasto.Nombre)
             </td>
-            <td style="width:150px">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-            </td>
+           
         </tr>
     }
 
-</table>    {
+</table>    
 
 
 <div class="container-fluid">

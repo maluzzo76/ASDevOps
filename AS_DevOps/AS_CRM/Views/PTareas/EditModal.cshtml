@@ -107,6 +107,13 @@
                         @Html.ValidationMessageFor(model => model.FechaFinalizado, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Certificada</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Certificada, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Certificada, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
 
 
@@ -125,7 +132,7 @@
                             @foreach (var _f in Model.PFilesTareas)
                             {
                                 <tr>
-                                    <td><a href="~/content/files/task/@_f.Nombre" target="_blank">@_f.Nombre</a> </td>
+                                    <td><img src="~/Content/image/iconos_Link 2.png" style="width:14px; height:14px;" /> <a href="~/files/@_f.LinkName" target="_blank">@_f.Nombre</a> </td>
                                 </tr>
                             }
                         </table>
@@ -144,7 +151,7 @@
                             {
                                 <div class="" style="border: 1px solid #e2e2e2; border-radius: 5px; box-shadow: 2px 2px 4px #e2e2e2;">
                                     <div style="padding-left: 5px; border-bottom: 1px solid #e2e2e2; background-color: #e2e2e2">
-                                        <img src="~/Content/image/user.png" style="width:15px; height:15px;" /><span style="font-size:12px;padding-left:5px;">@_f.AspNetUser.Email @_f.Fecha.Value.Date.ToShortDateString()  </span><img src="~/Content/image/iconos_Basura.png" style="width:13px; height:13px; text-align:right;" />
+                                        <img src="~/Content/image/user.png" style="width:15px; height:15px;" /><span style="font-size:12px;padding-left:5px;">@_f.AspNetUser.Email @_f.Fecha.Value.Date.ToShortDateString()  </span><a class="btn-grid" href="@Url.Action("Delete", "PTareasComentarios", new { id = _f.Id, viewreturn = "EditModal" }) "><img src="~/Content/image/iconos_Basura.png" style="width:14px; height:14px;" /></a>
                                     </div>
                                     <div style="padding-left:5px;">
                                         @_f.Descripcion
@@ -162,7 +169,18 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Guardar" class="btn btn-success" />
-                    @Html.ActionLink("Volver", "Details", "PSprints", new { id = Model.Sprint_Id }, new { @class = "btn btn-info" })
+                    @{
+                        if (ViewBag.resp == "cert")
+                        {
+                            @Html.ActionLink("Volver", "Details", "Proyectoes", new { id = Model.PObjetivo.Proyecto_Id }, new { @class = "btn btn-info" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Volver", "Details", "PSprints", new { id = Model.Sprint_Id }, new { @class = "btn btn-info" })
+                        }
+
+                    }
+
                 </div>
             </div>
         </div>

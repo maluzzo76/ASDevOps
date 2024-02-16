@@ -68,7 +68,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
+        public ActionResult Create([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo,Cuit,Direccion,Localidad,Provincia,Pais")] Cliente cliente)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
@@ -106,7 +106,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo")] Cliente cliente)
+        public ActionResult Edit([Bind(Include = "Id,RazonSocial,NombreContacto,Telefono,Email,ValorHora,FechaDeAcuerdo,Cuit,Direccion,Localidad,Provincia,Pais")] Cliente cliente)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");

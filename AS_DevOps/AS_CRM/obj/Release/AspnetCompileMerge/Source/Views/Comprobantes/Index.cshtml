@@ -6,13 +6,13 @@
 
 <h2>Comprobantes</h2>
 
-<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Comprobantes")'">
-Agregar Comprobante
-<span class="badge badge-light">@Model.TotalRegistros</span>
+<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("FileUpload","Comprobantes")'">
+    Agregar Comprobante
+    <span class="badge badge-light">@Model.TotalRegistros</span>
 </button>
 
 
-<hr/>
+<hr />
 
 @using (Html.BeginForm())
 {
@@ -28,6 +28,9 @@ Agregar Comprobante
 
 <table class="table">
     <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
+        <th style="width:25px;">
+
+        </th>
         <th>
             Numero
         </th>
@@ -62,7 +65,17 @@ Agregar Comprobante
     {
         <tr style="background-color: white; border-left: 4px solid #1ea9ef; border-bottom: 2px solid #f7f7f7; border-bottom-width: 5px;">
             <td>
-                @Html.DisplayFor(modelItem => item.Numero)
+                @if (item.FileName != null)
+                {
+                    var _file = string.Format("http://{0}:{1}/files/pdf/{2}", Request.Url.Host, Request.Url.Port, item.FileName);
+                    <img src="~/Content/image/pdf.png" onclick="window.open('@_file', '_blank')" class="btn-grid" style="zoom: 10%; padding-top: -50px;" />
+                }
+            </td>
+            <td>
+                @{
+                    string _num = decimal.Round(item.Numero.Value, 0).ToString().PadLeft(8, char.Parse("0"));
+                    <label>@_num</label>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cliente.RazonSocial)
@@ -74,7 +87,7 @@ Agregar Comprobante
                 @Html.DisplayFor(modelItem => item.FechaRegistracion)
             </td>
             <td>
-               @item.FechaVencimiento.Value.ToString("dd-MM-yyyy")
+                @item.FechaVencimiento.Value.ToString("dd-MM-yyyy")
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.TotalNeto)
@@ -90,8 +103,10 @@ Agregar Comprobante
             </td>
 
             <td style="width:150px">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                <a class="btn-grid" href="@Url.Action("Edit","Comprobantes", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" style="width:14px; height:14px;" /></span></a>
+                <a class="btn-grid" href="@Url.Action("FileUpload","Comprobantes", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Link 2.png" style="width:14px; height:14px;" /></span></a>
+                <a class="btn-grid" href="@Url.Action("Delete","Comprobantes", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Basura.png" style="width:14px; height:14px;" /></span></a>
+
             </td>
         </tr>
     }

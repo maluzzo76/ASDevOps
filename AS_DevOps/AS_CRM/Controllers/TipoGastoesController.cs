@@ -20,7 +20,7 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
-            var _r = from _o in db.TipoGastoes
+            var _r = from _o in db.TipoGastoes.Include(i=>i.Plan_Cuentas)
                      select _o;
 
             if (!string.IsNullOrEmpty(SearchString))
@@ -59,6 +59,9 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
+            var _planCuenta = db.Plan_Cuentas.Where(w => w.IsImputable == true).ToDictionary(s => s.Id, s => (s.Numero + " - " + s.Nombre)).OrderBy(o => o.Value);
+            ViewBag.Cuenta_Id = new SelectList(_planCuenta, "Key", "Value");
+
             return View();
         }
 
@@ -67,7 +70,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Acronimo,Nombre")] TipoGasto tipoGasto)
+        public ActionResult Create([Bind(Include = "Id,Acronimo,Nombre,Cuenta_Id")] TipoGasto tipoGasto)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
@@ -92,7 +95,13 @@ namespace AS_CRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            var _planCuenta = db.Plan_Cuentas.Where(w => w.IsImputable == true).ToDictionary(s => s.Id, s => (s.Numero + " - " + s.Nombre)).OrderBy(o => o.Value);
             TipoGasto tipoGasto = db.TipoGastoes.Find(id);
+
+            ViewBag.Cuenta_Id = new SelectList(_planCuenta, "Key", "Value", tipoGasto.Cuenta_Id);
+
+            
             if (tipoGasto == null)
             {
                 return HttpNotFound();
@@ -105,7 +114,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Acronimo,Nombre")] TipoGasto tipoGasto)
+        public ActionResult Edit([Bind(Include = "Id,Acronimo,Nombre,Cuenta_Id")] TipoGasto tipoGasto)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");

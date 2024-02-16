@@ -234,3 +234,6 @@ D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\ru\Microsoft.VisualStudi
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\tr\Microsoft.VisualStudio.Services.WebApi.resources.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\zh-Hans\Microsoft.VisualStudio.Services.WebApi.resources.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\zh-Hant\Microsoft.VisualStudio.Services.WebApi.resources.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\As_PDF.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\itextsharp.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\As_PDF.pdb

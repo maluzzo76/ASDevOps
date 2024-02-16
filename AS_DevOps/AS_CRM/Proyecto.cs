@@ -24,10 +24,12 @@ namespace AS_CRM
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string logo { get; set; }
+        public Nullable<int> Cliente_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PSprint> PSprints { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PObjetivo> PObjetivos { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

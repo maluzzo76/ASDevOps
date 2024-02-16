@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AS_CRM;
+using static System.Net.WebRequestMethods;
 
 namespace AS_CRM.Controllers
 {
@@ -32,7 +34,65 @@ namespace AS_CRM.Controllers
 
             Pagination<Comprobante> _page = new Pagination<Comprobante>();
 
-            return View(_page.paginado(_r, pagina));
+            return View(_page.paginado(_r.OrderByDescending(o=>o.FechaRegistracion), pagina));
+        }
+
+        public ActionResult FileUpload(int? Id)
+        {
+            if (!validarLoggin())
+                return RedirectToAction("Index", "Home");
+
+            Comprobante _comp = new Comprobante();
+
+            if (Id == null)
+            {
+                _comp.FechaRegistracion = DateTime.Now;
+                _comp.FechaVencimiento = DateTime.Now;
+                _comp.TotalNeto = 0;
+                _comp.Iva = 0;
+                _comp.IIBB = 0;
+                _comp.TotalBruto = 0;
+                _comp.Numero = 0;
+
+
+                db.Comprobantes.Add(_comp);
+                db.SaveChanges();
+                return View(_comp);
+            }
+            else
+            {
+                _comp = db.Comprobantes.Find(Id);
+            }
+            return View(_comp);
+        }
+
+        public ActionResult upFile(HttpPostedFileBase file, int id)
+        {
+            if (!validarLoggin())
+                return RedirectToAction("Index", "Home");
+
+            if (ModelState.IsValid)
+            {
+                if (file != null)
+                {
+                    string _fileId = string.Format("C_{0}.{1}", file.FileName.Split(char.Parse("."))[0], file.FileName.Split(char.Parse("."))[1]);
+
+                    string _server = Request.Path;
+                    string path = Path.Combine(Server.MapPath("~/files/pdf"), _fileId);
+                    file.SaveAs(path);
+
+                    Comprobante _comp = db.Comprobantes.Find(id);
+                    _comp.FileName = _fileId;
+                    db.Entry(_comp).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if(_comp.Numero==0)
+                        return RedirectToAction("Edit", "Comprobantes", new { id = _comp.Id});
+                }
+            }
+
+          
+            return RedirectToAction("Index");
         }
 
         // GET: Comprobantes/Details/5
@@ -81,7 +141,7 @@ namespace AS_CRM.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial", comprobante.ClienteId);
+            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial",comprobante.ClienteId);
             ViewBag.TipoComprobanteId = new SelectList(db.TiposComprobantes, "Id", "Acronimo", comprobante.TipoComprobanteId);
             return View(comprobante);
         }
@@ -101,7 +161,14 @@ namespace AS_CRM.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial", comprobante.ClienteId);
+
+            var _clientes = db.Clientes.ToList<Cliente>();
+            Cliente _cNew = new Cliente();
+            _cNew.RazonSocial = "N/A";
+            _cNew.Id = 0;
+            _clientes.Add(_cNew);
+
+            ViewBag.ClienteId = new SelectList(_clientes.ToList<Cliente>() , "Id", "RazonSocial",(comprobante.ClienteId==null)?0:comprobante.ClienteId);
             ViewBag.TipoComprobanteId = new SelectList(db.TiposComprobantes, "Id", "Acronimo", comprobante.TipoComprobanteId);
             return View(comprobante);
         }
@@ -111,7 +178,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TipoComprobanteId,ClienteId,Numero,FechaRegistracion,FechaVencimiento,TotalNeto,Iva,IIBB,TotalBruto")] Comprobante comprobante)
+        public ActionResult Edit([Bind(Include = "Id,TipoComprobanteId,ClienteId,Numero,FechaRegistracion,FechaVencimiento,TotalNeto,Iva,IIBB,TotalBruto,FileName")] Comprobante comprobante)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");

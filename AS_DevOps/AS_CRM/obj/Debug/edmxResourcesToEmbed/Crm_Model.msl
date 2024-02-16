@@ -24,6 +24,11 @@
     <EntitySetMapping Name="Clientes">
       <EntityTypeMapping TypeName="AS_CRMModel.Cliente">
         <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Cuit" ColumnName="Cuit" />
           <ScalarProperty Name="FechaDeAcuerdo" ColumnName="FechaDeAcuerdo" />
           <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -37,6 +42,7 @@
     <EntitySetMapping Name="Comprobantes">
       <EntityTypeMapping TypeName="AS_CRMModel.Comprobante">
         <MappingFragment StoreEntitySet="Comprobantes">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
           <ScalarProperty Name="TotalBruto" ColumnName="TotalBruto" />
           <ScalarProperty Name="IIBB" ColumnName="IIBB" />
           <ScalarProperty Name="Iva" ColumnName="Iva" />
@@ -64,6 +70,7 @@
     <EntitySetMapping Name="GastosVariables">
       <EntityTypeMapping TypeName="AS_CRMModel.GastosVariable">
         <MappingFragment StoreEntitySet="GastosVariables">
+          <ScalarProperty Name="Cuenta_Id" ColumnName="Cuenta_Id" />
           <ScalarProperty Name="Neto" ColumnName="Neto" />
           <ScalarProperty Name="IIBB" ColumnName="IIBB" />
           <ScalarProperty Name="Iva" ColumnName="Iva" />
@@ -78,6 +85,7 @@
     <EntitySetMapping Name="TipoGastoes">
       <EntityTypeMapping TypeName="AS_CRMModel.TipoGasto">
         <MappingFragment StoreEntitySet="TipoGasto">
+          <ScalarProperty Name="Cuenta_Id" ColumnName="Cuenta_Id" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Acronimo" ColumnName="Acronimo" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -109,6 +117,8 @@
     <EntitySetMapping Name="CertificacionHoras">
       <EntityTypeMapping TypeName="AS_CRMModel.CertificacionHora">
         <MappingFragment StoreEntitySet="CertificacionHoras">
+          <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
+          <ScalarProperty Name="DocumentoNombre" ColumnName="DocumentoNombre" />
           <ScalarProperty Name="Saldo" ColumnName="Saldo" />
           <ScalarProperty Name="HorasCertificadas" ColumnName="HorasCertificadas" />
           <ScalarProperty Name="HorasACertificar" ColumnName="HorasACertificar" />
@@ -208,6 +218,7 @@
     <EntitySetMapping Name="Proyectos">
       <EntityTypeMapping TypeName="AS_CRMModel.Proyecto">
         <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="Cliente_Id" ColumnName="Cliente_Id" />
           <ScalarProperty Name="logo" ColumnName="logo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -229,6 +240,7 @@
     <EntitySetMapping Name="PTareas">
       <EntityTypeMapping TypeName="AS_CRMModel.PTarea">
         <MappingFragment StoreEntitySet="PTareas">
+          <ScalarProperty Name="Certificada" ColumnName="Certificada" />
           <ScalarProperty Name="Prioridad_Id" ColumnName="Prioridad_Id" />
           <ScalarProperty Name="Detalle" ColumnName="Detalle" />
           <ScalarProperty Name="HorasEstimadas" ColumnName="HorasEstimadas" />

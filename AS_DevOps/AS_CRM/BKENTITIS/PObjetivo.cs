@@ -41,6 +41,10 @@ namespace AS_CRM
                 {
                     decimal _max = this.PTareas.Count();
                     decimal _completadas = this.PTareas.Where(w => w.PEstado.Nombre == "Finalizado").Count();
+
+                    if (PEstado.Id == 6)
+                        return "100%";
+
                     if (_completadas > 0)
                         return string.Format("{0}%", 100 - decimal.Round((((_max - _completadas) / _max) * 100), 0));
                     else

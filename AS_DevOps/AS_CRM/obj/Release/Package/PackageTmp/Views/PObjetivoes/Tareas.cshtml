@@ -1,0 +1,150 @@
+﻿@model IEnumerable<AS_CRM.PTarea>
+
+@{
+    ViewBag.Title = "Tareas";   
+}
+
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <h2>Proyecto:<span class="bold"> @Model.Max(m => m.PObjetivo.Proyecto.Nombre)</span></h2>
+    </div>
+    <div class="col-md-4" style="text-align:right; margin-top:5px;">
+        @Html.ActionLink("Volver", "Index", "Proyectoes",null, new { @class = "btn btn-warning pull-right" })
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+                @Html.DropDownList("Estado_Id", null, htmlAttributes: new { @class = "form-control pull-right", onchange = @"form.submit();" })
+
+            </div>
+        }
+    </div>
+</div>
+
+<h2>Tareas <spam class="badge badge-light">@Model.Sum(s => s.HorasEstimadas)hs</spam><spam><a class="btn-grid" href="@Url.Action("CreateModal","PTareas", new { ido = Model.ElementAt(0).Objetivo_Id }) "><span><img src="~/Content/image/iconos_Link 2.png" style="width:20px; height:20px;" /></span></a></spam></h2>
+ 
+
+<table class="table" id="drog">
+    <tr>
+        <th>
+
+        </th>
+        <th style="width:320px;">
+            Tarea
+        </th>
+        <th>
+            Objetivo
+        </th>
+        <th>
+            Asignado A
+        </th>
+        <th>
+            Estados
+        </th>
+        <th>
+            Prioridad
+        </th>
+        <th>
+            Horas
+        </th>
+        <th>
+            <div class="row">
+                <div class="col-md-4">Fecha Inicio</div>
+                <div class="col-md-4">Fecha Entrega</div>
+                <div class="col-md-4"></div>
+            </div>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr >
+            <td>
+                <img id="@item.Id" src="~/Content/image/iconos_Tareas.png" style="zoom:2%;" data-toggle="modal" data-target="#Modal_@item.Id" />
+                @using (Html.BeginForm("UpdateTaskDetails", "PObjetivoes", new { id = item.Id }, FormMethod.Post))
+                {
+                    <div class="modal fade" id="Modal_@item.Id" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h5 class="modal-title">Tarea: @item.Nombre </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea id="Detalle" name="Detalle" rows="12" cols="35">@item.Detalle</textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <input id="btnfiltrar" type="submit" value="Save" class="btn btn-info pull-right" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </td>
+            <td>
+                @item.Id - @item.Nombre
+            </td>
+            @using (Html.BeginForm("TareaSetting", "PObjetivoes", new { id = item.Id }, FormMethod.Post))
+            {
+                <td >
+                    @Html.DropDownList("Objetivo_Id", (new SelectList(new AS_CRMEntities().PObjetivos.Where(w=>w.Proyecto_Id == item.PObjetivo.Proyecto_Id && w.PEstado.Nombre =="En Curso" || w.PEstado.Nombre == "Nuevo").ToList<PObjetivo>(), "Id", "Nombre", item.Objetivo_Id)), htmlAttributes: new { @class = "form-control pull-right", onchange = @"form.submit();"  })
+                </td>
+                <td >
+                    @Html.DropDownList("Usuario_Id", (new SelectList(new AS_CRMEntities().AspNetUsers, "Id", "Email", item.Usuario_Id)), htmlAttributes: new { @class = "form-control pull-right", onchange = @"form.submit();"  })
+                </td>
+                <td>
+                    @Html.DropDownList("Estado_Id", (new SelectList(new AS_CRMEntities().PEstados, "Id", "Nombre", item.Estado_Id)), htmlAttributes: new { @class = "form-control pull-right", onchange = @"form.submit();" })
+                </td>
+                <td>
+                    @Html.DropDownList("Prioridad_Id", (new SelectList(new AS_CRMEntities().PPrioridades, "Id", "Nombre", item.Prioridad_Id)), htmlAttributes: new { @class = "form-control pull-right", onchange = @"form.submit();" })
+                </td>
+                <td style="width:80px;">
+                    <input class="form-control" type="number" id="Horas" name="Horas" value="@item.HorasEstimadas" )" />
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input class="form-control" type="date" id="FechaIncio" name="FechaIncio" value="@string.Format("{0:yyyy-MM-dd}", item.FechaIncio)" />
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" type="date" id="FechaEntrega" name="FechaEntrega" value="@string.Format("{0:yyyy-MM-dd}", item.FechaEntrega)" />
+                        </div>
+                        <div class="col-md-4" style="width:50px;">
+                            <input id="btnfiltrar" type="submit" value="Save" class="btn btn-info pull-right" />
+                        </div>
+                    </div>
+                </td>
+            }
+
+        </tr>
+    }
+</table>
+
+<!--
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="border:1px solid black;height:100px"></div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" style="border:1px solid black;height:100px"></div>
+
+<img id="drag1" src="~/Content/image/iconos_Tareas.png" draggable="true" ondragstart="drag(event)" style="border:1px solid black;height:100px">
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function allowDrop2(ev) {
+        ev.preventDefault();
+        $('#SearchString').val("text");
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+    -->

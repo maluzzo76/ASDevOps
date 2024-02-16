@@ -1,0 +1,10 @@
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\bin\Release\As_PDF.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\bin\Release\As_PDF.pdb
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\bin\Release\IronOcr.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\bin\Release\itextsharp.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\bin\Release\IronOcr.xml
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\obj\Release\As_PDF.csproj.AssemblyReference.cache
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\obj\Release\As_PDF.csproj.CoreCompileInputs.cache
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\obj\Release\As_PDF.csproj.CopyComplete
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\obj\Release\As_PDF.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\As_PDF\obj\Release\As_PDF.pdb

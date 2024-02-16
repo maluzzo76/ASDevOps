@@ -35,6 +35,7 @@ namespace AS_CRM
         public Nullable<decimal> Iva { get; set; }
         public Nullable<decimal> IIBB { get; set; }
         public Nullable<decimal> TotalBruto { get; set; }
+        public string FileName { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual TiposComprobante TiposComprobante { get; set; }

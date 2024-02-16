@@ -11,16 +11,21 @@ namespace AS_CRM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CertificacionHora
     {
         public int Id { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> ClienteId { get; set; }
         public Nullable<int> ComprobanteId { get; set; }
         public Nullable<decimal> HorasACertificar { get; set; }
         public Nullable<decimal> HorasCertificadas { get; set; }
         public Nullable<decimal> Saldo { get; set; }
+        public string DocumentoNombre { get; set; }
+        public Nullable<decimal> ValorHora { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Comprobante Comprobante { get; set; }

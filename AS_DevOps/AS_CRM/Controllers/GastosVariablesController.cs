@@ -21,7 +21,7 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
-            var _r = from _o in db.GastosVariables.Include(g => g.TipoGasto)
+            var _r = from _o in db.GastosVariables.Include(g => g.TipoGasto).OrderByDescending(o => o.Id).ToList<GastosVariable>()
             select _o;
 
             if (!string.IsNullOrEmpty(SearchString))
@@ -60,6 +60,8 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
+            var _planCuenta = db.Plan_Cuentas.Where(w => w.IsImputable == true).ToDictionary(s => s.Id, s => (s.Numero + " - " + s.Nombre)).OrderBy(o => o.Value);
+            ViewBag.Cuenta_Id = new SelectList(_planCuenta, "Key", "Value");
             ViewBag.TipoGastoId = new SelectList(db.TipoGastoes, "Id", "Nombre");
             return View();
         }
@@ -69,15 +71,51 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro")] GastosVariable gastosVariable)
+        public ActionResult Create([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro, Cuenta_Id")] GastosVariable gastosVariable)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
+
+            int CuentaOrigenId = gastosVariable.Cuenta_Id.Value;
+            int CuentaDestinoId = 0;
+           
 
             if (ModelState.IsValid)
             {
                 db.GastosVariables.Add(gastosVariable);
                 db.SaveChanges();
+
+
+                if (db.TipoGastoes.Find(gastosVariable.TipoGastoId).Cuenta_Id != null)
+                {
+                    CuentaDestinoId = db.TipoGastoes.Find(gastosVariable.TipoGastoId).Cuenta_Id.Value;
+
+                    //Crea asiento
+                    Asiento _asiento = new Asiento();
+                    _asiento.Fecha = gastosVariable.FechaRegistro;
+                    _asiento.Concepto = "Asiento automatico generado desde gastos";
+                    db.Asientos.Add(_asiento);
+                    db.SaveChanges();
+
+                    //Crear Linea de asiento
+                    Lineas_Asiento _laOrigen = new Lineas_Asiento();
+                    _laOrigen.Asiento_Id = _asiento.Id;
+                    _laOrigen.Cuenta_Id = CuentaOrigenId;
+                    _laOrigen.Debe = 0;
+                    _laOrigen.Haber = gastosVariable.Importe;
+                    _laOrigen.Concepto = string.Format("Gasto de {0} - Nro Comprobante {1}", gastosVariable.TipoGasto.Nombre, gastosVariable.Descripcion);
+                    db.Lineas_Asiento.Add(_laOrigen);
+                    db.SaveChanges();
+
+                    Lineas_Asiento _laDestino = new Lineas_Asiento();
+                    _laDestino.Asiento_Id = _asiento.Id;
+                    _laDestino.Cuenta_Id = CuentaDestinoId;
+                    _laDestino.Debe = gastosVariable.Importe;
+                    _laDestino.Haber = 0;
+                    _laDestino.Concepto = string.Format("Gasto de {0} - Nro Comprobante {1}", gastosVariable.TipoGasto.Nombre, gastosVariable.Descripcion);
+                    db.Lineas_Asiento.Add(_laDestino);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -96,6 +134,8 @@ namespace AS_CRM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             GastosVariable gastosVariable = db.GastosVariables.Find(id);
+            var _planCuenta = db.Plan_Cuentas.Where(w => w.IsImputable == true).ToDictionary(s => s.Id, s => (s.Numero + " - " + s.Nombre)).OrderBy(o => o.Value);
+            ViewBag.Cuenta_Id = new SelectList(_planCuenta, "Key", "Value", gastosVariable.Cuenta_Id);
             if (gastosVariable == null)
             {
                 return HttpNotFound();
@@ -109,7 +149,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro")] GastosVariable gastosVariable)
+        public ActionResult Edit([Bind(Include = "Id,TipoGastoId,Descripcion,Importe,Neto,Iva,IIBB,FechaRegistro, Cuenta_Id")] GastosVariable gastosVariable)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");

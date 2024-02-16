@@ -53,6 +53,9 @@
         <AssociationConnector Association="AS_CRMModel.FK__PFilesTar__Tarea__7C1A6C5A" />
         <AssociationConnector Association="AS_CRMModel.FK__PTareas__Priorid__7EF6D905" />
         <AssociationConnector Association="AS_CRMModel.FK__PTareasCo__Tarea__7D0E9093" />
+        <AssociationConnector Association="AS_CRMModel.FK__GastosVar__Cuent__1A9EF37A" />
+        <AssociationConnector Association="AS_CRMModel.FK__TipoGasto__Cuent__19AACF41" />
+        <AssociationConnector Association="AS_CRMModel.FK__Proyectos__Clien__1C873BEC" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

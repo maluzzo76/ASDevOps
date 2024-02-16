@@ -3,32 +3,326 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
+@Html.Partial("_customError")
 <div>
-    <h4>Proyecto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+    <h2>
+        Detalle de horas proyecto @Model.Nombre
+        <span class="badge badge-warning" style=" background-color:#ef3a3a; font-size:16pt">Horas a Certificar @Model.PObjetivos.Sum(s => s.PTareas.Where(w => w.Estado_Id == 5 && w.FechaFinalizado != null && w.Certificada != true).Sum(st => st.HorasCertificables))</span>
+        <span class="badge badge-warning" style=" background-color:#53ad2d; font-size:16pt">Hs Certificadas @Model.PObjetivos.Sum(s => s.PTareas.Where(w => w.Estado_Id == 5 && w.Certificada == true).Sum(st => st.HorasCertificables))</span>
+        <span>@Html.ActionLink("Certificar Horas", "GenerarCertificación", new { id = Model.Id }, new { @class = "btn btn-warning" })</span>
+    </h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+    <div class="row" style="height:74vh;">
+        <h4>Tareas</h4>
+        <div class="col-md-6" style="height:68vh; overflow-y:auto;">
+            <h4>Certificación</h4>
+            <table class="table table-responsive">
+                <tr style="background-color: #ffffff; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 2px solid black;">
+                    <th>
+                        Tarea
+                    </th>
+                    <th>
+                        Objetivo
+                    </th>
+                    <th>
+                        Fecha Finalizada
+                    </th>
+                    <th>
+                        Horas Certificación
+                    </th>
+                    <th>
+                        Horas Estimadas
+                    </th>
+                    <th>
+                        Horas Trabajadas
+                    </th>
+                    <th>
+                        Certificadas
+                    </th>
+                    <th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.logo)
-        </dt>
+                    </th>
+                </tr>
+                @{
+                    foreach (var item in Model.PObjetivos)
+                    {
+                        foreach (var tareas in item.PTareas.Where(w => w.FechaFinalizado != null  && w.Certificada != true).ToList<PTarea>().OrderBy(o => o.FechaFinalizado))
+                        {
+                            <tr style="background-color:white;">
+                                <td>
+                                    @tareas.Id - @tareas.Nombre
+                                </td>
+                                <td>
+                                    @tareas.PObjetivo.Nombre
+                                </td>
+                                <td style="text-align:center;">
+                                    @if (tareas.FechaFinalizado != null)
+                                    {
+                                        @tareas.FechaFinalizado.Value.Date.ToShortDateString()
+                                    }
 
-        <dd>
-            @Html.DisplayFor(model => model.logo)
-        </dd>
+                                </td>
+                                <td style="text-align:center;background-color:#edf8e3">
+                                    @tareas.HorasCertificables
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.HorasEstimadas
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.PParteHoras.Sum(s => s.Horas)
+                                </td>
 
-    </dl>
+                                @if (tareas.Certificada == true)
+                                {
+                                    <td style="text-align:center">
+                                        @Html.ActionLink("Certificadas", "CertificarHora", "Proyectoes", new { idp = Model.Id, idt = tareas.Id }, new { @class = "btn btn-success" })
+                                    </td>
+
+                                }
+                                else
+                                {
+                                    <td style="text-align:center">
+                                        @Html.ActionLink("A Certificadas", "CertificarHora", "Proyectoes", new { idp = Model.Id, idt = tareas.Id }, new { @class = "btn btn-danger" })
+                                    </td>
+                                }
+                                <td>
+                                    <span><a class="btn-grid" href="@Url.Action("EditModal", "PTareas", new { id = tareas.Id, resp = "cert" }) "><img src="~/Content/image/iconos_Buscar.png" style="width:16px; height:16px;" /></a></span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+        <div class="col-md-6" style="height:68vh; overflow-y:auto;">
+            <h4>Tareas No Certificables</h4>
+            <table class="table table-responsive">
+                <tr style="background-color: #ffffff; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 2px solid black;">
+                    <th>
+                        Tarea
+                    </th>
+                    <th>
+                        Objetivo
+                    </th>
+                    <th>
+                        Fecha Finalizada
+                    </th>
+                    <th>
+                        Horas Certificación
+                    </th>
+                    <th>
+                        Horas Estimadas
+                    </th>
+                    <th>
+                        Horas Trabajadas
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                </tr>
+                @{
+                    foreach (var item in Model.PObjetivos)
+                    {
+                        foreach (var tareas in item.PTareas.Where(w => w.FechaFinalizado == null).ToList<PTarea>().OrderBy(o => o.FechaEntrega))
+                        {
+                            <tr style="background-color:white;">
+                                <td>
+                                    @tareas.Id - @tareas.Nombre
+                                </td>
+                                <td>
+                                    @tareas.PObjetivo.Nombre
+                                </td>
+                                <td style="text-align:center;">
+                                    @if (tareas.FechaFinalizado != null)
+                                    {
+                                        @tareas.FechaFinalizado.Value.Date.ToShortDateString()
+                                    }
+
+                                </td>
+                                <td style="text-align:center;background-color:#edf8e3">
+                                    @tareas.HorasCertificables
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.HorasEstimadas
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.PParteHoras.Sum(s => s.Horas)
+                                </td>
+                                <td style="text-align:center">
+                                    @tareas.PEstado.Nombre
+                                </td>
+                                <td>
+                                    <span><a class="btn-grid" href="@Url.Action("EditModal", "PTareas", new { id = tareas.Id, resp = "cert" }) "><img src="~/Content/image/iconos_Buscar.png" style="width:16px; height:16px;" /></a></span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="cont" class="modal">
+    <h2>
+        Detalle de horas proyecto @Model.Nombre
+        <span class="badge badge-warning" style=" background-color:#ef3a3a; font-size:16pt">Horas a Certificar @Model.PObjetivos.Sum(s => s.PTareas.Where(w => w.Estado_Id == 5 && w.FechaFinalizado != null).Sum(st => st.HorasCertificables))</span>
+        <span class="badge badge-warning" style=" background-color:#53ad2d; font-size:16pt">Hs Certificadas @Model.PObjetivos.Sum(s => s.PTareas.Where(w => w.Estado_Id == 5 && w.Certificada == true).Sum(st => st.HorasCertificables))</span>
+    </h2>
+    <div class="row">
+        <h4>Tareas</h4>
+        <div class="col-md-6">
+            <h4>Certificación</h4>
+            <table class="table table-responsive">
+                <tr style="background-color: #ffffff; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 2px solid black;">
+                    <th>
+                        Tarea
+                    </th>
+                    <th>
+                        Objetivo
+                    </th>
+                    <th>
+                        Fecha Finalizada
+                    </th>
+                    <th>
+                        Horas Certificación
+                    </th>
+                    <th>
+                        Horas Estimadas
+                    </th>
+                    <th>
+                        Horas Trabajadas
+                    </th>
+                    <th>
+                        Certificadas
+                    </th>
+                </tr>
+                @{
+                    foreach (var item in Model.PObjetivos)
+                    {
+                        foreach (var tareas in item.PTareas.Where(w => w.FechaFinalizado != null).ToList<PTarea>().OrderBy(o => o.FechaFinalizado.Value))
+                        {
+                            <tr style="background-color:white;">
+                                <td>
+                                    @tareas.Id - @tareas.Nombre
+                                </td>
+                                <td>
+                                    @tareas.PObjetivo.Nombre
+                                </td>
+                                <td style="text-align:center;">
+                                    @if (tareas.FechaFinalizado != null)
+                                    {
+                                        @tareas.FechaFinalizado.Value.Date.ToShortDateString()
+                                    }
+
+                                </td>
+                                <td style="text-align:center;background-color:#edf8e3">
+                                    @tareas.HorasCertificables
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.HorasEstimadas
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.PParteHoras.Sum(s => s.Horas)
+                                </td>
+
+                                @if (tareas.Certificada == true)
+                                {
+                                    <td style="text-align:center">
+                                        @Html.ActionLink("Certificadas", "CertificarHora", "Proyectoes", new { idp = Model.Id, idt = tareas.Id }, new { @class = "btn btn-success" })
+                                    </td>
+
+                                }
+                                else
+                                {
+                                    <td style="text-align:center">
+                                        @Html.ActionLink("A Certificadas", "CertificarHora", "Proyectoes", new { idp = Model.Id, idt = tareas.Id }, new { @class = "btn btn-danger" })
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h4>Tareas No Certificables</h4>
+            <table class="table table-responsive">
+                <tr style="background-color: #ffffff; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 2px solid black;">
+                    <th>
+                        Tarea
+                    </th>
+                    <th>
+                        Objetivo
+                    </th>
+                    <th>
+                        Fecha Finalizada
+                    </th>
+                    <th>
+                        Horas Certificación
+                    </th>
+                    <th>
+                        Horas Estimadas
+                    </th>
+                    <th>
+                        Horas Trabajadas
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                </tr>
+                @{
+                    foreach (var item in Model.PObjetivos)
+                    {
+                        foreach (var tareas in item.PTareas.Where(w => w.FechaFinalizado == null).ToList<PTarea>().OrderBy(o => o.FechaEntrega))
+                        {
+                            <tr style="background-color:white;">
+                                <td>
+                                    @tareas.Id - @tareas.Nombre
+                                </td>
+                                <td>
+                                    @tareas.PObjetivo.Nombre
+                                </td>
+                                <td style="text-align:center;">
+                                    @if (tareas.FechaFinalizado != null)
+                                    {
+                                        @tareas.FechaFinalizado.Value.Date.ToShortDateString()
+                                    }
+
+                                </td>
+                                <td style="text-align:center;background-color:#edf8e3">
+                                    @tareas.HorasCertificables
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.HorasEstimadas
+                                </td>
+                                <td style="text-align:center;">
+                                    @tareas.PParteHoras.Sum(s => s.Horas)
+                                </td>
+                                <td style="text-align:center">
+                                    @tareas.PEstado.Nombre
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-info" })
+    <input type="button" class="btn btn-warning" name="imprimir" value="Imprimir" onclick="impr();">
 </p>
+
+<script>
+    function impr() {
+        var ficha = document.getElementById("cont");
+        var ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close();
+    }
+</script>

@@ -69,7 +69,7 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fecha,ClienteId,ComprobanteId,HorasACertificar,HorasCertificadas,Saldo")] CertificacionHora certificacionHora)
+        public ActionResult Create([Bind(Include = "Id,Fecha,ClienteId,ComprobanteId,HorasACertificar,HorasCertificadas,Saldo,ValorHora")] CertificacionHora certificacionHora)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
@@ -80,9 +80,9 @@ namespace AS_CRM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial", certificacionHora.ClienteId);
-            ViewBag.ComprobanteId = new SelectList(db.Comprobantes, "Id", "Id", certificacionHora.ComprobanteId);
+            ViewBag.ComprobanteId = new SelectList(db.Comprobantes, "Id", "Numero", certificacionHora.ComprobanteId);
             return View(certificacionHora);
         }
 
@@ -102,7 +102,7 @@ namespace AS_CRM.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial", certificacionHora.ClienteId);
-            ViewBag.ComprobanteId = new SelectList(db.Comprobantes, "Id", "Id", certificacionHora.ComprobanteId);
+            ViewBag.ComprobanteId = new SelectList(db.Comprobantes.OrderByDescending(o=>o.Numero), "Id", "Numero", certificacionHora.ComprobanteId);
             return View(certificacionHora);
         }
 
@@ -111,19 +111,20 @@ namespace AS_CRM.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Fecha,ClienteId,ComprobanteId,HorasACertificar,HorasCertificadas,Saldo")] CertificacionHora certificacionHora)
+        public ActionResult Edit([Bind(Include = "Id,Fecha,ClienteId,ComprobanteId,HorasACertificar,HorasCertificadas,Saldo,ValorHora")] CertificacionHora certificacionHora)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
             if (ModelState.IsValid)
             {
+                certificacionHora.Saldo = certificacionHora.HorasACertificar - certificacionHora.HorasCertificadas;
                 db.Entry(certificacionHora).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "RazonSocial", certificacionHora.ClienteId);
-            ViewBag.ComprobanteId = new SelectList(db.Comprobantes, "Id", "Id", certificacionHora.ComprobanteId);
+            ViewBag.ComprobanteId = new SelectList(db.Comprobantes, "Id", "Numero", certificacionHora.ComprobanteId);
             return View(certificacionHora);
         }
 

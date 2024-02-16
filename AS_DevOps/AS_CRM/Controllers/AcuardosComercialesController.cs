@@ -33,6 +33,8 @@ namespace AS_CRM.Controllers
             return View(_page.paginado(_r.OrderByDescending(o=>o.Fecha),pagina));
         }
 
+       
+
         // GET: AcuardosComerciales/Details/5
         public ActionResult Details(int? id)
         {

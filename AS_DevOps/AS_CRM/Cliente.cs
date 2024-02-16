@@ -11,7 +11,8 @@ namespace AS_CRM
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +21,7 @@ namespace AS_CRM
             this.Comprobantes = new HashSet<Comprobante>();
             this.AcuardosComerciales = new HashSet<AcuardosComerciale>();
             this.CertificacionHoras = new HashSet<CertificacionHora>();
+            this.Proyectos = new HashSet<Proyecto>();
         }
     
         public int Id { get; set; }
@@ -28,7 +30,14 @@ namespace AS_CRM
         public string Telefono { get; set; }
         public string Email { get; set; }
         public Nullable<decimal> ValorHora { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeAcuerdo { get; set; }
+        public string Cuit { get; set; }
+        public string Direccion { get; set; }
+        public string Localidad { get; set; }
+        public string Provincia { get; set; }
+        public string Pais { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comprobante> Comprobantes { get; set; }
@@ -36,5 +45,7 @@ namespace AS_CRM
         public virtual ICollection<AcuardosComerciale> AcuardosComerciales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CertificacionHora> CertificacionHoras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Proyecto> Proyectos { get; set; }
     }
 }

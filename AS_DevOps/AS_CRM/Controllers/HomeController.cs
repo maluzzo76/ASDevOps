@@ -11,6 +11,7 @@ namespace AS_CRM.Controllers
         public ActionResult Index()
         {
             validarLoggin();
+           // CotizacionDolar();
              return View();            
         }
 

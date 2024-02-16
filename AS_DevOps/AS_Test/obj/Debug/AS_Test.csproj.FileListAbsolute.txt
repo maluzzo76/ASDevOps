@@ -6,3 +6,7 @@ D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\obj\Debug\AS_Test.csproj.Su
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\obj\Debug\AS_Test.csproj.CoreCompileInputs.cache
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\obj\Debug\AS_Test.exe
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\obj\Debug\AS_Test.pdb
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\bin\Debug\As_PDF.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\bin\Debug\itextsharp.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\bin\Debug\As_PDF.pdb
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_Test\obj\Debug\AS_Test.csproj.CopyComplete

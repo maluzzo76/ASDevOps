@@ -52,5 +52,11 @@
   <ItemGroup>
     <Content Include="HTMLPage1.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\As_PDF\As_PDF.csproj">
+      <Project>{3992ee77-3d52-4757-8096-a0178ccdbb32}</Project>
+      <Name>As_PDF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

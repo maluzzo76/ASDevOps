@@ -25,12 +25,15 @@
     </div>
 }
 <table class="table">
-    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">        
+    <tr style="background-image: linear-gradient(to bottom right, #6839cb, #9a82cf); color: white; border-bottom-width: 5px;">
         <th>
             Acronimo
         </th>
         <th>
             Tipo Gasto
+        </th>
+        <th>
+            Cuenta
         </th>
         <th></th>
     </tr>
@@ -44,9 +47,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
+            <td>
+                @{ if (@item.Plan_Cuentas != null)
+                    { <p>@item.Plan_Cuentas.Numero - @item.Plan_Cuentas.Nombre</p>}
+                }
+
+            </td>
             <td style="width:150px">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                <a class="btn-grid" href="@Url.Action("Edit","TipoGastoes", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" /></span></a>                
+                <a class="btn-grid" href="@Url.Action("Delete","TipoGastoes", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
             </td>
         </tr>
     }

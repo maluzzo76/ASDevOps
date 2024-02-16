@@ -1,5 +1,3 @@
-D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.csproj.AssemblyReference.cache
-D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.csproj.CoreCompileInputs.cache
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\AS_CRM.dll.config
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\AS_CRM.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\AS_CRM.pdb
@@ -53,6 +51,7 @@ D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\roslyn\vbc.rsp
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\roslyn\VBCSCompiler.exe
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\roslyn\VBCSCompiler.exe.config
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\Antlr3.Runtime.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\As_PDF.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\EntityFramework.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\EntityFramework.SqlServer.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\Microsoft.AspNet.Identity.Core.dll
@@ -107,6 +106,8 @@ D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\System.Web.WebPages.Depl
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\System.Web.WebPages.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\System.Web.WebPages.Razor.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\WebGrease.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\itextsharp.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\As_PDF.pdb
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\Microsoft.Azure.DevOps.Comments.WebApi.xml
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\Microsoft.Azure.Pipelines.WebApi.xml
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\Microsoft.IdentityModel.JsonWebTokens.xml
@@ -231,6 +232,8 @@ D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\es\System.Web.WebPages.R
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.csproj.AssemblyReference.cache
+D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.csproj.CoreCompileInputs.cache
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.csproj.CopyComplete
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.dll
 D:\Fuentes\Alusoft\DevOps\ASDevOps\AS_DevOps\AS_CRM\obj\Debug\AS_CRM.pdb

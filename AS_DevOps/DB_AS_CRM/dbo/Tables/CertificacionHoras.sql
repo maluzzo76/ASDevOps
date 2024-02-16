@@ -7,6 +7,8 @@
 	HorasACertificar decimal(18,4),
 	HorasCertificadas decimal(18,4),
 	Saldo decimal(18,4),
+	DocumentoNombre varchar(500),
+	ValorHora decimal(18,2),
 	foreign key (ClienteId) references dbo.Clientes(Id),
 	foreign key (ComprobanteId) references dbo.Comprobantes(Id),
 )

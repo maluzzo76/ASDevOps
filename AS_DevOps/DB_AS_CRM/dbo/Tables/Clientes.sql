@@ -6,6 +6,11 @@
     [Email]          VARCHAR (500)   NULL,
     [ValorHora]      DECIMAL (18, 4) NULL,
     [FechaDeAcuerdo] DATETIME        NULL,
+    Cuit                varchar(100),
+    Direccion       varchar(max),
+    Localidad       varchar(500),
+    Provincia       varchar(200),
+    Pais            varchar(200),
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

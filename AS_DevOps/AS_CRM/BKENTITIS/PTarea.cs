@@ -12,6 +12,7 @@ namespace AS_CRM
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     public partial class PTarea
     {
@@ -19,6 +20,8 @@ namespace AS_CRM
         public PTarea()
         {
             this.PParteHoras = new HashSet<PParteHora>();
+            this.PFilesTareas = new HashSet<PFilesTarea>();
+            this.PTareasComentarios = new HashSet<PTareasComentario>();
         }
     
         public int Id { get; set; }
@@ -36,8 +39,24 @@ namespace AS_CRM
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaEntrega { get; set; }
+
         public Nullable<int> HorasEstimadas { get; set; }
+        public int HorasCertificables
+        {
+            get
+            {
+                int _horasTrabajadas = this.PParteHoras.Sum(s => s.Horas).Value;
+                int _horasEstimadas = (HorasEstimadas != null) ? HorasEstimadas.Value : 0;
+                int _horasCertificables = (_horasEstimadas > _horasTrabajadas) ? _horasEstimadas : _horasTrabajadas;
+                _horasCertificables = (Estado_Id == 5) ? _horasCertificables : 0;
+
+                return _horasCertificables;
+            }
+        }
+
         public string Detalle { get; set; }
+        public Nullable<int> Prioridad_Id { get; set; }
+        public Nullable<bool> Certificada { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual PEstado PEstado { get; set; }
@@ -45,5 +64,10 @@ namespace AS_CRM
         public virtual PSprint PSprint { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PParteHora> PParteHoras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PFilesTarea> PFilesTareas { get; set; }
+        public virtual PPrioridade PPrioridade { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PTareasComentario> PTareasComentarios { get; set; }
     }
 }

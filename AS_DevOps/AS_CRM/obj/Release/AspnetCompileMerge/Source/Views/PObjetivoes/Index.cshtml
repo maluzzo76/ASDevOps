@@ -6,20 +6,34 @@
 
 <h2>Objetivos Proyecto @ViewBag.Proyecto</h2>
 
+<div>
+    <div class="col-md-8">
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "PObjetivoes",new { idp = ViewBag.idProyecto })'">
+            Crear objetivo
+        </button>
+        @Html.ActionLink("Volver", "Index", "Proyectoes", new { idp = ViewBag.idProyecto }, new { @class = "btn btn-info" })
+    </div>
+    <div class="col-md-4" style="text-align:right;">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal"  >
+                    <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
+                    @Html.DropDownList("Estado_Id", null, htmlAttributes: new { @class = "form-control pull-right" })
+            </div>
+        }
+    </div>
+</div>
 
-<button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "PObjetivoes",new { idp = ViewBag.idProyecto })'">
-    Crear objetivo
-</button>
-@Html.ActionLink("Volver", "Index", "Proyectoes", new { idp = ViewBag.idProyecto }, new { @class = "btn btn-info" })
+
 
 <br />
 <br />
 
 <div class="container-fluid">
     <div style="width:100%">
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderBy(o=>o.Estado_Id))
         {
-            <div class="row" style="background-color: #f6f5f5; border-bottom: 1px solid #808080; border-top: 1px solid #808080; margin-bottom: 4px;">
+            <div class="row" style="background-color: #f6f5f5; border-bottom: 1px solid #eae5e5; border-top: 1px solid #808080; margin-bottom: 4px;">
                 <div class="col-md-2">
                     <button type="button" style=" text-align: left; background-color: transparent; border: none; margin-top: 4px;" data-toggle="collapse" data-target="#@item.Id">
                         <span><img src="~/Content/image/objetivo.jpg" class=" img-circle" style="width: 16px; height: 16px; margin-top: -3px; " /></span>
@@ -34,13 +48,13 @@
                 <div class="col-md-1">
                     <spam class="badge" style="margin-top: 6px; background-color: @item.PEstado.Color;"> @item.PEstado.Nombre </spam>
                 </div>
-                <div class="col-md-2">
-                    <p style="margin-top: 4px;">Entrega:<span class="badge" style="background-color: #f86b6b;  margin-top: -1px;">@item.FechaEntrega.Value.Date.ToShortDateString()</span></p>
+                <div class="col-md-1">
+                    <span class="badge" style="background-color: #f86b6b;  margin-top: -1px;">@item.FechaEntrega.Value.Date.ToShortDateString()</span>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <p style="margin-top: 4px;">
-                        Hs Estimadas: @item.PTareas.Sum(s => s.HorasEstimadas) - Hs Invertidas: @item.PTareas.Sum(s => s.PParteHoras.Sum(h => h.Horas))<span>
-                            <a data-toggle="modal" data-target="#O_@item.Id"><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
+                        Hs Estimadas: @item.PTareas.Sum(s => s.HorasEstimadas) - Hs Invertidas: @item.PTareas.Sum(s => s.PParteHoras.Sum(h => h.Horas)) - Certificables: @item.PTareas.Sum(s => s.HorasCertificables) <span>
+                            <a data-toggle="modal" data-target="#O_@item.Id"><img src="~/Content/image/iconos_Ojo.png" style="width:14px; height:14px;" /></a>
                         </span>
                     </p>
 
@@ -96,7 +110,7 @@
                 </div>
             </div>
 
-            <div id="@item.Id" class="collapse" style="margin-top:-4px;" >                         
+            <div id="@item.Id" class="collapse" style="margin-top:0px;">
                 <table class="table">
                     <tr style="background-color: #ffffff; border-bottom: 1px solid #f2f0f0; font-weight: bold; border-bottom: 2px solid black;">
                         <th>
@@ -115,6 +129,9 @@
                             <h6 style="text-align: center;">horas Estimadas</h6>
                         </th>
                         <th>
+                            <h6 style="text-align: center;">horas Certificables</h6>
+                        </th>
+                        <th>
                             <h6 style="text-align: center;">horas Reportadas</h6>
                         </th>
                         <th>
@@ -124,20 +141,23 @@
                             <h6 style="text-align: center;">Fecha Entrega</h6>
                         </th>
                         <th>
+                            <h6 style="text-align: center;">Fecha Finalizada</h6>
+                        </th>
+                        <th>
                             <h6 style="text-align: center;">Sprint</h6>
                         </th>
                     </tr>
 
-                    @foreach (var _t in item.PTareas.OrderBy(o => o.FechaEntrega).ToList().OrderBy(w => w.PPrioridade.Orden.Value))
+                    @foreach (var _t in item.PTareas.Where(w => ViewBag.filterEstado_Id == 0 || w.Estado_Id.Value == ViewBag.filterEstado_Id).ToList().OrderBy(o => o.FechaEntrega).ToList().OrderBy(w => w.PPrioridade.Orden.Value))
                     {
                         <tr style="background-color:white;">
                             <td style="width:350px;">
-                                <h6 style="margin-left:20px;"><span><img src="~/Content/image/tarea.png" class=" img-circle" style="width: 16px; height: 16px; margin-top: -4px; " /></span>  <a class="btn-grid" href="@Url.Action("Edit","PTareas", new { id = _t.Id }) "><span>@_t.Id - @_t.Nombre </span></a>   </h6>
+                                <h6 style="margin-left:20px;"><span><img src="~/Content/image/tarea.png" class=" img-circle" style="width: 16px; height: 16px; margin-top: -4px; " /></span>  <a class="btn-grid" href="@Url.Action("Edit", "PTareas", new { id = _t.Id }) "><span>@_t.Id - @_t.Nombre </span></a>   </h6>
                             </td>
                             <td>
                                 <spam class="badge" style="text-align: center; background-color: @_t.PEstado.Color; font-size: 8pt; margin-top: 8px; color:black;"> @_t.PEstado.Nombre </spam>
                             </td>
-                            <td >
+                            <td>
                                 <spam class="badge" style="text-align: center; background-color: @_t.PPrioridade.Color; font-size: 8pt; margin-top: 8px; color:black;"> @_t.PPrioridade.Nombre </spam>
                             </td>
                             <td>
@@ -147,10 +167,13 @@
                                 <h6 style="text-align: center;"> @_t.HorasEstimadas hs</h6>
                             </td>
                             <td>
+                                <h6 style="text-align: center;"> @_t.HorasCertificables hs</h6>
+                            </td>
+                            <td>
                                 <h6 style="text-align: center;">
                                     @_t.PParteHoras.Sum(s => s.Horas)
-                                    <a class="btn-grid" href="@Url.Action("Create","PParteHoras", new { idt = _t.Id }) "><img src="~/Content/image/iconos_Link 2.png" style="width:14px; height:14px;margin-left:3px;" /></a>
-                                    <a data-toggle="modal" data-target="#rp@_t.Id"><img src="~/Content/image/iconos_Buscar.png" style="width:14px; height:14px;" /></a>
+                                    <a class="btn-grid" href="@Url.Action("Create", "PParteHoras", new { idt = _t.Id }) "><img src="~/Content/image/iconos_Reloj.png" style="width:14px; height:14px;margin-left:3px;" /></a>
+                                    <a data-toggle="modal" data-target="#rp@_t.Id"><img src="~/Content/image/iconos_Ojo.png" style="width:14px; height:14px;" /></a>
                                     <div class="modal fade" id="rp@_t.Id">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -204,11 +227,18 @@
                                 <h6 style="text-align: center;"> @_t.FechaEntrega.Value.Date.ToShortDateString()</h6>
                             </td>
                             <td>
+                                @{
+                                    if (_t.FechaFinalizado != null)
+                                    { <h6 style="text-align: center;"> @_t.FechaFinalizado.Value.Date.ToShortDateString()</h6>}
+                                }
+
+                            </td>
+                            <td>
                                 @if (_t.PSprint != null)
                                 {@_t.PSprint.Nombre}
                             </td>
                         </tr>
-                        
+
                     }
                 </table>
             </div>

@@ -13,7 +13,7 @@
     Total Horas Vendidas
     <span class="badge badge-light">@Model.Resultado.Where(w => w.IsActiva == true).Sum(s => s.HorasVendidas)</span>
     Total Ingresos
-    <span class="badge badge-light">$ @Model.Resultado.Where(w=>w.IsActiva==true).Sum(s => s.ImporteTotal)</span>
+    <span class="badge badge-light">$ @Model.Resultado.Where(w => w.IsActiva == true).Sum(s => s.ImporteTotal)</span>
 
 </button>
 
@@ -28,6 +28,9 @@
         </div>
     </div>
 }
+
+
+
 <table class="table">
     <tr style="background-image: linear-gradient(to bottom right, #1ea9ef, #436dd0); color: white; border-bottom-width: 5px;">
         <th></th>

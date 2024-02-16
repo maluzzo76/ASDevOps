@@ -17,6 +17,9 @@ namespace AS_CRM.Controllers
         // GET: Plan_Cuentas
         public ActionResult Index(string SearchString,string SearchStringAccount, int pagina = 1)
         {
+            int _anio = DateTime.Now.Year;
+
+         
 
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");

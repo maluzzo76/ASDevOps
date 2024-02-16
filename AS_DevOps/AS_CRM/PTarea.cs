@@ -12,6 +12,7 @@ namespace AS_CRM
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     public partial class PTarea
     {
@@ -29,7 +30,6 @@ namespace AS_CRM
         public Nullable<int> Estado_Id { get; set; }
         public Nullable<int> Objetivo_Id { get; set; }
         public Nullable<int> Sprint_Id { get; set; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaIncio { get; set; }
@@ -41,8 +41,22 @@ namespace AS_CRM
         public Nullable<System.DateTime> FechaEntrega { get; set; }
 
         public Nullable<int> HorasEstimadas { get; set; }
+        public int HorasCertificables
+        {
+            get
+            {
+                int _horasTrabajadas = this.PParteHoras.Sum(s => s.Horas).Value;
+                int _horasEstimadas = (HorasEstimadas != null) ? HorasEstimadas.Value : 0;
+                int _horasCertificables = (_horasEstimadas > _horasTrabajadas) ? _horasEstimadas : _horasTrabajadas;
+                _horasCertificables = (Estado_Id == 5) ? _horasCertificables : 0;
+
+                return _horasCertificables;
+            }
+        }
+
         public string Detalle { get; set; }
         public Nullable<int> Prioridad_Id { get; set; }
+        public Nullable<bool> Certificada { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual PEstado PEstado { get; set; }

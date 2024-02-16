@@ -17,15 +17,13 @@
 
             @foreach (var _e in (ViewData["estados"] as IList<PEstado>))
             {
-                <div class="col-md-2" style="border:5px solid white; height:40px; align-items:center; background-color:@_e.Color; border-radius:8px;">
+                <div class="col-md-2" style=" height:40px; align-items:center; border-bottom:7px solid @_e.Color; border-radius:1px;">
                     <h4 style="text-align:center; height:10px;margin-top:6px;">@_e.Nombre</h4>
                 </div>
             }
             @foreach (var _e in (ViewData["estados"] as IList<PEstado>))
             {
-
-
-                <div class="col-md-2" style="border:5px solid white; height:70vh; align-items:center; background-color:#f2eeee; overflow-y:auto; padding-top:20px;">
+                <div class="col-md-2 " style="border-right:5px solid white; height:70vh; align-items:center; background-color:white; overflow-y:auto; padding-top:20px;">
                     @if (ViewBag.userfilter == true)
                     {
                         foreach (var _t in Model.PTareas.Where(w => w.Estado_Id == _e.Id).OrderBy(o => o.FechaEntrega).ToList().OrderBy(p => p.PPrioridade.Orden))
@@ -47,7 +45,7 @@
                                 </div>
                                 <div class="bold" style="padding-left:5px; border-bottom:1px solid #c7c4c4;height:22px; background-color:#e8e5e5; margin-bottom:0px;">
                                     <span><a class="btn-grid" href="@Url.Action("EditModal", "PTareas", new { id = _t.Id }) "><img src="~/Content/image/iconos_Buscar.png" style="width:16px; height:16px;" /></a></span>
-                                    <span><a class="btn-grid" href="@Url.Action("CreateParteHoras", "PPartehoras", new { idt = _t.Id }) "><img src="~/Content/image/iconos_Link 2.png" style="width:16px; height:16px;" /></a></span>
+                                    <span><a class="btn-grid" href="@Url.Action("CreateParteHoras", "PPartehoras", new { idt = _t.Id }) "><img src="~/Content/image/iconos_Reloj.png" style="width:16px; height:16px;" /></a></span>
                                 </div>
                             </div>
                             <br />

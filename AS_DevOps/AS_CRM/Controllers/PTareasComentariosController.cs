@@ -25,23 +25,7 @@ namespace AS_CRM.Controllers
             return View(pTareasComentarios.ToList());
         }
 
-        // GET: PTareasComentarios/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (!validarLoggin())
-                return RedirectToAction("Index", "Home");
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PTareasComentario pTareasComentario = db.PTareasComentarios.Find(id);
-            if (pTareasComentario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pTareasComentario);
-        }
+  
 
         // GET: PTareasComentarios/Create
         public ActionResult Create(int? idt, string viewreturn)
@@ -91,52 +75,15 @@ namespace AS_CRM.Controllers
             return View(pTareasComentario);
         }
 
-        // GET: PTareasComentarios/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (!validarLoggin())
-                return RedirectToAction("Index", "Home");
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PTareasComentario pTareasComentario = db.PTareasComentarios.Find(id);
-            if (pTareasComentario == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "Email", pTareasComentario.Usuario_Id);
-            ViewBag.Tarea_Id = new SelectList(db.PTareas, "Id", "Nombre", pTareasComentario.Tarea_Id);
-            return View(pTareasComentario);
-        }
-
-        // POST: PTareasComentarios/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Tarea_Id,Usuario_Id,Descripcion,Fecha")] PTareasComentario pTareasComentario)
-        {
-            if (!validarLoggin())
-                return RedirectToAction("Index", "Home");
-
-            if (ModelState.IsValid)
-            {
-                db.Entry(pTareasComentario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Usuario_Id = new SelectList(db.AspNetUsers, "Id", "Email", pTareasComentario.Usuario_Id);
-            ViewBag.Tarea_Id = new SelectList(db.PTareas, "Id", "Nombre", pTareasComentario.Tarea_Id);
-            return View(pTareasComentario);
-        }
+      
 
         // GET: PTareasComentarios/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string viewreturn)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
+
+            ViewBag.viewreturn = viewreturn;
 
             if (id == null)
             {
@@ -153,14 +100,27 @@ namespace AS_CRM.Controllers
         // POST: PTareasComentarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string viewreturn)
         {
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
+            ViewBag.viewreturn = viewreturn;
             PTareasComentario pTareasComentario = db.PTareasComentarios.Find(id);
+            int _idt = pTareasComentario.Tarea_Id.Value;
             db.PTareasComentarios.Remove(pTareasComentario);
             db.SaveChanges();
+
+            switch (viewreturn)
+            {
+                case "EditModal":
+                    return RedirectToAction("EditModal", "PTareas", new { id = _idt });
+
+                case "PTareas":
+                    return RedirectToAction("Edit", "PTareas", new { id = _idt });
+
+            }
+
             return RedirectToAction("Index");
         }
 

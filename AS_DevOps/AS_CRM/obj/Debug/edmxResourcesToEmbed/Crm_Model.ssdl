@@ -48,6 +48,8 @@
     <Property Name="HorasACertificar" Type="decimal" Precision="18" Scale="4" />
     <Property Name="HorasCertificadas" Type="decimal" Precision="18" Scale="4" />
     <Property Name="Saldo" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="DocumentoNombre" Type="varchar" MaxLength="500" />
+    <Property Name="ValorHora" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="Clientes">
     <Key>
@@ -60,6 +62,11 @@
     <Property Name="Email" Type="varchar" MaxLength="500" />
     <Property Name="ValorHora" Type="decimal" Precision="18" Scale="4" />
     <Property Name="FechaDeAcuerdo" Type="datetime" />
+    <Property Name="Cuit" Type="varchar" MaxLength="100" />
+    <Property Name="Direccion" Type="varchar(max)" />
+    <Property Name="Localidad" Type="varchar" MaxLength="500" />
+    <Property Name="Provincia" Type="varchar" MaxLength="200" />
+    <Property Name="Pais" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Comprobantes">
     <Key>
@@ -75,6 +82,7 @@
     <Property Name="Iva" Type="decimal" Precision="18" Scale="2" />
     <Property Name="IIBB" Type="decimal" Precision="18" Scale="2" />
     <Property Name="TotalBruto" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FileName" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="GastosFijos">
     <Key>
@@ -98,6 +106,7 @@
     <Property Name="Iva" Type="decimal" Precision="18" Scale="4" />
     <Property Name="IIBB" Type="decimal" Precision="18" Scale="4" />
     <Property Name="Neto" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="Cuenta_Id" Type="int" />
   </EntityType>
   <EntityType Name="ItemMenuSecurity">
     <Key>
@@ -216,6 +225,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="logo" Type="varchar" MaxLength="100" />
+    <Property Name="Cliente_Id" Type="int" />
   </EntityType>
   <EntityType Name="PSprints">
     <Key>
@@ -244,6 +254,7 @@
     <Property Name="HorasEstimadas" Type="int" />
     <Property Name="Detalle" Type="varchar(max)" />
     <Property Name="Prioridad_Id" Type="int" />
+    <Property Name="Certificada" Type="bit" />
   </EntityType>
   <EntityType Name="PTareasComentarios">
     <Key>
@@ -262,6 +273,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Acronimo" Type="varchar" MaxLength="10" />
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Cuenta_Id" Type="int" />
   </EntityType>
   <EntityType Name="TiposComprobante">
     <Key>
@@ -340,6 +352,18 @@
       </Principal>
       <Dependent Role="GastosFijos">
         <PropertyRef Name="TipoGastoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GastosVar__Cuent__1A9EF37A">
+    <End Role="Plan_Cuentas" Type="Self.Plan_Cuentas" Multiplicity="0..1" />
+    <End Role="GastosVariables" Type="Self.GastosVariables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan_Cuentas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GastosVariables">
+        <PropertyRef Name="Cuenta_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -451,6 +475,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Proyectos__Clien__1C873BEC">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PSprints__Estado__6BE40491">
     <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
     <End Role="PSprints" Type="Self.PSprints" Multiplicity="*" />
@@ -559,6 +595,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__TipoGasto__Cuent__19AACF41">
+    <End Role="Plan_Cuentas" Type="Self.Plan_Cuentas" Multiplicity="0..1" />
+    <End Role="TipoGasto" Type="Self.TipoGasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan_Cuentas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TipoGasto">
+        <PropertyRef Name="Cuenta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AS_CRMModelStoreContainer">
     <EntitySet Name="AcuardosComerciales" EntityType="Self.AcuardosComerciales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Asientos" EntityType="Self.Asientos" Schema="dbo" store:Type="Tables" />
@@ -608,6 +656,10 @@
       <End Role="TipoGasto" EntitySet="TipoGasto" />
       <End Role="GastosFijos" EntitySet="GastosFijos" />
     </AssociationSet>
+    <AssociationSet Name="FK__GastosVar__Cuent__1A9EF37A" Association="Self.FK__GastosVar__Cuent__1A9EF37A">
+      <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+      <End Role="GastosVariables" EntitySet="GastosVariables" />
+    </AssociationSet>
     <AssociationSet Name="FK__GastosVar__TipoG__6EF57B66" Association="Self.FK__GastosVar__TipoG__6EF57B66">
       <End Role="TipoGasto" EntitySet="TipoGasto" />
       <End Role="GastosVariables" EntitySet="GastosVariables" />
@@ -644,6 +696,10 @@
       <End Role="PTareas" EntitySet="PTareas" />
       <End Role="PParteHoras" EntitySet="PParteHoras" />
     </AssociationSet>
+    <AssociationSet Name="FK__Proyectos__Clien__1C873BEC" Association="Self.FK__Proyectos__Clien__1C873BEC">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
     <AssociationSet Name="FK__PSprints__Estado__6BE40491" Association="Self.FK__PSprints__Estado__6BE40491">
       <End Role="PEstados" EntitySet="PEstados" />
       <End Role="PSprints" EntitySet="PSprints" />
@@ -679,6 +735,10 @@
     <AssociationSet Name="FK__PTareasCo__Usuar__0A688BB1" Association="Self.FK__PTareasCo__Usuar__0A688BB1">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="PTareasComentarios" EntitySet="PTareasComentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TipoGasto__Cuent__19AACF41" Association="Self.FK__TipoGasto__Cuent__19AACF41">
+      <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+      <End Role="TipoGasto" EntitySet="TipoGasto" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

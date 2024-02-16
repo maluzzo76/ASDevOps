@@ -30,38 +30,41 @@ namespace AS_CRM.Controllers
             if (!validarLoggin())
                 return RedirectToAction("Index", "Home");
 
+
+
             if (ModelState.IsValid)
             {
-                    if (file != null)
-                    {                        
-                        string _server = Request.Path;
-                        string path = Path.Combine(Server.MapPath("~/content/files/task"), Path.GetFileName(file.FileName));
-                        file.SaveAs(path);
-                        FileInfo _fileInfo = new FileInfo(path);
-                    
-                        PFilesTarea pFilesTarea = new PFilesTarea();
+                if (file != null)
+                {
+                    string _fileId = string.Format("{0}.{1}", Guid.NewGuid().ToString(), file.FileName.Split(char.Parse("."))[1]);
+
+                    string _server = Request.Path;
+                    string path = Path.Combine(Server.MapPath("~/files"), _fileId);
+                    file.SaveAs(path);
+
+                    PFilesTarea pFilesTarea = new PFilesTarea();
                     pFilesTarea.Tarea_Id = idt;
                     pFilesTarea.Nombre = file.FileName;
-                    pFilesTarea.LinkName = file.FileName;
+                    pFilesTarea.LinkName = _fileId;
 
                     db.PFilesTareas.Add(pFilesTarea);
                     db.SaveChanges();
-                }                    
-                    
-                
+                }
+
+
             }
 
             switch (viewreturn)
             {
                 case "EditModal":
-                    return RedirectToAction("EditModal", "PTareas", new { id = idt });                    
+                    return RedirectToAction("EditModal", "PTareas", new { id = idt });
 
                 case "PTareas":
                     return RedirectToAction("Edit", "PTareas", new { id = idt });
-                    
+
             }
 
-            return RedirectToAction("Index", "PFilesTareas", new { idt = idt, viewreturn= viewreturn });
+            return RedirectToAction("Index", "PFilesTareas", new { idt = idt, viewreturn = viewreturn });
         }
     }
 }

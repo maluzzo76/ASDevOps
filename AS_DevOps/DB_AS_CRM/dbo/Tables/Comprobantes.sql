@@ -9,6 +9,7 @@
     [Iva]               DECIMAL (18, 2) NULL,
     [IIBB]              DECIMAL (18, 2) NULL,
     [TotalBruto]        DECIMAL (18, 2) NULL,
+    [FileName]          varchar(max) null,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     FOREIGN KEY ([ClienteId]) REFERENCES [dbo].[Clientes] ([Id]),
     FOREIGN KEY ([TipoComprobanteId]) REFERENCES [dbo].[TiposComprobante] ([Id])

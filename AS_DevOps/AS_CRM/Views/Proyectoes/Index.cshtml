@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Proyectos</h2>
+
+<h2>Proyectos <span class="badge badge-warning" style=" background-color:#ef3a3a; font-size:16pt">Horas a Certificar @Model.Sum(wp => wp.PObjetivos.Sum(s => s.PTareas.Where(w => w.Estado_Id == 5 && w.FechaFinalizado != null && w.Certificada==false).Sum(st => st.HorasCertificables)))</span>    </h2>
 
 
 <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "Proyectoes")'">
     Crear Proyecto
 </button>
+
+<hr />
 
 
 <div class="container-fluid" style="margin-top:10px;">
@@ -17,20 +20,34 @@
         @foreach (var item in Model)
         {
             <div class="col-md-3 ">
-                <div class="card" style="border: 1px solid #dcdbdb; background-color: #f2f2f2; border-radius: 10px; box-shadow: 2px 5px #c7c4c4; height:200px;padding-top:20px; ">
+                <div class="cardPrincipal ">
                     <a class="btn-grid" href="@Url.Action("index", "PObjetivoes", new {idp=item.Id}) ">
                         <span>
                             <img src="~/Content/image/@item.logo" class="card-img-top img-circle" style="width: 50px; height: 50px; margin-left: 30px;" />
+                          
                         </span>
                     </a>
 
                     <div class="card-body" style="margin-left:30px;">
-                        <h4 class="card-title">@item.Nombre</h4>
-                        <p><span>Objetivos: @item.PObjetivos.Count - Tareas: @((ViewData["Task"] as IList<PTarea>).Where(w=> w.PObjetivo.Proyecto_Id==item.Id ).Count()) </span></p>
-                        <br />
+                        <h4 class="card-title">@item.Nombre </h4>
+                        <p>
+                            <span>
+                                Objetivos: @item.PObjetivos.Count - Tareas: @((ViewData["Task"] as IList<PTarea>).Where(w=> w.PObjetivo.Proyecto_Id==item.Id ).Count())
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                - Hs a Certificar: @((ViewData["Task"] as IList<PTarea>).Where(w=> w.PObjetivo.Proyecto_Id==item.Id && w.FechaFinalizado!=null && w.Estado_Id==5 && w.Certificada==false  ).Sum(s=>s.HorasCertificables))
+                                @if (item.Cliente_Id != null)
+                                {
+                                    <a class="btn-grid" href="@Url.Action("Details", "Proyectoes", new {id=item.Id}) "><span><img src="~/Content/image/iconos_ojo.png" /></span></a>
+                                }
+                            </span>
+                        </p>
                         <a class="btn-grid" href="@Url.Action("index", "PObjetivoes", new {idp=item.Id}) "><span><img src="~/Content/image/iconos_ojo.png" /></span></a>
                         <a class="btn-grid" href="@Url.Action("Edit","Proyectoes", new { id = item.Id }) "><span><img src="~/Content/image/iconos_Lapiz.png" /></span></a>
                         <a class="btn-grid" href="@Url.Action("Delete","Proyectoes", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
+                        <a class="btn-grid" href="@Url.Action("Tareas","pObjetivoes", new { idp = item.Id }) "><img src="~/Content/image/iconos_Tareas.png" /></a>
                     </div>
                 </div>
                 <br />

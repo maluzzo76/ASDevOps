@@ -108,6 +108,15 @@
                         @Html.ValidationMessageFor(model => model.FechaFinalizado, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Certificada</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Certificada , new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Certificada, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="col-md-4">

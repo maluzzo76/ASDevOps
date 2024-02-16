@@ -53,6 +53,8 @@
           <Property Name="HorasACertificar" Type="decimal" Precision="18" Scale="4" />
           <Property Name="HorasCertificadas" Type="decimal" Precision="18" Scale="4" />
           <Property Name="Saldo" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="DocumentoNombre" Type="varchar" MaxLength="500" />
+          <Property Name="ValorHora" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Clientes">
           <Key>
@@ -65,6 +67,11 @@
           <Property Name="Email" Type="varchar" MaxLength="500" />
           <Property Name="ValorHora" Type="decimal" Precision="18" Scale="4" />
           <Property Name="FechaDeAcuerdo" Type="datetime" />
+          <Property Name="Cuit" Type="varchar" MaxLength="100" />
+          <Property Name="Direccion" Type="varchar(max)" />
+          <Property Name="Localidad" Type="varchar" MaxLength="500" />
+          <Property Name="Provincia" Type="varchar" MaxLength="200" />
+          <Property Name="Pais" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Comprobantes">
           <Key>
@@ -80,6 +87,7 @@
           <Property Name="Iva" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IIBB" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalBruto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FileName" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="GastosFijos">
           <Key>
@@ -103,6 +111,7 @@
           <Property Name="Iva" Type="decimal" Precision="18" Scale="4" />
           <Property Name="IIBB" Type="decimal" Precision="18" Scale="4" />
           <Property Name="Neto" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Cuenta_Id" Type="int" />
         </EntityType>
         <EntityType Name="ItemMenuSecurity">
           <Key>
@@ -221,6 +230,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="logo" Type="varchar" MaxLength="100" />
+          <Property Name="Cliente_Id" Type="int" />
         </EntityType>
         <EntityType Name="PSprints">
           <Key>
@@ -249,6 +259,7 @@
           <Property Name="HorasEstimadas" Type="int" />
           <Property Name="Detalle" Type="varchar(max)" />
           <Property Name="Prioridad_Id" Type="int" />
+          <Property Name="Certificada" Type="bit" />
         </EntityType>
         <EntityType Name="PTareasComentarios">
           <Key>
@@ -267,6 +278,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Acronimo" Type="varchar" MaxLength="10" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Cuenta_Id" Type="int" />
         </EntityType>
         <EntityType Name="TiposComprobante">
           <Key>
@@ -345,6 +357,18 @@
             </Principal>
             <Dependent Role="GastosFijos">
               <PropertyRef Name="TipoGastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GastosVar__Cuent__1A9EF37A">
+          <End Role="Plan_Cuentas" Type="Self.Plan_Cuentas" Multiplicity="0..1" />
+          <End Role="GastosVariables" Type="Self.GastosVariables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GastosVariables">
+              <PropertyRef Name="Cuenta_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -456,6 +480,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Proyectos__Clien__1C873BEC">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="Cliente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PSprints__Estado__6BE40491">
           <End Role="PEstados" Type="Self.PEstados" Multiplicity="0..1" />
           <End Role="PSprints" Type="Self.PSprints" Multiplicity="*" />
@@ -564,6 +600,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TipoGasto__Cuent__19AACF41">
+          <End Role="Plan_Cuentas" Type="Self.Plan_Cuentas" Multiplicity="0..1" />
+          <End Role="TipoGasto" Type="Self.TipoGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TipoGasto">
+              <PropertyRef Name="Cuenta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AS_CRMModelStoreContainer">
           <EntitySet Name="AcuardosComerciales" EntityType="Self.AcuardosComerciales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asientos" EntityType="Self.Asientos" Schema="dbo" store:Type="Tables" />
@@ -613,6 +661,10 @@
             <End Role="TipoGasto" EntitySet="TipoGasto" />
             <End Role="GastosFijos" EntitySet="GastosFijos" />
           </AssociationSet>
+          <AssociationSet Name="FK__GastosVar__Cuent__1A9EF37A" Association="Self.FK__GastosVar__Cuent__1A9EF37A">
+            <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+            <End Role="GastosVariables" EntitySet="GastosVariables" />
+          </AssociationSet>
           <AssociationSet Name="FK__GastosVar__TipoG__6EF57B66" Association="Self.FK__GastosVar__TipoG__6EF57B66">
             <End Role="TipoGasto" EntitySet="TipoGasto" />
             <End Role="GastosVariables" EntitySet="GastosVariables" />
@@ -649,6 +701,10 @@
             <End Role="PTareas" EntitySet="PTareas" />
             <End Role="PParteHoras" EntitySet="PParteHoras" />
           </AssociationSet>
+          <AssociationSet Name="FK__Proyectos__Clien__1C873BEC" Association="Self.FK__Proyectos__Clien__1C873BEC">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
           <AssociationSet Name="FK__PSprints__Estado__6BE40491" Association="Self.FK__PSprints__Estado__6BE40491">
             <End Role="PEstados" EntitySet="PEstados" />
             <End Role="PSprints" EntitySet="PSprints" />
@@ -684,6 +740,10 @@
           <AssociationSet Name="FK__PTareasCo__Usuar__0A688BB1" Association="Self.FK__PTareasCo__Usuar__0A688BB1">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="PTareasComentarios" EntitySet="PTareasComentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TipoGasto__Cuent__19AACF41" Association="Self.FK__TipoGasto__Cuent__19AACF41">
+            <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+            <End Role="TipoGasto" EntitySet="TipoGasto" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -830,6 +890,18 @@
             <End Role="PTarea" EntitySet="PTareas" />
             <End Role="PTareasComentario" EntitySet="PTareasComentarios" />
           </AssociationSet>
+          <AssociationSet Name="FK__GastosVar__Cuent__1A9EF37A" Association="AS_CRMModel.FK__GastosVar__Cuent__1A9EF37A">
+            <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+            <End Role="GastosVariable" EntitySet="GastosVariables" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TipoGasto__Cuent__19AACF41" Association="AS_CRMModel.FK__TipoGasto__Cuent__19AACF41">
+            <End Role="Plan_Cuentas" EntitySet="Plan_Cuentas" />
+            <End Role="TipoGasto" EntitySet="TipoGastoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Proyectos__Clien__1C873BEC" Association="AS_CRMModel.FK__Proyectos__Clien__1C873BEC">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Proyecto" EntitySet="Proyectos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -845,6 +917,12 @@
           <Property Name="FechaDeAcuerdo" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AcuardosComerciales" Relationship="AS_CRMModel.FK__AcuardosC__Clien__02FC7413" FromRole="Cliente" ToRole="AcuardosComerciale" />
           <NavigationProperty Name="CertificacionHoras" Relationship="AS_CRMModel.FK__Certifica__Clien__160F4887" FromRole="Cliente" ToRole="CertificacionHora" />
+          <Property Name="Cuit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Localidad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proyectos" Relationship="AS_CRMModel.FK__Proyectos__Clien__1C873BEC" FromRole="Cliente" ToRole="Proyecto" />
         </EntityType>
         <EntityType Name="Comprobante">
           <Key>
@@ -863,6 +941,7 @@
           <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__Comproban__Clien__693CA210" FromRole="Comprobante" ToRole="Cliente" />
           <NavigationProperty Name="TiposComprobante" Relationship="AS_CRMModel.FK__Comproban__TipoC__68487DD7" FromRole="Comprobante" ToRole="TiposComprobante" />
           <NavigationProperty Name="CertificacionHoras" Relationship="AS_CRMModel.FK__Certifica__Compr__17036CC0" FromRole="Comprobante" ToRole="CertificacionHora" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GastosFijo">
           <Key>
@@ -888,6 +967,8 @@
           <Property Name="Iva" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="IIBB" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="Neto" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Cuenta_Id" Type="Int32" />
+          <NavigationProperty Name="Plan_Cuentas" Relationship="AS_CRMModel.FK__GastosVar__Cuent__1A9EF37A" FromRole="GastosVariable" ToRole="Plan_Cuentas" />
         </EntityType>
         <EntityType Name="TipoGasto">
           <Key>
@@ -898,6 +979,8 @@
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GastosFijos" Relationship="AS_CRMModel.FK__GastosFij__TipoG__6C190EBB" FromRole="TipoGasto" ToRole="GastosFijo" />
           <NavigationProperty Name="GastosVariables" Relationship="AS_CRMModel.FK__GastosVar__TipoG__6EF57B66" FromRole="TipoGasto" ToRole="GastosVariable" />
+          <Property Name="Cuenta_Id" Type="Int32" />
+          <NavigationProperty Name="Plan_Cuentas" Relationship="AS_CRMModel.FK__TipoGasto__Cuent__19AACF41" FromRole="TipoGasto" ToRole="Plan_Cuentas" />
         </EntityType>
         <EntityType Name="TiposComprobante">
           <Key>
@@ -994,6 +1077,8 @@
           <Property Name="Saldo" Type="Decimal" Precision="18" Scale="4" />
           <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__Certifica__Clien__160F4887" FromRole="CertificacionHora" ToRole="Cliente" />
           <NavigationProperty Name="Comprobante" Relationship="AS_CRMModel.FK__Certifica__Compr__17036CC0" FromRole="CertificacionHora" ToRole="Comprobante" />
+          <Property Name="DocumentoNombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ValorHora" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK__Certifica__Clien__160F4887">
           <End Type="AS_CRMModel.Cliente" Role="Cliente" Multiplicity="0..1" />
@@ -1030,6 +1115,8 @@
           <NavigationProperty Name="Lineas_Asiento" Relationship="AS_CRMModel.FK__Lineas_As__Cuent__2EDAF651" FromRole="Plan_Cuentas" ToRole="Lineas_Asiento" />
           <Property Name="IsImputable" Type="Boolean" />
           <Property Name="IsResultado" Type="Boolean" />
+          <NavigationProperty Name="GastosVariables" Relationship="AS_CRMModel.FK__GastosVar__Cuent__1A9EF37A" FromRole="Plan_Cuentas" ToRole="GastosVariable" />
+          <NavigationProperty Name="TipoGastoes" Relationship="AS_CRMModel.FK__TipoGasto__Cuent__19AACF41" FromRole="Plan_Cuentas" ToRole="TipoGasto" />
         </EntityType>
         <EntityType Name="Lineas_Asiento">
           <Key>
@@ -1158,6 +1245,8 @@
           <Property Name="logo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PSprints" Relationship="AS_CRMModel.FK__PSprints__Proyec__65370702" FromRole="Proyecto" ToRole="PSprint" />
           <NavigationProperty Name="PObjetivos" Relationship="AS_CRMModel.FK__PObjetivo__Proye__6AEFE058" FromRole="Proyecto" ToRole="PObjetivo" />
+          <Property Name="Cliente_Id" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="AS_CRMModel.FK__Proyectos__Clien__1C873BEC" FromRole="Proyecto" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="PSprint">
           <Key>
@@ -1197,6 +1286,7 @@
           <NavigationProperty Name="PFilesTareas" Relationship="AS_CRMModel.FK__PFilesTar__Tarea__7C1A6C5A" FromRole="PTarea" ToRole="PFilesTarea" />
           <NavigationProperty Name="PPrioridade" Relationship="AS_CRMModel.FK__PTareas__Priorid__7EF6D905" FromRole="PTarea" ToRole="PPrioridade" />
           <NavigationProperty Name="PTareasComentarios" Relationship="AS_CRMModel.FK__PTareasCo__Tarea__7D0E9093" FromRole="PTarea" ToRole="PTareasComentario" />
+          <Property Name="Certificada" Type="Boolean" />
         </EntityType>
         <Association Name="FK__PTareas__Usuario__662B2B3B">
           <End Type="AS_CRMModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1419,6 +1509,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__GastosVar__Cuent__1A9EF37A">
+          <End Type="AS_CRMModel.Plan_Cuentas" Role="Plan_Cuentas" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.GastosVariable" Role="GastosVariable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GastosVariable">
+              <PropertyRef Name="Cuenta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TipoGasto__Cuent__19AACF41">
+          <End Type="AS_CRMModel.Plan_Cuentas" Role="Plan_Cuentas" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.TipoGasto" Role="TipoGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TipoGasto">
+              <PropertyRef Name="Cuenta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Proyectos__Clien__1C873BEC">
+          <End Type="AS_CRMModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <End Type="AS_CRMModel.Proyecto" Role="Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="Cliente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1448,6 +1574,11 @@
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="AS_CRMModel.Cliente">
               <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Cuit" ColumnName="Cuit" />
                 <ScalarProperty Name="FechaDeAcuerdo" ColumnName="FechaDeAcuerdo" />
                 <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1461,6 +1592,7 @@
           <EntitySetMapping Name="Comprobantes">
             <EntityTypeMapping TypeName="AS_CRMModel.Comprobante">
               <MappingFragment StoreEntitySet="Comprobantes">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="TotalBruto" ColumnName="TotalBruto" />
                 <ScalarProperty Name="IIBB" ColumnName="IIBB" />
                 <ScalarProperty Name="Iva" ColumnName="Iva" />
@@ -1488,6 +1620,7 @@
           <EntitySetMapping Name="GastosVariables">
             <EntityTypeMapping TypeName="AS_CRMModel.GastosVariable">
               <MappingFragment StoreEntitySet="GastosVariables">
+                <ScalarProperty Name="Cuenta_Id" ColumnName="Cuenta_Id" />
                 <ScalarProperty Name="Neto" ColumnName="Neto" />
                 <ScalarProperty Name="IIBB" ColumnName="IIBB" />
                 <ScalarProperty Name="Iva" ColumnName="Iva" />
@@ -1502,6 +1635,7 @@
           <EntitySetMapping Name="TipoGastoes">
             <EntityTypeMapping TypeName="AS_CRMModel.TipoGasto">
               <MappingFragment StoreEntitySet="TipoGasto">
+                <ScalarProperty Name="Cuenta_Id" ColumnName="Cuenta_Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Acronimo" ColumnName="Acronimo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1533,6 +1667,8 @@
           <EntitySetMapping Name="CertificacionHoras">
             <EntityTypeMapping TypeName="AS_CRMModel.CertificacionHora">
               <MappingFragment StoreEntitySet="CertificacionHoras">
+                <ScalarProperty Name="ValorHora" ColumnName="ValorHora" />
+                <ScalarProperty Name="DocumentoNombre" ColumnName="DocumentoNombre" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
                 <ScalarProperty Name="HorasCertificadas" ColumnName="HorasCertificadas" />
                 <ScalarProperty Name="HorasACertificar" ColumnName="HorasACertificar" />
@@ -1632,6 +1768,7 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="AS_CRMModel.Proyecto">
               <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="Cliente_Id" ColumnName="Cliente_Id" />
                 <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1653,6 +1790,7 @@
           <EntitySetMapping Name="PTareas">
             <EntityTypeMapping TypeName="AS_CRMModel.PTarea">
               <MappingFragment StoreEntitySet="PTareas">
+                <ScalarProperty Name="Certificada" ColumnName="Certificada" />
                 <ScalarProperty Name="Prioridad_Id" ColumnName="Prioridad_Id" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
                 <ScalarProperty Name="HorasEstimadas" ColumnName="HorasEstimadas" />

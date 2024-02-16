@@ -9,17 +9,17 @@
 @if (Request.IsAuthenticated)
 {
     <div class="container p-3 my-3  text-dark">
-      <div>
-          <div class="row" style="margin-left:15px;">
-              <h1>Bienvenido</h1>
-              <h2>@User.Identity.Name</h2>
-          </div>
-      </div>
-        <img src="~/Content/image/banneras.png" style="zoom:73.5%; " />
+        <div>
+            <div class="row" style="margin-left:15px;">
+                <h1>Bienvenido</h1>
+                <h2>@User.Identity.Name</h2>
+            </div>
+        </div>
+        <div style="margin-left:2px;" >
+            <img src="~/Content/image/banneras.png" style="zoom:75%; " />
+        </div>
     </div>
-    <div class="container">
-        
-    </div>
+   
 
 }
 else
@@ -85,7 +85,7 @@ else
                 <div class="col-md-4"></div>
             </div>
         </div>
-        
+
     </div>
 }
 

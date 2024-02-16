@@ -22,7 +22,7 @@
     <div class="form-horizontal ">
         <div class="form-group ">
             <input id="btnfiltrar" type="submit" value="Buscar" class="btn btn-info pull-right" />
-            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off", PlaceHolder = "Codigo Cuenta" })
+            @Html.TextBox("SearchString", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off", PlaceHolder = "Codigo Cuenta" })        
             @Html.TextBox("SearchStringAccount", null, new { @class = "form-control pull-right col-md-10", autocomplete = "off", PlaceHolder = "Nombre Cuenta" })
         </div>
     </div>
@@ -55,16 +55,16 @@
                         <a class="btn-grid" href="@Url.Action("Delete","Plan_Cuentas", new { id = item.Id }) "><img src="~/Content/image/iconos_Basura.png" /></a>
                     </td>
 
-                    if ((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s => s.Debe - s.Haber) > 0)
+                    if ((ViewData["LA"] as IList<Lineas_Asiento>).Where(w => w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true ).Sum(s => s.Debe - s.Haber) > 0)
                     {
                         <td style="text-align: right; font-weight: bold;">
-                            <span class="badge bg-warning" style="background-color:#9a82cf"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+                            <span class="badge bg-warning" style="background-color:#9a82cf"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true ).Sum(s=>s.Debe - s.Haber))</span>
                         </td>
                     }
                     else
                     {
                         <td style="text-align: right; font-weight: bold;">
-                            <span class="badge bg-warning" style="background-color:#c73d3d"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true).Sum(s=>s.Debe - s.Haber))</span>
+                            <span class="badge bg-warning" style="background-color:#c73d3d"> $ @((ViewData["LA"] as IList<Lineas_Asiento>).Where(w=>w.Plan_Cuentas.Codigo.StartsWith(item.Codigo) && w.Plan_Cuentas.IsResultado == true ).Sum(s=>s.Debe - s.Haber))</span>
                         </td>
                     }
 

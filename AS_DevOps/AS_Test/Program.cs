@@ -6,7 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-//https://www.youtube.com/watch?v=XvtQsJxhYts hosting
+using As_PDF;
+///https://www.youtube.com/watch?v=XvtQsJxhYts hosting
 
 namespace AS_Test
 {
@@ -14,13 +15,17 @@ namespace AS_Test
     {
         static void Main(string[] args)
         {
+            As_PDF.Pdf.CrearCertificacionHoras();
+            /*
            DataTable _dt = getCuits().Tables[0];
 
             foreach (DataRow _c in _dt.Rows)
             {
                 printArba(_c["CUIT"].ToString());
             }
+            */
             Console.WriteLine("FIN");
+            
             Console.ReadLine();
         }
 

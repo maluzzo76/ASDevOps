@@ -24,10 +24,12 @@ namespace AS_CRM
         public int Id { get; set; }
         public string Acronimo { get; set; }
         public string Nombre { get; set; }
+        public Nullable<int> Cuenta_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GastosFijo> GastosFijos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GastosVariable> GastosVariables { get; set; }
+        public virtual Plan_Cuentas Plan_Cuentas { get; set; }
     }
 }

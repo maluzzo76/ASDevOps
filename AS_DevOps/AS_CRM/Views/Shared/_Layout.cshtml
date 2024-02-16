@@ -12,9 +12,12 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Content/Site.css")
     @Styles.Render("~/Content/Site.css")
+    <script>
+        setInterval("location.reload()", 300000);
+    </script>
 
 </head>
-<body style=" background-color: white;">
+<body style=" background-color: white;" >
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,9 +43,8 @@
                                     {
                                         switch (imenu.Nombre)
                                         {
-                                            case "Gastos":
-                                                <li>@Html.ActionLink("Gastos Fijos", "Index", "GastosFijoes", null, new { @style = "font-size:10pt;" })</li>
-                                                <li>@Html.ActionLink("Gastos Varios", "Index", "GastosVariables", null, new { @style = "font-size:10pt;" })</li>
+                                            case "Gastos":                                                
+                                                <li>@Html.ActionLink("Gastos", "Index", "GastosVariables", null, new { @style = "font-size:10pt;" })</li>
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;
 
@@ -62,7 +64,7 @@
                                                 break;
 
                                             case "Certificaciones":
-                                                <li>@Html.ActionLink("Certificaciones", "Index", "CertificacionHoras", null, new { @style = "font-size:10pt;" })</li>
+                                                <li>@Html.ActionLink("Certificaciones de Hs", "Index", "CertificacionHoras", null, new { @style = "font-size:10pt;" })</li>
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;
 
@@ -81,12 +83,12 @@
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;
 
-                                            case "Tipo de Gastos":
+                                            case "Tipos de Gastos":
                                                 <li>@Html.ActionLink("Tipos de Gastos", "Index", "TipoGastoes", null, new { @style = "font-size:10pt;" })</li>
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;
 
-                                            case "Tipo de Comprobante":
+                                            case "Tipo de Comprobantes":
                                                 <li>@Html.ActionLink("Tipo de Comprobantes", "Index", "TiposComprobantes", null, new { @style = "font-size:10pt;" })</li>
                                                 <li style="height: 1px; border-bottom: 1px solid #6a8ded"></li>
                                                 break;

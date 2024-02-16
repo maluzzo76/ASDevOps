@@ -18,6 +18,8 @@ namespace AS_CRM
         public Plan_Cuentas()
         {
             this.Lineas_Asiento = new HashSet<Lineas_Asiento>();
+            this.GastosVariables = new HashSet<GastosVariable>();
+            this.TipoGastoes = new HashSet<TipoGasto>();
         }
     
         public int Id { get; set; }
@@ -29,5 +31,9 @@ namespace AS_CRM
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lineas_Asiento> Lineas_Asiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GastosVariable> GastosVariables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TipoGasto> TipoGastoes { get; set; }
     }
 }
